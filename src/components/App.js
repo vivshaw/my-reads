@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     const BookList = this.state.books.map((book) => {
       return (
-        <Card>
+        <Card key={book.title}>
           <Card.Content>
             <Image floated='right' size='mini' src={book.imageLinks.thumbnail} />
             <Card.Header>

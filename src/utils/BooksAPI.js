@@ -1,3 +1,4 @@
+// provided helper methods for Udacity React Nanodegree books api
 
 const api = "https://reactnd-books-api.udacity.com"
 
