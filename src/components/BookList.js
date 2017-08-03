@@ -17,6 +17,7 @@ class BookList extends Component {
     const Books = this.state.books.map((book) => {
       return (
         <Book
+          key={book.id}
           title={book.title}
           subtitle={book.subtitle}
           description={book.description}
@@ -25,12 +26,17 @@ class BookList extends Component {
         />
       )
     })
-
-    return (
-      <div className="BookList">
-        <Card.Group>{Books}</Card.Group>
-      </div>
-    );
+    if(this.state.books) {
+      return (
+        <div className="BookList">
+          <Card.Group>{Books}</Card.Group>
+        </div>
+      );
+    } else {
+      return (
+        <div>Loading...</div>
+      )
+    }
   }
 }
 

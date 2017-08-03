@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react';
 
 const Book = (props) => {
   return (
-    <Card key={props.title}>
+    <Card>
       <Card.Content>
         <Image floated='right' size='mini' src={props.coverImageUrl} />
         <Card.Header>
