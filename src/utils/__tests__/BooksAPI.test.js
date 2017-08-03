@@ -23,7 +23,7 @@ const headers = new Headers({"Accept": "application/json", "Content-Type":  "app
 
 it('fetches correct data', () => {
   fetch.mockResponse(JSON.stringify(example_books), { headers });
-  getAll().then(returnedBooks => {
-    expect(returnedBooks).toBe(example_books.books)
+  return getAll().then(returnedBooks => {
+    expect(returnedBooks).toEqual(example_books.books)
   });
 });
