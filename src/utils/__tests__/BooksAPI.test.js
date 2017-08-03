@@ -1,31 +1,9 @@
 import { get, getAll, update, search } from '../BooksAPI';
-
-const example_books = {
-  books: [
-    {
-      title: "Book 1",
-      subtitle: "Subtitle 1",
-      description: "lorem ipsum",
-      authors: ["Guy One", "Guy Two"],
-      imageLinks: { thumbnail: "pic.url" },
-      id: "nggnmAEACAAJ"
-    },
-    {
-      title: "Book 2",
-      subtitle: "Subtitle 2",
-      description: "dolor sit amet",
-      authors: ["Guy Three", "Guy Four"],
-      imageLinks: { thumbnail: "pic2.url" },
-      id: "sJf1vQAACAAJ"
-    },
-  ]
-}
-
-const headers = new Headers({"Accept": "application/json", "Content-Type":  "application/json"});
+import { testBooks, jsonHeaders} from '../../testData';
 
 it('fetches correct data', () => {
-  fetch.mockResponse(JSON.stringify(example_books), { headers });
+  fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
   return getAll().then(returnedBooks => {
-    expect(returnedBooks).toEqual(example_books.books)
+    expect(returnedBooks).toEqual(testBooks.books)
   });
 });

@@ -1,8 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../components/App';
-
-const example_books = {
+const testBooks = {
   books: [
     {
       title: "Book 1",
@@ -23,10 +19,11 @@ const example_books = {
   ]
 }
 
-it('renders without crashing', () => {
-  let headers = new Headers({"Accept": "application/json", "Content-Type":  "application/json"});
-  fetch.mockResponse(JSON.stringify(example_books), { headers });
+const jsonHeaders = new Headers(
+  {
+    "Accept": "application/json",
+    "Content-Type":  "application/json"
+  }
+);
 
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
+export { testBooks, jsonHeaders }
