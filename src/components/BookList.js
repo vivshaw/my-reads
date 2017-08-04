@@ -7,17 +7,9 @@ import Book from './Book';
 
 class BookList extends Component {
   render() {
-    const { books, filterQuery, clearQuery } = this.props;
-    let showingBooks;
+    const { books } = this.props;
 
-    if (filterQuery) {
-      const match = new RegExp(escapeRegExp(filterQuery), 'i')
-      showingBooks = books.filter((book) => match.test(book.title) || match.test(book.subtitle))
-    } else {
-      showingBooks = books;
-    }
-
-    const FilteredBookElements = showingBooks.map((book) => {
+    const FilteredBookElements = this.props.books.map((book) => {
       return (
         <Book
           key={book.id}
@@ -32,27 +24,7 @@ class BookList extends Component {
 
     if(books) {
       return (
-        <div className="BookList">
-          {books.length !== showingBooks.length && (
-            <Segment basic>
-              <Button
-                basic
-                onClick={() => clearQuery()}
-
-                content='Show All'
-                label={{
-                  as: 'a',
-                  basic: true,
-
-                  pointing: 'right',
-                  content: `Now showing ${showingBooks.length} of ${books.length} total.`
-                }}
-                labelPosition='left'
-              />
-            </Segment>
-          )}
           <Card.Group>{FilteredBookElements}</Card.Group>
-        </div>
       );
     } else {
       return (

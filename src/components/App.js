@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 
 import TopBar from './TopBar.js';
-import BookList from './BookList';
+import Shelf from './Shelf';
 import { getAll } from '../utils/BooksAPI';
 
 class App extends Component {
   state = {
-    books: [],
     filterQuery: '',
-    menuVisible: false
+    menuVisible: false,
+    shelves: [],
+    shelvedBooks: {}
   }
 
   toggleMenu = () => {
@@ -26,10 +27,38 @@ class App extends Component {
   };
 
   componentDidMount() {
-    getAll().then(books => this.setState({ books }))
+    getAll().then(books => {
+      const shelves = Array.from(new Set(books.map(book => book.shelf)))
+      const shelvedBooks = shelves.reduce((map, shelf) => {
+        map[shelf] = books.filter(book => book.shelf === shelf)
+        return map
+      }, {})
+      this.setState({
+        shelves,
+        shelvedBooks
+      })
+    })
   }
 
   render() {
+    const {shelves, shelvedBooks} = this.state;
+
+    const showingShelves = shelves.filter(shelf => shelvedBooks[shelf]).map(shelf => {
+      return (
+        <Shelf
+          title={shelf}
+          books={this.state.shelvedBooks[shelf]}
+          filterQuery={this.state.filterQuery}
+          clearQuery={this.clearQuery}
+        />
+      )
+    })
+
+    console.log("shelves");
+    console.log(shelves);
+    console.log("showingShelves");
+    console.log(showingShelves);
+
     return (
       <div className="App">
         <TopBar toggleMenu={this.toggleMenu} updateQuery={this.updateQuery} />
@@ -40,13 +69,7 @@ class App extends Component {
             <Menu.Item><Icon name="search" />Search</Menu.Item>
           </Sidebar>
            <Sidebar.Pusher>
-                <Segment basic>
-                  <BookList
-                    books={this.state.books}
-                    filterQuery={this.state.filterQuery}
-                    clearQuery={this.clearQuery}
-                  />
-                </Segment>
+             {showingShelves}
            </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
