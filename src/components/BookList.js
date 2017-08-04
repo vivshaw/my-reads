@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Button, Card, Segment } from 'semantic-ui-react';
 import escapeRegExp from "escape-string-regexp";
 
 import Book from './Book';
@@ -7,7 +7,7 @@ import Book from './Book';
 
 class BookList extends Component {
   render() {
-    const { books, filterQuery } = this.props;
+    const { books, filterQuery, clearQuery } = this.props;
     let showingBooks;
 
     if (filterQuery) {
@@ -30,9 +30,27 @@ class BookList extends Component {
       )
     })
 
-    if(this.props.books) {
+    if(books) {
       return (
         <div className="BookList">
+          {books.length !== showingBooks.length && (
+            <Segment basic>
+              <Button
+                basic
+                onClick={() => clearQuery()}
+
+                content='Show All'
+                label={{
+                  as: 'a',
+                  basic: true,
+                  
+                  pointing: 'right',
+                  content: `Now showing ${showingBooks.length} of ${books.length} total.`
+                }}
+                labelPosition='left'
+              />
+            </Segment>
+          )}
           <Card.Group>{FilteredBookElements}</Card.Group>
         </div>
       );

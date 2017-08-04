@@ -41,7 +41,11 @@ class App extends Component {
           </Sidebar>
            <Sidebar.Pusher>
                 <Segment basic>
-                  <BookList books={this.state.books} filterQuery={this.state.filterQuery} />
+                  <BookList
+                    books={this.state.books}
+                    filterQuery={this.state.filterQuery}
+                    clearQuery={this.clearQuery}
+                  />
                 </Segment>
            </Sidebar.Pusher>
         </Sidebar.Pushable>
