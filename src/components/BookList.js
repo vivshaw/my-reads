@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { Card } from 'semantic-ui-react';
+import escapeRegExp from "escape-string-regexp";
 
 import Book from './Book';
-import { getAll } from '../utils/BooksAPI';
+
 
 class BookList extends Component {
-  state = {
-    books: []
-  }
-
-  componentDidMount() {
-    getAll().then(books => this.setState({ books }))
-  }
-
   render() {
-    const Books = this.state.books.map((book) => {
+    const { books, filterQuery } = this.props;
+    let showingBooks;
+
+    if (filterQuery) {
+      const match = new RegExp(escapeRegExp(filterQuery), 'i')
+      showingBooks = books.filter((book) => match.test(book.title) || match.test(book.subtitle))
+    } else {
+      showingBooks = books;
+    }
+
+    const FilteredBookElements = showingBooks.map((book) => {
       return (
         <Book
           key={book.id}
@@ -26,10 +29,11 @@ class BookList extends Component {
         />
       )
     })
-    if(this.state.books) {
+
+    if(this.props.books) {
       return (
         <div className="BookList">
-          <Card.Group>{Books}</Card.Group>
+          <Card.Group>{FilteredBookElements}</Card.Group>
         </div>
       );
     } else {
