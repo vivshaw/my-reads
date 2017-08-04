@@ -35,7 +35,7 @@ class App extends Component {
         <TopBar toggleMenu={this.toggleMenu} updateQuery={this.updateQuery} />
 
         <Sidebar.Pushable as={Segment} attached="bottom">
-          <Sidebar width='thin' as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inline inverted>
+          <Sidebar width='thin' as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inverted>
             <Menu.Item><Icon name="home" />Home</Menu.Item>
             <Menu.Item><Icon name="search" />Search</Menu.Item>
           </Sidebar>
