@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Segment } from 'semantic-ui-react';
+import { Button, Card, Dimmer, Loader, Segment } from 'semantic-ui-react';
 import escapeRegExp from "escape-string-regexp";
 
 import Book from './Book';
@@ -43,7 +43,7 @@ class BookList extends Component {
                 label={{
                   as: 'a',
                   basic: true,
-                  
+
                   pointing: 'right',
                   content: `Now showing ${showingBooks.length} of ${books.length} total.`
                 }}
@@ -56,7 +56,9 @@ class BookList extends Component {
       );
     } else {
       return (
-        <div>Loading...</div>
+        <div>
+          Loading...
+        </div>
       )
     }
   }
