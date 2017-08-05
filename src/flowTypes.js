@@ -1,6 +1,6 @@
 // @flow
 
-export type Book = {
+export type BookType = {
   id: string,
   title: string,
   subtitle?: string,

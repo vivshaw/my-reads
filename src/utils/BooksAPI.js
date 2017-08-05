@@ -1,6 +1,6 @@
 // @flow
 // provided helper methods for Udacity React Nanodegree books api
-import type { Book } from '../flowTypes'
+import type { BookType } from '../flowTypes'
 
 const api = "https://reactnd-books-api.udacity.com"
 
@@ -27,7 +27,7 @@ export const getAll = () =>
     .then(res => res.json())
     .then(data => data.books)
 
-export const update = (book: Book, shelf: string) =>
+export const update = (book: BookType, shelf: string) =>
   fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
     headers: {
