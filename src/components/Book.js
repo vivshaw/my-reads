@@ -3,7 +3,14 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 
-const Book = (props: { title: string, subtitle?: string, description: string, authors: Array<string>, coverImageUrl: string }) => {
+const Book = (
+  props: {
+    title: string,
+    subtitle?: string,
+    description: string,
+    authors: Array<string>,
+    coverImageUrl: string
+  }) => {
   return (
     <Card>
       <Card.Content>
