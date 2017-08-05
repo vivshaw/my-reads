@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Menu, Segment } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import escapeRegExp from "escape-string-regexp";
 
 import BookList from './BookList';

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Dimmer, Loader, Segment } from 'semantic-ui-react';
-import escapeRegExp from "escape-string-regexp";
+import { Card } from 'semantic-ui-react';
 
 import Book from './Book';
 
