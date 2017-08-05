@@ -46,6 +46,7 @@ class App extends Component {
     const showingShelves = shelves.filter(shelf => shelvedBooks[shelf]).map(shelf => {
       return (
         <Shelf
+          key={shelf+'-id'}
           title={shelf}
           books={this.state.shelvedBooks[shelf]}
           filterQuery={this.state.filterQuery}
@@ -53,11 +54,6 @@ class App extends Component {
         />
       )
     })
-
-    console.log("shelves");
-    console.log(shelves);
-    console.log("showingShelves");
-    console.log(showingShelves);
 
     return (
       <div className="App">
