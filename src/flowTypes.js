@@ -3,7 +3,7 @@
 export type BookType = {
   id: string,
   title: string,
-  subtitle?: string,
+  subtitle: string,
   authors: Array<string>,
   description: string,
   imageLinks: {
