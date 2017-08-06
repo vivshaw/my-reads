@@ -6,6 +6,7 @@ import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import TopBar from './TopBar.js';
 import Shelf from './Shelf';
 import { getAll } from '../utils/BooksAPI';
+import { BookType } from '../flowTypes'
 
 class App extends Component {
   state = {
@@ -28,7 +29,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    getAll().then(books => {
+    getAll().then((books: Array<BookType>) => {
       const shelves = Array.from(new Set(books.map(book => book.shelf)))
       const shelvedBooks = shelves.reduce((map, shelf) => {
         map[shelf] = books.filter(book => book.shelf === shelf)
@@ -44,7 +45,7 @@ class App extends Component {
   render() {
     const {shelves, shelvedBooks} = this.state;
 
-    const showingShelves = shelves.filter(shelf => shelvedBooks[shelf]).map(shelf => {
+    const showingShelves = shelves.filter((shelf: string) => shelvedBooks[shelf]).map(shelf => {
       return (
         <Shelf
           key={shelf+'-id'}
