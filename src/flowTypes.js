@@ -6,6 +6,7 @@ export type BookType = {
   subtitle: string,
   authors: Array<string>,
   description: string,
+  shelf: string,
   imageLinks: {
     thumbnail: string
   }

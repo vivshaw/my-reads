@@ -6,7 +6,7 @@ import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import TopBar from './TopBar.js';
 import Shelf from './Shelf';
 import { getAll } from '../utils/BooksAPI';
-import { BookType } from '../flowTypes'
+import type { BookType } from '../flowTypes'
 
 class App extends Component {
   state = {
