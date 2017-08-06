@@ -1,9 +1,12 @@
+// @flow
+
 import React from 'react';
 import { Card } from 'semantic-ui-react';
+import type { BookType } from '../flowTypes'
 
 import Book from './Book';
 
-const BookList = (props) => {
+const BookList = (props: { books: Array<BookType> }) => {
   const { books } = props;
 
   const FilteredBookElements = books.map((book) => {
@@ -19,17 +22,9 @@ const BookList = (props) => {
     )
   })
 
-  if (books) {
-    return (
-        <Card.Group>{FilteredBookElements}</Card.Group>
-    );
-  } else {
-    return (
-      <div>
-        Loading...
-      </div>
-    )
-  }
+  return (
+      <Card.Group>{FilteredBookElements}</Card.Group>
+  );
 }
 
 export default BookList;
