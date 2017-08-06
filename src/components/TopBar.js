@@ -15,7 +15,7 @@ const TopBar = (
       <Menu.Item onClick={() => props.toggleMenu()} >
         <Icon name="sidebar" />
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item position="right">
           <Input
             icon='filter'
             placeholder='Filter books...'
