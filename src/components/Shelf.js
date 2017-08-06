@@ -31,22 +31,21 @@ const Shelf = (
           name={title}
           active={false}
         />
-
+        
         {books.length !== showingBooks.length && (
-          <Menu.Item
-            name='notifyShowing'
-            active={false}
-            content={`Now showing ${showingBooks.length} of ${books.length} total.`}
-            position="right"
-          />
-        )}
-        {books.length !== showingBooks.length && (
-          <Menu.Item
-            name='showAll'
-            active={false}
-            onClick={() => clearQuery()}
-            position="right"
-          />
+          <Menu.Menu position="right">
+            <Menu.Item
+              name='notifyShowing'
+              active={false}
+              icon="filter"
+              content={`${showingBooks.length} of ${books.length}`}
+            />
+            <Menu.Item
+              name='showAll'
+              active={false}
+              onClick={() => clearQuery()}
+            />
+          </Menu.Menu>
         )}
       </Menu>
 
