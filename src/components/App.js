@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   toggleMenu = () => {
-    this.setState({ menuVisible: !this.state.menuVisible })
+    this.setState((state) => ({ menuVisible: !state.menuVisible }))
   }
 
   updateQuery = (query: string) => {
