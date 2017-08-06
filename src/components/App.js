@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 
@@ -17,8 +19,7 @@ class App extends Component {
     this.setState({ menuVisible: !this.state.menuVisible })
   }
 
-  updateQuery = query => {
-    console.log(query);
+  updateQuery = (query: string) => {
     this.setState({ filterQuery: query.trim() });
   };
 
