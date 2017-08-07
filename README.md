@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/vivshaw/my-reads.svg?&style=shield)](https://circleci.com/gh/vivshaw/my-reads)
 [![Code Climate](https://codeclimate.com/github/vivshaw/my-reads/badges/gpa.svg)](https://codeclimate.com/github/vivshaw/my-reads) [![Test Coverage](https://codeclimate.com/github/vivshaw/my-reads/badges/coverage.svg)](https://codeclimate.com/github/vivshaw/my-reads/coverage)
+[![Live Demo](https://img.shields.io/badge/live%20demo-active-blue.svg)](https://my-reads-vivshaw.herokuapp.com/)
 
 This is my submission for Project 1 of the [Udacity React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). This project
 is a LibraryThing-esque library management app that keeps track of what books
@@ -10,7 +11,7 @@ a RESTful books API. It can search for books, add books to shelves, and move
 them between shelves. It has a responsive, mobile-first style built with semantic-ui
 that should look equally great on mobile, tablet, or desktop.
 
-[A live demo is available here](http://my-reads-vivshaw.herokuapp.com/).
+[A live demo is available here](https://my-reads-vivshaw.herokuapp.com/).
 
 ### Installing
 Installation should be a breeze, as this was built with create-react-app & requires
@@ -36,4 +37,4 @@ Plus, sparkly badges! :sparkles:
 
 ### Deployment
 The app autodeploys to Heroku on each successful (CI-passing) build of the
-master branch. The latest passing build is at [my-reads-vivshaw.herokuapp.com](http://my-reads-vivshaw.herokuapp.com/)
+master branch. The latest passing build is at [my-reads-vivshaw.herokuapp.com](https://my-reads-vivshaw.herokuapp.com/)
