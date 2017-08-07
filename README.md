@@ -6,7 +6,9 @@
 This is my submission for Project 1 of the [Udacity React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). This project
 is a LibraryThing-esque library management app that keeps track of what books
 you're reading. The app uses React & react-router to build an SPA front-end for
-a RESTful books API. It can search for books, add books to shelves, and move them between shelves.
+a RESTful books API. It can search for books, add books to shelves, and move
+them between shelves. It has a responsive, mobile-first style built with semantic-ui
+that should look equally great on mobile, tablet, or desktop.
 
 [A live demo is available here](http://my-reads-vivshaw.herokuapp.com/).
 
