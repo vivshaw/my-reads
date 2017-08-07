@@ -6,7 +6,8 @@ const testBooks = {
       description: "lorem ipsum",
       authors: ["Guy One", "Guy Two"],
       imageLinks: { thumbnail: "pic.url" },
-      id: "nggnmAEACAAJ"
+      id: "nggnmAEACAAJ",
+      shelf: "testShelf"
     },
     {
       title: "Book 2",
@@ -14,7 +15,17 @@ const testBooks = {
       description: "dolor sit amet",
       authors: ["Guy Three", "Guy Four"],
       imageLinks: { thumbnail: "pic2.url" },
-      id: "sJf1vQAACAAJ"
+      id: "sJf1vQAACAAJ",
+      shelf: "testShelf"
+    },
+    {
+      title: "Book 3",
+      subtitle: "Subtitle 3",
+      description: "dolor sit amet",
+      authors: ["Guy Three", "Guy Four"],
+      imageLinks: { thumbnail: "pic2.url" },
+      id: "sJf1vQAACAAJ",
+      shelf: "testShelfTwo"
     },
   ]
 }
