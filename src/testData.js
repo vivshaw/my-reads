@@ -1,30 +1,30 @@
 const testBooks = {
   books: [
     {
-      title: "Book 1",
-      subtitle: "Subtitle 1",
-      description: "lorem ipsum",
-      authors: ["Guy One", "Guy Two"],
-      imageLinks: { thumbnail: "pic.url" },
+      title: "A Book Titled 1",
+      subtitle: "A Subtitle",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      authors: ["Author One", "Author Two"],
+      imageLinks: { thumbnail: "cover.gif" },
       id: "nggnmAEACAAJ",
       shelf: "testShelf"
     },
     {
-      title: "Book 2",
-      subtitle: "Subtitle 2",
-      description: "dolor sit amet",
+      title: "Book 2: Electric Boogaloo",
+      subtitle: "Another Subtitle #2",
+      description: "Suspendisse facilisis varius sem, ut auctor sem pulvinar sed.",
       authors: ["Guy Three", "Guy Four"],
-      imageLinks: { thumbnail: "pic2.url" },
+      imageLinks: { thumbnail: "pic2.jpg" },
       id: "sJf1vQAACAAJ",
       shelf: "testShelf"
     },
     {
-      title: "Book 3",
-      subtitle: "Subtitle 3",
-      description: "dolor sit amet",
-      authors: ["Guy Three", "Guy Four"],
-      imageLinks: { thumbnail: "pic3.url" },
-      id: "sJf1vQAACBAJ",
+      title: "3: The Threequel",
+      subtitle: "The 3rd and Final Subtitle",
+      description: "Maecenas justo nunc, lobortis et volutpat vel, tempor quis tellus.",
+      authors: ["Writer Five", "Writer Six"],
+      imageLinks: { thumbnail: "bookCover.png" },
+      id: "bKs2xWEECBAL",
       shelf: "testShelfTwo"
     },
   ]
