@@ -23,8 +23,8 @@ const testBooks = {
       subtitle: "Subtitle 3",
       description: "dolor sit amet",
       authors: ["Guy Three", "Guy Four"],
-      imageLinks: { thumbnail: "pic2.url" },
-      id: "sJf1vQAACAAJ",
+      imageLinks: { thumbnail: "pic3.url" },
+      id: "sJf1vQAACBAJ",
       shelf: "testShelfTwo"
     },
   ]
