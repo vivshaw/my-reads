@@ -1,8 +1,8 @@
 const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn()
+	getItem: jest.fn(),
+	setItem: jest.fn(),
+	clear: jest.fn()
 };
 
-global.localStorage = localStorageMock
-global.fetch = require('jest-fetch-mock')
+global.localStorage = localStorageMock;
+global.fetch = require('jest-fetch-mock');

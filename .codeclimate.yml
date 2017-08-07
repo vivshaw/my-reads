@@ -26,5 +26,5 @@ ratings:
   - "**.rb"
 exclude_paths:
 - "**/__tests__/**"
-- "src/testData.js"
+- "src/common/testData.js"
 JavaScript: true
