@@ -1,16 +1,19 @@
+import React from 'react';
+import { CardGroup } from 'semantic-ui-react'
+import { shallow } from 'enzyme';
+
 import BookList from '../BookList'
 import Book from '../Book'
 import { testBooks } from '../../testData'
 
-import React from 'react';
-import { shallow } from 'enzyme';
-import { CardGroup } from 'semantic-ui-react'
-
 describe('BookList', () => {
   let books, wrapper;
 
-  beforeEach(() => {
+  beforeAll(() => {
     books = testBooks.books;
+  })
+
+  beforeEach(() => {
     wrapper = shallow(
       <BookList books={books}/>
     )

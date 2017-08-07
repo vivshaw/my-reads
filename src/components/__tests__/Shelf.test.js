@@ -1,22 +1,23 @@
+import React from 'react';
+import { Menu, MenuItem, MenuMenu } from 'semantic-ui-react'
+import escapeRegExp from "escape-string-regexp";
+import { shallow, mount } from 'enzyme';
+
 import Shelf from '../Shelf'
 import BookList from '../BookList'
 import Book from '../Book'
 import { testBooks } from '../../testData'
 
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Menu, MenuItem, MenuMenu } from 'semantic-ui-react'
-import escapeRegExp from "escape-string-regexp";
-
 describe('Shelf', () => {
-  let books, shelf, shelvedBooks, wrapper;
-  const shelveBooks = (books, shelf) => books.filter((book) => book.shelf === shelf);
-  const clearQuery = jest.fn()
+  let clearQuery, shelf, shelvedBooks, wrapper;
+
+  beforeAll(() => {
+    clearQuery = jest.fn()
+    shelf = "testShelf";
+    shelvedBooks = testBooks.books.filter((book) => book.shelf === shelf);
+  })
 
   beforeEach(() => {
-    books = testBooks.books;
-    shelf = "testShelf";
-    shelvedBooks = shelveBooks(books, shelf);
     wrapper = shallow(
       <Shelf
         key={shelf+'-id'}
@@ -39,7 +40,7 @@ describe('Shelf', () => {
   describe('filters books', () => {
     let expectedBooks, unfiltered, filtered;
 
-    beforeEach(() => {
+    beforeAll(() => {
       expectedBooks = (books, query) => {
         const match = new RegExp(escapeRegExp(query), 'i')
         return books.filter((book) => {

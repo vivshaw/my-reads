@@ -1,15 +1,18 @@
-import TopBar from '../TopBar'
-
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { Icon, Input, Menu, MenuItem } from 'semantic-ui-react'
+import { shallow } from 'enzyme';
+
+import TopBar from '../TopBar'
 
 describe('Book', () => {
   let toggleMenu, updateQuery, wrapper;
 
-  beforeEach(() => {
+  beforeAll(() => {
     toggleMenu = jest.fn()
     updateQuery = jest.fn()
+  })
+
+  beforeEach(() => {
     wrapper = shallow(
       <TopBar
         filterQuery=""

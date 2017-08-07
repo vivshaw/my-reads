@@ -1,14 +1,14 @@
+import React from 'react';
+import { Image } from 'semantic-ui-react';
+import { shallow, mount } from 'enzyme';
+
 import Book from '../Book'
 import { testBooks } from '../../testData'
-
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Image } from 'semantic-ui-react'
 
 describe('Book', () => {
   let book, wrapper, mounted;
 
-  beforeEach(() => {
+  beforeAll(() => {
     book = testBooks.books[0];
     wrapper = shallow(
       <Book
