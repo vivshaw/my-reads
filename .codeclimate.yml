@@ -1,3 +1,5 @@
+JavaScript: true
+
 exclude_paths:
 - "**/__tests__/**"
 - "src/testData.js"
