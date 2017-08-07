@@ -6,7 +6,7 @@ import { mount } from 'enzyme'
 import App from '../App';
 import TopBar from '../TopBar'
 import Shelf from '../Shelf'
-import { testBooks, jsonHeaders } from '../../testData'
+import { testBooks, jsonHeaders } from '../../common/testData'
 
 describe('App', () => {
   let wrapper;

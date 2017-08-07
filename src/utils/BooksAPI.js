@@ -1,6 +1,6 @@
 // @flow
 // provided helper methods for Udacity React Nanodegree books api
-import type { BookType } from '../flowTypes'
+import type { BookType } from '../common/flowTypes'
 
 const api = "https://reactnd-books-api.udacity.com"
 

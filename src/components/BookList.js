@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card } from 'semantic-ui-react';
-import type { BookType } from '../flowTypes'
+import type { BookType } from '../common/flowTypes'
 
 import Book from './Book';
 

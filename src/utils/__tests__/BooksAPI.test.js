@@ -1,5 +1,5 @@
 import { get, getAll, update, search } from '../BooksAPI';
-import { testBooks, jsonHeaders } from '../../testData';
+import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('BooksAPI', () => {
   it('fetches all books with getAll', () => {

@@ -4,7 +4,7 @@ import React from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import escapeRegExp from "escape-string-regexp";
 
-import type { BookType } from '../flowTypes'
+import type { BookType } from '../common/flowTypes'
 import BookList from './BookList';
 
 const Shelf = (

@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react';
 import { shallow, mount } from 'enzyme';
 
 import Book from '../Book'
-import { testBooks } from '../../testData'
+import { testBooks } from '../../common/testData'
 
 describe('Book', () => {
   let book, wrapper, mounted;
