@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import TopBar from './TopBar.js';
 import Shelf from './Shelf';
@@ -78,12 +78,16 @@ class App extends Component {
 						vertical
 						inverted
 					>
-						<Menu.Item>
-							<Icon name="home" />Home
-						</Menu.Item>
-						<Menu.Item>
-							<Icon name="search" />Search
-						</Menu.Item>
+						<Link to="/">
+							<Menu.Item>
+								<Icon name="home" />Home
+							</Menu.Item>
+						</Link>
+						<Link to="/search">
+							<Menu.Item>
+								<Icon name="search" />Search
+							</Menu.Item>
+						</Link>
 					</Sidebar>
 
 					<Route
