@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Sidebar } from 'semantic-ui-react';
-import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { shallow } from 'enzyme';
 
 import App from '../App';
 import TopBar from '../TopBar';
-import Shelf from '../Shelf';
+import SideMenu from '../SideMenu';
 import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('App', () => {
@@ -13,26 +13,27 @@ describe('App', () => {
 
 	beforeAll(() => {
 		fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
-		wrapper = mount(<App />);
+		wrapper = shallow(<App />);
 	});
 
 	it('renders without crashing', () => {
 		fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
 
 		const div = document.createElement('div');
-		ReactDOM.render(<App />, div);
-	});
-
-	it('renders the correct number of shelves', () => {
-		expect(wrapper.find(Shelf).length).toBe(2);
+		ReactDOM.render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>,
+			div
+		);
 	});
 
 	it('renders a TopBar', () => {
 		expect(wrapper.find(TopBar).length).toBe(1);
 	});
 
-	it('renders a toggleable Sidebar', () => {
-		expect(wrapper.find(Sidebar).length).toBe(1);
+	it('renders a SideMenu', () => {
+		expect(wrapper.find(SideMenu).length).toBe(1);
 	});
 
 	describe('ui interaction', () => {
