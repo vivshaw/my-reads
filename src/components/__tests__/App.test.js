@@ -9,7 +9,7 @@ import SideMenu from '../SideMenu';
 import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('App', () => {
-	let wrapper, wrwrapperer;
+	let wrapper;
 
 	beforeAll(() => {
 		fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
