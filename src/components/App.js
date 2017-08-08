@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
 
 import TopBar from './TopBar.js';
 import Shelf from './Shelf';
@@ -84,9 +85,23 @@ class App extends Component {
 							<Icon name="search" />Search
 						</Menu.Item>
 					</Sidebar>
-					<Sidebar.Pusher>
-						{showingShelves}
-					</Sidebar.Pusher>
+
+					<Route
+						exact
+						path="/"
+						render={() =>
+							<Sidebar.Pusher>
+								{showingShelves}
+							</Sidebar.Pusher>}
+					/>
+					<Route
+						exact
+						path="/search"
+						render={() =>
+							<Sidebar.Pusher>
+								<div>welcome to the search screen.</div>
+							</Sidebar.Pusher>}
+					/>
 				</Sidebar.Pushable>
 			</div>
 		);
