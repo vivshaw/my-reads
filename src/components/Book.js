@@ -21,13 +21,17 @@ const Book = (props: {
 					<Card.Meta>
 						{props.subtitle}
 					</Card.Meta>}
-				<Card.Description>
-					{props.description.substring(0, 140) + '...'}
-				</Card.Description>
+				{/* FIXME: show No description message when description is empty */}
+				{props.description &&
+					<Card.Description>
+						{props.description.substring(0, 140) + '...'}
+					</Card.Description>}
 			</Card.Content>
-			<Card.Content extra>
-				{props.authors.join(', ')}
-			</Card.Content>
+			{/* FIXME: show no author message */}
+			{props.authors &&
+				<Card.Content extra>
+					{props.authors.join(', ')}
+				</Card.Content>}
 		</Card>
 	);
 };
