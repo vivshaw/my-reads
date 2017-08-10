@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Card, Dropdown, Image } from 'semantic-ui-react';
 import { update } from '../utils/BooksAPI';
-import { BookType } from '../common/flowTypes';
+import type { BookType } from '../common/flowTypes';
 
 class Book extends Component {
 	props: {
@@ -37,8 +37,8 @@ class Book extends Component {
 		const { title, subtitle, description, authors, coverImageUrl } = this.props;
 		return (
 			<Card>
+				<Image floated="right" size="mini" src={coverImageUrl} />
 				<Card.Content>
-					<Image floated="right" size="mini" src={coverImageUrl} />
 					<Card.Header>
 						{title}
 					</Card.Header>
@@ -59,7 +59,8 @@ class Book extends Component {
 					</Card.Content>}
 				<Card.Content extra>
 					<Dropdown
-						text="Add to a shelf?"
+						placeholder="Add to a shelf?"
+						defaultValue={this.props.book.shelf}
 						fluid
 						floating
 						labeled
