@@ -18,6 +18,7 @@ const BookList = (props: { books: Array<BookType> }) => {
 				description={book.description}
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
+				book={book}
 			/>
 		);
 	});
