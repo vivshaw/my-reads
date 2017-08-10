@@ -29,7 +29,7 @@ class Search extends Component {
 		}
 	};
 
-	onChange = searchTerm => {
+	onChange = (searchTerm: string) => {
 		this.setState({ searchTerm });
 	};
 
