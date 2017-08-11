@@ -18,6 +18,7 @@ describe('Book', () => {
 				description={book.description}
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
+				book={book}
 			/>
 		);
 		mounted = mount(
@@ -28,6 +29,7 @@ describe('Book', () => {
 				description={book.description}
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
+				book={book}
 			/>
 		);
 	});
