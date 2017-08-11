@@ -26,8 +26,8 @@ describe('Book', () => {
 		expect(wrapper.find(Menu).length).toBe(1);
 	});
 
-	it('should show a menu button', () => {
-		expect(wrapper.find(Icon).length).toBe(1);
+	it('should show 3 menu buttons', () => {
+		expect(wrapper.find(Icon).length).toBe(3);
 	});
 
 	it('should show a filter input', () => {
