@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Button, Input, Segment, Sidebar } from 'semantic-ui-react';
+import { Input, Segment, Sidebar, Transition } from 'semantic-ui-react';
 
 import BookList from './BookList';
 import { search } from '../utils/BooksAPI';
@@ -31,23 +31,28 @@ class Search extends Component {
 
 	onChange = (searchTerm: string) => {
 		this.setState({ searchTerm });
+		this.onSearch(searchTerm);
 	};
 
 	render() {
 		return (
-			<Sidebar.Pusher>
-				<Segment basic>
-					<Input
-						icon="search"
-						value={this.state.searchTerm}
-						onChange={event => this.onChange(event.target.value)}
-					/>
-					<Button onClick={() => this.onSearch(this.state.searchTerm)}>
-						Search
-					</Button>
-					<BookList books={this.state.searchResults} />
-				</Segment>
-			</Sidebar.Pusher>
+			<Transition.Group animation="slide right" duration={500}>
+				<Sidebar.Pusher>
+					<Segment>
+						<Input
+							fluid
+							size="massive"
+							icon="search"
+							placeholder="Search by title or author"
+							value={this.state.searchTerm}
+							onChange={event => this.onChange(event.target.value)}
+						/>
+					</Segment>
+					<Segment basic>
+						<BookList books={this.state.searchResults} />
+					</Segment>
+				</Sidebar.Pusher>
+			</Transition.Group>
 		);
 	}
 }
