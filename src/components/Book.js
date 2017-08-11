@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Card, Dropdown, Icon, Image } from 'semantic-ui-react';
+import { Card, Dropdown, Image } from 'semantic-ui-react';
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 
@@ -57,7 +57,7 @@ class Book extends Component {
 					<Card.Content extra>
 						{authors.join(', ')}
 					</Card.Content>}
-				<Card.Content extra color="red">
+				<Card.Content extra>
 					<Dropdown
 						placeholder="Add to a shelf?"
 						defaultValue={this.props.book.shelf}
