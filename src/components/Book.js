@@ -46,13 +46,11 @@ class Book extends Component {
 						<Card.Meta>
 							{subtitle}
 						</Card.Meta>}
-					{/* FIXME: show No description message when description is empty */}
 					{description &&
 						<Card.Description>
 							{description.substring(0, 140) + '...'}
 						</Card.Description>}
 				</Card.Content>
-				{/* FIXME: show no author message */}
 				{authors &&
 					<Card.Content extra>
 						{authors.join(', ')}
