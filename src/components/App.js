@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import TopBar from './TopBar.js';
 import SideMenu from './SideMenu';
@@ -46,30 +47,32 @@ class App extends Component {
 		const { filterQuery, shelves, books } = this.state;
 
 		return (
-			<div className="App">
-				<TopBar
-					filterQuery={this.state.filterQuery}
-					toggleMenu={this.toggleMenu}
-					updateQuery={this.updateQuery}
-				/>
-
-				<Sidebar.Pushable as={Segment} attached="bottom">
-					<SideMenu menuVisible={this.state.menuVisible} />
-
-					<Route
-						exact
-						path="/"
-						render={() =>
-							<Home
-								books={books}
-								shelves={shelves}
-								filterQuery={filterQuery}
-								clearQuery={this.clearQuery}
-							/>}
+			<MuiThemeProvider>
+				<div className="App">
+					<TopBar
+						filterQuery={this.state.filterQuery}
+						toggleMenu={this.toggleMenu}
+						updateQuery={this.updateQuery}
 					/>
-					<Route exact path="/search" render={() => <Search />} />
-				</Sidebar.Pushable>
-			</div>
+
+					<Sidebar.Pushable as={Segment} attached="bottom">
+						<SideMenu menuVisible={this.state.menuVisible} />
+
+						<Route
+							exact
+							path="/"
+							render={() =>
+								<Home
+									books={books}
+									shelves={shelves}
+									filterQuery={filterQuery}
+									clearQuery={this.clearQuery}
+								/>}
+						/>
+						<Route exact path="/search" render={() => <Search />} />
+					</Sidebar.Pushable>
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }
