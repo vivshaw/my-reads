@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Sidebar } from 'semantic-ui-react';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
 import Shelf from './Shelf';
 import type { BookType } from '../common/flowTypes';
@@ -21,13 +23,20 @@ const Home = (props: {
 
 	const showingShelves = shelves.map(shelf => {
 		return (
-			<Shelf
-				key={shelf + '-id'}
-				title={shelf}
-				books={shelvedBooks[shelf]}
-				filterQuery={filterQuery}
-				clearQuery={clearQuery}
-			/>
+			<div>
+				<AppBar
+					title="flybrary"
+					iconElementRight={<FlatButton label="Filter" />}
+				/>
+
+				<Shelf
+					key={shelf + '-id'}
+					title={shelf}
+					books={shelvedBooks[shelf]}
+					filterQuery={filterQuery}
+					clearQuery={clearQuery}
+				/>
+			</div>
 		);
 	});
 
