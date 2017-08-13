@@ -1,11 +1,12 @@
 // @flow
 
 import React from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
 import escapeRegExp from 'escape-string-regexp';
 
 import type { BookType } from '../common/flowTypes';
 import BookList from './BookList';
+
+const shelfStyle = { padding: 10 };
 
 const Shelf = (props: {
 	title: string,
@@ -13,7 +14,7 @@ const Shelf = (props: {
 	filterQuery: string,
 	clearQuery: () => void
 }) => {
-	const { title, books, filterQuery, clearQuery } = props;
+	const { books, filterQuery, clearQuery } = props;
 	let showingBooks;
 
 	if (filterQuery) {
@@ -26,28 +27,11 @@ const Shelf = (props: {
 	}
 
 	return (
-		<Segment basic>
-			<Menu>
-				<Menu.Item name={title} active={false} />
-
-				{books.length !== showingBooks.length &&
-					<Menu.Menu position="right">
-						<Menu.Item
-							name="notifyShowing"
-							active={false}
-							icon="filter"
-							content={`${showingBooks.length} of ${books.length}`}
-						/>
-						<Menu.Item
-							name="showAll"
-							active={false}
-							onClick={() => clearQuery()}
-						/>
-					</Menu.Menu>}
-			</Menu>
+		<div style={shelfStyle} className="shelf">
+			{books.length !== showingBooks.length && <div>show all</div>}
 
 			<BookList books={showingBooks} />
-		</Segment>
+		</div>
 	);
 };
 
