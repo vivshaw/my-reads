@@ -1,38 +1,51 @@
 // @flow
 
 import React from 'react';
-import { Icon, Input, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
 const TopBar = (props: {
 	filterQuery: string,
 	toggleMenu: () => void,
-	updateQuery: (query: string) => void
+	handleFilterChange: (query: string) => void
 }) => {
 	return (
-		<Menu secondary attached="top">
-			<Menu.Item onClick={() => props.toggleMenu()}>
-				<Icon name="sidebar" />
-			</Menu.Item>
-			<Link to="/">
-				<Menu.Item>
-					<Icon name="home" />Home
-				</Menu.Item>
-			</Link>
-			<Link to="/search">
-				<Menu.Item>
-					<Icon name="search" />Search
-				</Menu.Item>
-			</Link>
-			<Menu.Item position="right">
-				<Input
-					icon="filter"
-					placeholder="Filter books..."
-					value={props.filterQuery}
-					onChange={event => props.updateQuery(event.target.value)}
-				/>
-			</Menu.Item>
-		</Menu>
+		<div>
+			<Route
+				exact
+				path="/"
+				render={() =>
+					<AppBar
+						title="Flybrary"
+						iconElementRight={<FlatButton label="Filter" />}
+						onLeftIconButtonTouchTap={props.toggleMenu}
+					/>}
+			/>
+
+			<Route
+				exact
+				path="/shelves"
+				render={() =>
+					<AppBar
+						title="Shelves"
+						iconElementRight={<FlatButton label="Filter" />}
+						onLeftIconButtonTouchTap={props.toggleMenu}
+					/>}
+			/>
+
+			<Route
+				exact
+				path="/search"
+				render={() =>
+					<AppBar
+						title="Search"
+						iconElementRight={<FlatButton label="Filter" />}
+						onLeftIconButtonTouchTap={props.toggleMenu}
+					/>}
+			/>
+		</div>
 	);
 };
 
