@@ -13,6 +13,7 @@
 		"react-swipeable-views": "^0.12.5",
 		"react-tap-event-plugin": "^2.0.1",
 		"react-test-renderer": "^15.6.1",
+		"sanitize.css": "^5.0.0",
 		"semantic-ui-css": "^2.2.11",
 		"semantic-ui-react": "^0.71.3"
 	},
