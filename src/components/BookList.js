@@ -1,10 +1,17 @@
 // @flow
 
 import React from 'react';
-import { Card } from 'semantic-ui-react';
-import type { BookType } from '../common/flowTypes';
 
 import Book from './Book';
+import type { BookType } from '../common/flowTypes';
+
+const bookListStyle = {
+	display: 'flex',
+	flexWrap: 'wrap',
+	marginTop: '12px',
+	marginBottom: '12px',
+	justifyContent: 'center'
+};
 
 const BookList = (props: { books: Array<BookType> }) => {
 	const { books } = props;
@@ -24,9 +31,9 @@ const BookList = (props: { books: Array<BookType> }) => {
 	});
 
 	return (
-		<Card.Group>
+		<div style={bookListStyle} className="book-list">
 			{FilteredBookElements}
-		</Card.Group>
+		</div>
 	);
 };
 
