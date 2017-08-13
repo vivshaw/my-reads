@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
@@ -15,30 +16,30 @@ const SideMenu = (props: {
 
 	return (
 		<Drawer
+			className="side-bar"
 			docked={false}
 			width={200}
 			open={menuVisible}
 			onRequestChange={menuVisible => handleSetVisible(menuVisible)}
-			className="side-bar"
 		>
 			<AppBar
+				className="side-bar-head"
 				title="Flybrary"
 				showMenuIconButton={false}
-				className="side-bar-head"
 			/>
 
 			<MenuItem
+				className="side-bar-link"
 				onTouchTap={handleClose}
 				containerElement={<Link to="/shelves" />}
-				className="side-bar-link"
 			>
 				Shelves
 			</MenuItem>
 
 			<MenuItem
+				className="side-bar-link"
 				onTouchTap={handleClose}
 				containerElement={<Link to="/search" />}
-				className="side-bar-link"
 			>
 				Search
 			</MenuItem>

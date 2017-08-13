@@ -1,15 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-	Card,
-	CardActions,
-	CardHeader,
-	CardMedia,
-	CardTitle,
-	CardText
-} from 'material-ui/Card';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
@@ -71,4 +64,4 @@ class Book extends Component {
 	}
 }
 
-export default muiThemeable()(Book);
+export default Book;
