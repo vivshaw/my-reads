@@ -22,14 +22,14 @@ const SideMenu = (props: {
 			className="side-bar"
 		>
 			<AppBar
-				title="flybrary"
+				title="Flybrary"
 				showMenuIconButton={false}
 				className="side-bar-head"
 			/>
 
 			<MenuItem
 				onTouchTap={handleClose}
-				containerElement={<Link to="/" />}
+				containerElement={<Link to="/shelves" />}
 				className="side-bar-link"
 			>
 				Shelves

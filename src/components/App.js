@@ -2,15 +2,15 @@
 
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { deepOrange200, deepOrange400 } from 'material-ui/styles/colors';
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
 
 import Home from './Home';
 import Search from './Search';
+import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
@@ -37,17 +37,17 @@ class App extends Component {
 		this.setState(state => ({ menuVisible: !state.menuVisible }));
 	};
 
-	handleSetVisible = (menuVisible: boolean) => {
+	handleSetMenuVisible = (menuVisible: boolean) => {
 		this.setState({ menuVisible });
 	};
 
-	handleClose = () => this.setState({ menuVisible: false });
+	handleMenuClose = () => this.setState({ menuVisible: false });
 
-	updateQuery = (query: string) => {
+	handleFilterChange = (query: string) => {
 		this.setState({ filterQuery: query.trim() });
 	};
 
-	clearQuery = () => {
+	handleFilterClear = () => {
 		this.setState({ filterQuery: '' });
 	};
 
@@ -67,27 +67,27 @@ class App extends Component {
 		return (
 			<MuiThemeProvider muiTheme={flybraryTheme}>
 				<div className="App">
-					<AppBar
-						title="flybrary"
-						iconElementRight={<FlatButton label="Filter" />}
-						onLeftIconButtonTouchTap={this.toggleMenu}
+					<TopBar
+						filterQuery={filterQuery}
+						toggleMenu={this.toggleMenu}
+						handleFilterChange={this.handleFilterChange}
 					/>
 
 					<SideBar
 						menuVisible={this.state.menuVisible}
-						handleClose={this.handleClose}
-						handleSetVisible={this.handleSetVisible}
+						handleClose={this.handleMenuClose}
+						handleSetVisible={this.handleSetMenuVisible}
 					/>
 
 					<Route
 						exact
-						path="/"
+						path="/shelves"
 						render={() =>
 							<Home
 								books={books}
 								shelves={shelves}
 								filterQuery={filterQuery}
-								clearQuery={this.clearQuery}
+								clearQuery={this.handleFilterClear}
 							/>}
 					/>
 					<Route exact path="/search" render={() => <Search />} />
