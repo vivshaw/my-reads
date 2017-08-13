@@ -1,11 +1,28 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Input, Segment, Sidebar } from 'semantic-ui-react';
+import FontIcon from 'material-ui/FontIcon';
+import TextField from 'material-ui/TextField';
 
 import BookList from './BookList';
 import { search } from '../utils/BooksAPI';
 import searchTerms from '../common/searchTerms';
+
+const styles = {
+	searchContainer: {
+		position: 'relative',
+		display: 'inline-block',
+		width: '100%'
+	},
+	searchIcon: {
+		position: 'absolute',
+		left: 10,
+		top: 15,
+		width: 20,
+		height: 20
+	},
+	searchField: { textIndent: 40 }
+};
 
 class Search extends Component {
 	state = {
@@ -23,28 +40,31 @@ class Search extends Component {
 		}
 	};
 
-	onChange = (searchTerm: string) => {
+	handleChange = (searchTerm: string) => {
 		this.setState({ searchTerm });
 		this.onSearch(searchTerm);
 	};
 
 	render() {
 		return (
-			<Sidebar.Pusher>
-				<Segment>
-					<Input
-						fluid
-						size="massive"
-						icon="search"
-						placeholder="Search by title or author"
+			<div className="search">
+				<div className="search-field" style={styles.searchContainer}>
+					<FontIcon className="material-icons" style={styles.searchIcon}>
+						search
+					</FontIcon>
+
+					<TextField
+						id="text-field-controlled"
 						value={this.state.searchTerm}
-						onChange={event => this.onChange(event.target.value)}
+						style={styles.searchField}
+						hintText="Search by title or author"
+						onChange={event => this.handleChange(event.target.value)}
+						fullWidth={true}
 					/>
-				</Segment>
-				<Segment basic>
-					<BookList books={this.state.searchResults} />
-				</Segment>
-			</Sidebar.Pusher>
+				</div>
+
+				<BookList books={this.state.searchResults} />
+			</div>
 		);
 	}
 }
