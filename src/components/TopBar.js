@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 
 const TopBar = (props: {
 	filterQuery: string,
@@ -30,7 +31,6 @@ const TopBar = (props: {
 				render={() =>
 					<AppBar
 						title="Shelves"
-						iconElementRight={<FlatButton label="Filter" />}
 						onLeftIconButtonTouchTap={props.toggleMenu}
 					/>}
 			/>
@@ -38,11 +38,18 @@ const TopBar = (props: {
 			<Route
 				exact
 				path="/search"
-				render={() =>
+				render={({ history }) =>
 					<AppBar
 						title="Search"
 						iconElementRight={<FlatButton label="Filter" />}
-						onLeftIconButtonTouchTap={props.toggleMenu}
+						iconElementLeft={
+							<IconButton iconClassName="material-icons" tooltip="Ligature">
+								arrow_back
+							</IconButton>
+						}
+						onLeftIconButtonTouchTap={() => {
+							history.push('/');
+						}}
 					/>}
 			/>
 		</div>
