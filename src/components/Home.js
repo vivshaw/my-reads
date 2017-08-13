@@ -50,13 +50,14 @@ class Home extends Component {
 		});
 
 		return (
-			<div>
+			<div className="home">
 				<Tabs onChange={this.handleTabChange} value={this.state.slideIndex}>
 					{shelfTabs}
 				</Tabs>
 				<SwipeableViews
 					index={this.state.slideIndex}
 					onChangeIndex={this.handleTabChange}
+					animateHeight={true}
 				>
 					{showingShelves}
 				</SwipeableViews>
