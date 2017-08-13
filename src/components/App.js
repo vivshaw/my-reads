@@ -1,14 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Segment, Sidebar } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
-import TopBar from './TopBar.js';
-import SideMenu from './SideMenu';
 import Home from './Home';
 import Search from './Search';
+import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
@@ -24,6 +24,12 @@ class App extends Component {
 	toggleMenu = () => {
 		this.setState(state => ({ menuVisible: !state.menuVisible }));
 	};
+
+	handleSetVisible = (menuVisible: boolean) => {
+		this.setState({ menuVisible });
+	};
+
+	handleClose = () => this.setState({ menuVisible: false });
 
 	updateQuery = (query: string) => {
 		this.setState({ filterQuery: query.trim() });
@@ -49,28 +55,30 @@ class App extends Component {
 		return (
 			<MuiThemeProvider>
 				<div className="App">
-					<TopBar
-						filterQuery={this.state.filterQuery}
-						toggleMenu={this.toggleMenu}
-						updateQuery={this.updateQuery}
+					<AppBar
+						title="flybrary"
+						iconElementRight={<FlatButton label="Filter" />}
+						onLeftIconButtonTouchTap={this.toggleMenu}
 					/>
 
-					<Sidebar.Pushable as={Segment} attached="bottom">
-						<SideMenu menuVisible={this.state.menuVisible} />
+					<SideBar
+						menuVisible={this.state.menuVisible}
+						handleClose={this.handleClose}
+						handleSetVisible={this.handleSetVisible}
+					/>
 
-						<Route
-							exact
-							path="/"
-							render={() =>
-								<Home
-									books={books}
-									shelves={shelves}
-									filterQuery={filterQuery}
-									clearQuery={this.clearQuery}
-								/>}
-						/>
-						<Route exact path="/search" render={() => <Search />} />
-					</Sidebar.Pushable>
+					<Route
+						exact
+						path="/"
+						render={() =>
+							<Home
+								books={books}
+								shelves={shelves}
+								filterQuery={filterQuery}
+								clearQuery={this.clearQuery}
+							/>}
+					/>
+					<Route exact path="/search" render={() => <Search />} />
 				</div>
 			</MuiThemeProvider>
 		);
