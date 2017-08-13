@@ -6,7 +6,11 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 
-const SideMenu = (props: { menuVisible: boolean }) => {
+const SideMenu = (props: {
+	menuVisible: boolean,
+	handleClose: () => void,
+	handleSetVisible: boolean => void
+}) => {
 	const { menuVisible, handleClose, handleSetVisible } = props;
 
 	return (
