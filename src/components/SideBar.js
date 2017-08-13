@@ -19,16 +19,26 @@ const SideMenu = (props: {
 			width={200}
 			open={menuVisible}
 			onRequestChange={menuVisible => handleSetVisible(menuVisible)}
+			className="side-bar"
 		>
-			<AppBar title="flybrary" showMenuIconButton={false} />
+			<AppBar
+				title="flybrary"
+				showMenuIconButton={false}
+				className="side-bar-head"
+			/>
 
-			<MenuItem onTouchTap={handleClose} containerElement={<Link to="/" />}>
+			<MenuItem
+				onTouchTap={handleClose}
+				containerElement={<Link to="/" />}
+				className="side-bar-link"
+			>
 				Shelves
 			</MenuItem>
 
 			<MenuItem
 				onTouchTap={handleClose}
 				containerElement={<Link to="/search" />}
+				className="side-bar-link"
 			>
 				Search
 			</MenuItem>
