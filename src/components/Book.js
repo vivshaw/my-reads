@@ -1,9 +1,27 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Card, Dropdown, Image } from 'semantic-ui-react';
+import {
+	Card,
+	CardActions,
+	CardHeader,
+	CardMedia,
+	CardTitle,
+	CardText
+} from 'material-ui/Card';
+import muiThemeable from 'material-ui/styles/muiThemeable';
+
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+
+const bookStyle = {
+	flexGrow: 1,
+	flexShrink: 0,
+	margin: '0 10px 12px',
+	width: '90vw',
+	minWidth: '300px',
+	maxWidth: '400px'
+};
 
 class Book extends Component {
 	props: {
@@ -36,38 +54,21 @@ class Book extends Component {
 		];
 		const { title, subtitle, description, authors, coverImageUrl } = this.props;
 		return (
-			<Card>
-				<Image floated="right" size="mini" src={coverImageUrl} />
-				<Card.Content>
-					<Card.Header>
-						{title}
-					</Card.Header>
-					{subtitle &&
-						<Card.Meta>
-							{subtitle}
-						</Card.Meta>}
-					{description &&
-						<Card.Description>
-							{description.substring(0, 140) + '...'}
-						</Card.Description>}
-				</Card.Content>
-				{authors &&
-					<Card.Content extra>
-						{authors.join(', ')}
-					</Card.Content>}
-				<Card.Content extra>
-					<Dropdown
-						placeholder="Add to a shelf?"
-						defaultValue={this.props.book.shelf}
-						fluid
-						floating
-						onChange={this.onChange}
-						options={shelfOptions}
-					/>
-				</Card.Content>
+			<Card style={bookStyle} className="book">
+				<CardMedia
+					overlay={<CardTitle title={title} subtitle={subtitle} />}
+					style={{ maxHeight: '400px', overflow: 'hidden' }}
+				>
+					<img src={coverImageUrl} alt={title} />
+				</CardMedia>
+				{authors && <CardTitle subtitle={authors.join(', ')} />}
+				{description &&
+					<CardText>
+						{description.substring(0, 140) + '...'}
+					</CardText>}
 			</Card>
 		);
 	}
 }
 
-export default Book;
+export default muiThemeable()(Book);
