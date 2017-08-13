@@ -3,6 +3,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import { deepOrange200, deepOrange400 } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -12,6 +15,15 @@ import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+
+const flybraryTheme = getMuiTheme({
+	...lightBaseTheme,
+	palette: {
+		primary1Color: deepOrange200,
+		pickerHeaderColor: deepOrange200,
+		primary2Color: deepOrange400
+	}
+});
 
 class App extends Component {
 	state = {
@@ -53,7 +65,7 @@ class App extends Component {
 		const { filterQuery, shelves, books } = this.state;
 
 		return (
-			<MuiThemeProvider>
+			<MuiThemeProvider muiTheme={flybraryTheme}>
 				<div className="App">
 					<AppBar
 						title="flybrary"
