@@ -12,7 +12,7 @@ const styles = {
 	searchContainer: {
 		position: 'relative',
 		display: 'inline-block',
-		width: '100%'
+		width: '97%'
 	},
 	searchIcon: {
 		position: 'absolute',
