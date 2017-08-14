@@ -13,18 +13,16 @@ const bookListStyle = {
 	justifyContent: 'center'
 };
 
-const BookList = (props: { books: Array<BookType> }) => {
+const BookList = (props: {
+	books: Array<BookType>,
+	handleShelfUpdate: (string, string) => void,
+	findShelf: string => string
+}) => {
 	const { books, handleShelfUpdate, findShelf } = props;
 
 	const FilteredBookElements = books.map(book => {
 		return (
 			<Book
-				key={book.id}
-				title={book.title}
-				subtitle={book.subtitle}
-				description={book.description}
-				authors={book.authors}
-				coverImageUrl={book.imageLinks.thumbnail}
 				book={book}
 				handleShelfUpdate={handleShelfUpdate}
 				findShelf={findShelf}

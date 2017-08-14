@@ -13,7 +13,8 @@ const Shelf = (props: {
 	books: Array<BookType>,
 	filterQuery: string,
 	clearQuery: () => void,
-	handleShelfUpdate: (string, string) => void
+	handleShelfUpdate: (string, string) => void,
+	findShelf: string => string
 }) => {
 	const {
 		books,

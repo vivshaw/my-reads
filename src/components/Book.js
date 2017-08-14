@@ -35,7 +35,7 @@ class Book extends Component {
 		shelf: ''
 	};
 
-	handleChangeShelf = (event, index: number, shelf: string) => {
+	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
 		update(book, shelf).then(() => {
 			this.setState({ shelf });

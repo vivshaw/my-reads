@@ -13,7 +13,8 @@ class Home extends Component {
 		shelves: Array<string>,
 		filterQuery: string,
 		clearQuery: () => void,
-		handleShelfUpdate: (id: string, shelf: string) => void
+		handleShelfUpdate: (string, string) => void,
+		findShelf: string => string
 	};
 
 	state = {

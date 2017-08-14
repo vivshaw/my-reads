@@ -25,6 +25,11 @@ const styles = {
 };
 
 class Search extends Component {
+	props: {
+		handleShelfUpdate: (string, string) => void,
+		findShelf: string => string
+	};
+
 	state = {
 		searchTerm: '',
 		searchResults: []
