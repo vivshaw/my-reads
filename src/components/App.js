@@ -51,11 +51,15 @@ class App extends Component {
 		this.setState({ filterQuery: '' });
 	};
 
-	handleShelfUpdate = (id: string, shelf: string) => {
+	handleShelfUpdate = (targetBook: BookType, shelf: string) => {
 		this.setState(({ books }) => {
-			const targetBookIndex = books.findIndex(book => book.id === id);
+			const targetBookIndex = books.findIndex(
+				book => book.id === targetBook.id
+			);
 			if (targetBookIndex !== -1) {
 				books[targetBookIndex].shelf = shelf;
+			} else {
+				books.push(Object.assign({}, targetBook, { shelf }));
 			}
 			return books;
 		});

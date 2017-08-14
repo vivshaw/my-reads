@@ -5,7 +5,9 @@ import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 
 import BookList from './BookList';
+
 import { search } from '../utils/BooksAPI';
+import type { BookType } from '../common/flowTypes';
 import searchTerms from '../common/searchTerms';
 
 const styles = {
@@ -26,7 +28,7 @@ const styles = {
 
 class Search extends Component {
 	props: {
-		handleShelfUpdate: (string, string) => void,
+		handleShelfUpdate: (BookType, string) => void,
 		findShelf: string => string
 	};
 

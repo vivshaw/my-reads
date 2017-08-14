@@ -27,7 +27,7 @@ const bookStyle = {
 class Book extends Component {
 	props: {
 		book: BookType,
-		handleShelfUpdate: (string, string) => void,
+		handleShelfUpdate: (BookType, string) => void,
 		findShelf: string => string
 	};
 
@@ -39,7 +39,7 @@ class Book extends Component {
 		const { book, handleShelfUpdate } = this.props;
 		update(book, shelf).then(() => {
 			this.setState({ shelf });
-			handleShelfUpdate(book.id, shelf);
+			handleShelfUpdate(book, shelf);
 		});
 	};
 

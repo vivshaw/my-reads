@@ -15,7 +15,7 @@ const bookListStyle = {
 
 const BookList = (props: {
 	books: Array<BookType>,
-	handleShelfUpdate: (string, string) => void,
+	handleShelfUpdate: (BookType, string) => void,
 	findShelf: string => string
 }) => {
 	const { books, handleShelfUpdate, findShelf } = props;

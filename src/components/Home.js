@@ -5,6 +5,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
 import Shelf from './Shelf';
+
 import type { BookType } from '../common/flowTypes';
 
 class Home extends Component {
@@ -13,7 +14,7 @@ class Home extends Component {
 		shelves: Array<string>,
 		filterQuery: string,
 		clearQuery: () => void,
-		handleShelfUpdate: (string, string) => void,
+		handleShelfUpdate: (BookType, string) => void,
 		findShelf: string => string
 	};
 
