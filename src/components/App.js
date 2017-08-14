@@ -51,6 +51,28 @@ class App extends Component {
 		this.setState({ filterQuery: '' });
 	};
 
+	handleShelfUpdate = (id: string, shelf: string) => {
+		console.log(`updating book ${id} to ${shelf}`);
+		this.setState(({ books }) => {
+			const targetBookIndex = books.findIndex(book => book.id === id);
+			console.log(`book index: ${targetBookIndex}`);
+			if (targetBookIndex !== -1) {
+				console.log('book found!');
+				books[targetBookIndex].shelf = shelf;
+			}
+			return books;
+		});
+	};
+
+	findShelf = (id: string) => {
+		const book = this.state.books.find(book => book.id === id);
+		if (book) {
+			return book.shelf;
+		} else {
+			return '';
+		}
+	};
+
 	componentDidMount() {
 		getAll().then((books: Array<BookType>) => {
 			const shelves = Array.from(new Set(books.map(book => book.shelf)));
@@ -88,9 +110,19 @@ class App extends Component {
 								shelves={shelves}
 								filterQuery={filterQuery}
 								clearQuery={this.handleFilterClear}
+								handleShelfUpdate={this.handleShelfUpdate}
+								findShelf={this.findShelf}
 							/>}
 					/>
-					<Route exact path="/search" render={() => <Search />} />
+					<Route
+						exact
+						path="/search"
+						render={() =>
+							<Search
+								handleShelfUpdate={this.handleShelfUpdate}
+								findShelf={this.findShelf}
+							/>}
+					/>
 				</div>
 			</MuiThemeProvider>
 		);

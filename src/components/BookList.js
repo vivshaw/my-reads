@@ -14,7 +14,7 @@ const bookListStyle = {
 };
 
 const BookList = (props: { books: Array<BookType> }) => {
-	const { books } = props;
+	const { books, handleShelfUpdate, findShelf } = props;
 
 	const FilteredBookElements = books.map(book => {
 		return (
@@ -26,6 +26,8 @@ const BookList = (props: { books: Array<BookType> }) => {
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
 				book={book}
+				handleShelfUpdate={handleShelfUpdate}
+				findShelf={findShelf}
 			/>
 		);
 	});

@@ -12,9 +12,16 @@ const Shelf = (props: {
 	title: string,
 	books: Array<BookType>,
 	filterQuery: string,
-	clearQuery: () => void
+	clearQuery: () => void,
+	handleShelfUpdate: (string, string) => void
 }) => {
-	const { books, filterQuery, clearQuery } = props;
+	const {
+		books,
+		filterQuery,
+		clearQuery,
+		handleShelfUpdate,
+		findShelf
+	} = props;
 	let showingBooks;
 
 	if (filterQuery) {
@@ -30,7 +37,11 @@ const Shelf = (props: {
 		<div style={shelfStyle} className="shelf">
 			{books.length !== showingBooks.length && <div>show all</div>}
 
-			<BookList books={showingBooks} />
+			<BookList
+				books={showingBooks}
+				handleShelfUpdate={handleShelfUpdate}
+				findShelf={findShelf}
+			/>
 		</div>
 	);
 };

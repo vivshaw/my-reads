@@ -2,7 +2,15 @@
 
 import React, { Component } from 'react';
 
-import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import {
+	Card,
+	CardActions,
+	CardMedia,
+	CardTitle,
+	CardText
+} from 'material-ui/Card';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
@@ -26,26 +34,60 @@ class Book extends Component {
 		book: BookType
 	};
 
-	onChange = (event, data) => {
-		console.log(data.value);
-		update(this.props.book, data.value).then(console.log('updated shelf!'));
+	state = {
+		shelf: ''
 	};
 
+	handleChangeShelf = (event, index, shelf) => {
+		const { book, handleShelfUpdate } = this.props;
+		update(book, shelf).then(() => {
+			this.setState({ shelf });
+			handleShelfUpdate(book.id, shelf);
+		});
+	};
+
+	componentDidMount() {
+		const { book, findShelf } = this.props;
+		if (book.shelf) {
+			this.setState({ shelf: book.shelf });
+		} else {
+			const shelf = findShelf(book.id);
+			this.setState({ shelf });
+		}
+	}
+
 	render() {
+		const {
+			title,
+			subtitle,
+			description,
+			authors,
+			coverImageUrl,
+			book
+		} = this.props;
+
 		const shelfOptions = [
-			{ key: 'Read', text: 'Read', value: 'read' },
+			{ text: 'Read', value: 'read' },
 			{
-				key: 'Currently Reading',
 				text: 'Currently Reading',
 				value: 'currentlyReading'
 			},
 			{
-				key: 'Want To Read',
 				text: 'Want To Read',
 				value: 'wantToRead'
+			},
+			{
+				text: 'No Shelf',
+				value: ''
 			}
 		];
-		const { title, subtitle, description, authors, coverImageUrl } = this.props;
+
+		const shelfDropdownItems = shelfOptions.map(shelfOption => {
+			return (
+				<MenuItem value={shelfOption.value} primaryText={shelfOption.text} />
+			);
+		});
+
 		return (
 			<Card style={bookStyle} className="book">
 				<CardMedia
@@ -59,6 +101,14 @@ class Book extends Component {
 					<CardText>
 						{description.substring(0, 140) + '...'}
 					</CardText>}
+				<CardActions>
+					<DropDownMenu
+						value={this.state.shelf}
+						onChange={this.handleChangeShelf}
+					>
+						{shelfDropdownItems}
+					</DropDownMenu>
+				</CardActions>
 			</Card>
 		);
 	}

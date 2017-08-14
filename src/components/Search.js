@@ -33,6 +33,7 @@ class Search extends Component {
 	onSearch = (query: string) => {
 		if (searchTerms.includes(query)) {
 			search(query, 10).then(searchResults => {
+				console.log(searchResults[0]);
 				this.setState({
 					searchResults
 				});
@@ -63,7 +64,11 @@ class Search extends Component {
 					/>
 				</div>
 
-				<BookList books={this.state.searchResults} />
+				<BookList
+					books={this.state.searchResults}
+					handleShelfUpdate={this.props.handleShelfUpdate}
+					findShelf={this.props.findShelf}
+				/>
 			</div>
 		);
 	}

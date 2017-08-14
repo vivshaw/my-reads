@@ -12,7 +12,8 @@ class Home extends Component {
 		books: Array<BookType>,
 		shelves: Array<string>,
 		filterQuery: string,
-		clearQuery: () => void
+		clearQuery: () => void,
+		handleShelfUpdate: (id: string, shelf: string) => void
 	};
 
 	state = {
@@ -26,7 +27,14 @@ class Home extends Component {
 	};
 
 	render() {
-		const { books, shelves, filterQuery, clearQuery } = this.props;
+		const {
+			books,
+			shelves,
+			filterQuery,
+			clearQuery,
+			handleShelfUpdate,
+			findShelf
+		} = this.props;
 
 		const shelvedBooks = shelves.reduce((map, shelf) => {
 			map[shelf] = books.filter(book => book.shelf === shelf);
@@ -45,6 +53,8 @@ class Home extends Component {
 					books={shelvedBooks[shelf]}
 					filterQuery={filterQuery}
 					clearQuery={clearQuery}
+					handleShelfUpdate={handleShelfUpdate}
+					findShelf={findShelf}
 				/>
 			);
 		});
