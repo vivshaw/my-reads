@@ -24,6 +24,7 @@ const BookList = (props: {
 		return (
 			<Book
 				book={book}
+				key={book.id}
 				handleShelfUpdate={handleShelfUpdate}
 				findShelf={findShelf}
 			/>

@@ -52,12 +52,9 @@ class App extends Component {
 	};
 
 	handleShelfUpdate = (id: string, shelf: string) => {
-		console.log(`updating book ${id} to ${shelf}`);
 		this.setState(({ books }) => {
 			const targetBookIndex = books.findIndex(book => book.id === id);
-			console.log(`book index: ${targetBookIndex}`);
 			if (targetBookIndex !== -1) {
-				console.log('book found!');
 				books[targetBookIndex].shelf = shelf;
 			}
 			return books;

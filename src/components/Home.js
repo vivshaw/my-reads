@@ -43,7 +43,13 @@ class Home extends Component {
 		}, {});
 
 		const shelfTabs = shelves.map(shelf => {
-			return <Tab label={shelf} value={shelves.indexOf(shelf)} />;
+			return (
+				<Tab
+					key={shelf + '-tab'}
+					label={shelf}
+					value={shelves.indexOf(shelf)}
+				/>
+			);
 		});
 
 		const showingShelves = shelves.map(shelf => {

@@ -38,7 +38,6 @@ class Search extends Component {
 	onSearch = (query: string) => {
 		if (searchTerms.includes(query)) {
 			search(query, 10).then(searchResults => {
-				console.log(searchResults[0]);
 				this.setState({
 					searchResults
 				});

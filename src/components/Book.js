@@ -76,7 +76,11 @@ class Book extends Component {
 
 		const shelfDropdownItems = shelfOptions.map(shelfOption => {
 			return (
-				<MenuItem value={shelfOption.value} primaryText={shelfOption.text} />
+				<MenuItem
+					key={shelfOption.value + '-opt'}
+					value={shelfOption.value}
+					primaryText={shelfOption.text}
+				/>
 			);
 		});
 
@@ -94,6 +98,7 @@ class Book extends Component {
 						{description.substring(0, 140) + '...'}
 					</CardText>}
 				<CardActions>
+					Shelf:
 					<DropDownMenu
 						value={this.state.shelf}
 						onChange={this.handleChangeShelf}
