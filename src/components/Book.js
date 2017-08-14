@@ -26,19 +26,16 @@ const bookStyle = {
 
 class Book extends Component {
 	props: {
-		title: string,
-		subtitle?: string,
-		description: string,
-		authors: Array<string>,
-		coverImageUrl: string,
-		book: BookType
+		book: BookType,
+		handleShelfUpdate: (string, string) => void,
+		findShelf: string => string
 	};
 
 	state = {
 		shelf: ''
 	};
 
-	handleChangeShelf = (event, index, shelf) => {
+	handleChangeShelf = (event, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
 		update(book, shelf).then(() => {
 			this.setState({ shelf });
@@ -58,12 +55,7 @@ class Book extends Component {
 
 	render() {
 		const {
-			title,
-			subtitle,
-			description,
-			authors,
-			coverImageUrl,
-			book
+			book: { title, subtitle, description, authors, imageLinks: { thumbnail } }
 		} = this.props;
 
 		const shelfOptions = [
@@ -94,7 +86,7 @@ class Book extends Component {
 					overlay={<CardTitle title={title} subtitle={subtitle} />}
 					style={{ maxHeight: '400px', overflow: 'hidden' }}
 				>
-					<img src={coverImageUrl} alt={title} />
+					<img src={thumbnail} alt={title} />
 				</CardMedia>
 				{authors && <CardTitle subtitle={authors.join(', ')} />}
 				{description &&
