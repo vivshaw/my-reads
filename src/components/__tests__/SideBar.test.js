@@ -1,5 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import Drawer from 'material-ui/Drawer';
 import { shallow } from 'enzyme';
 
