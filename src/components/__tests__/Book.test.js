@@ -1,6 +1,8 @@
 import React from 'react';
-import { Image } from 'semantic-ui-react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { shallow, mount } from 'enzyme';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Book from '../Book';
 import { testBooks } from '../../common/testData';
@@ -21,6 +23,9 @@ describe('Book', () => {
 				book={book}
 			/>
 		);
+
+		const muiTheme = getMuiTheme();
+		injectTapEventPlugin();
 		mounted = mount(
 			<Book
 				key={book.id}
@@ -30,13 +35,17 @@ describe('Book', () => {
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
 				book={book}
-			/>
+			/>,
+			{
+				context: { muiTheme },
+				childContextTypes: { muiTheme: React.PropTypes.object }
+			}
 		);
 	});
 
 	it("should show the book's cover", () => {
 		expect(
-			wrapper.containsMatchingElement(<Image src={book.imageLinks.thumbnail} />)
+			wrapper.containsMatchingElement(<img src={book.imageLinks.thumbnail} />)
 		).toBe(true);
 	});
 

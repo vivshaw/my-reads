@@ -1,5 +1,4 @@
 import React from 'react';
-import { CardGroup } from 'semantic-ui-react';
 import { shallow } from 'enzyme';
 
 import BookList from '../BookList';
@@ -17,8 +16,8 @@ describe('BookList', () => {
 		wrapper = shallow(<BookList books={books} />);
 	});
 
-	it('should render a single CardGroup', () => {
-		expect(wrapper.find(CardGroup).length).toBe(1);
+	it('should render a single book-list div', () => {
+		expect(wrapper.find('.book-list').length).toBe(1);
 	});
 
 	it('should render each book', () => {

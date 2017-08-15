@@ -1,49 +1,54 @@
 import React from 'react';
-import { Icon, Input, Menu, MenuItem } from 'semantic-ui-react';
-import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { mount } from 'enzyme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
 
 import TopBar from '../TopBar';
 
-describe('Book', () => {
-	let toggleMenu, updateQuery, wrapper;
+describe('TopBar', () => {
+	let toggleMenu, handleFilterChange, handleFilterClear, wrapper;
 
 	beforeAll(() => {
 		toggleMenu = jest.fn();
-		updateQuery = jest.fn();
+		handleFilterClear = jest.fn();
+		handleFilterChange = jest.fn();
+		injectTapEventPlugin();
 	});
 
 	beforeEach(() => {
-		wrapper = shallow(
-			<TopBar
-				filterQuery=""
-				toggleMenu={toggleMenu}
-				updateQuery={updateQuery}
-			/>
+		const muiTheme = getMuiTheme();
+		wrapper = mount(
+			<MemoryRouter initialEntries={['/shelves']}>
+				<TopBar
+					filterQuery=""
+					toggleMenu={toggleMenu}
+					handleFilterClear={handleFilterClear}
+					handleFilterChange={handleFilterChange}
+				/>
+			</MemoryRouter>,
+			{
+				context: { muiTheme },
+				childContextTypes: { muiTheme: React.PropTypes.object }
+			}
 		);
 	});
 
-	it('should show a menu', () => {
-		expect(wrapper.find(Menu).length).toBe(1);
+	it('should show an AppBar', () => {
+		expect(wrapper.find(AppBar).length).toBe(1);
 	});
 
-	it('should show 3 menu buttons', () => {
-		expect(wrapper.find(Icon).length).toBe(3);
-	});
-
-	it('should show a filter input', () => {
-		expect(wrapper.find(Input).length).toBe(1);
+	it('should show a left icon button', () => {
+		expect(wrapper.find(IconButton).length).toBe(1);
 	});
 
 	describe('ui interaction', () => {
-		it('should toggle the menu when the menu button is clicked', () => {
-			wrapper.find(MenuItem).first().simulate('click');
+		xit('should toggle the menu when the menu button is clicked', () => {
+			wrapper.find(IconButton).first().simulate('click');
 			expect(toggleMenu).toBeCalled();
-		});
-
-		it('should update the filter with the correct value when changed', () => {
-			const newQuery = 'test';
-			wrapper.find(Input).simulate('change', { target: { value: newQuery } });
-			expect(updateQuery).toBeCalledWith(newQuery);
 		});
 	});
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Home from '../Home';
 import Shelf from '../Shelf';
@@ -13,7 +13,7 @@ describe('Home', () => {
 		shelves = Array.from(new Set(books.map(book => book.shelf)));
 		filterQuery = '';
 		clearQuery = jest.fn();
-		wrapper = mount(
+		wrapper = shallow(
 			<Home
 				books={books}
 				shelves={shelves}
