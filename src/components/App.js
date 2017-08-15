@@ -94,6 +94,7 @@ class App extends Component {
 						filterQuery={filterQuery}
 						toggleMenu={this.toggleMenu}
 						handleFilterChange={this.handleFilterChange}
+						handleFilterClear={this.handleFilterClear}
 					/>
 
 					<SideBar
