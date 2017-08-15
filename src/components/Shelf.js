@@ -37,7 +37,8 @@ const Shelf = (props: {
 
 	return (
 		<div style={shelfStyle} className="shelf">
-			{books.length !== showingBooks.length && <div>show all</div>}
+			{books.length !== showingBooks.length &&
+				<div className="filtered-books-ui">show all</div>}
 
 			<BookList
 				books={showingBooks}
