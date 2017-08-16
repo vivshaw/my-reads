@@ -1,15 +1,16 @@
 {
-	"short_name": "React App",
-	"name": "Create React App Sample",
+	"short_name": "Flybrary",
+	"name": "Flybrary",
 	"icons": [
 		{
-			"src": "favicon.ico",
+			"src": "/android-chrome-192x192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}
 	],
 	"start_url": "./index.html",
+	"theme_color": "#ffab91",
+	"background_color": "#ffab91",
 	"display": "standalone",
-	"theme_color": "#000000",
-	"background_color": "#ffffff"
+	"orientation": "portrait"
 }
