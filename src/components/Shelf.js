@@ -8,7 +8,7 @@ import BookList from './BookList';
 
 import type { BookType } from '../common/flowTypes';
 
-const FlybraryShelf = styled.div`padding: 10;`;
+const FlybraryShelf = styled.div`padding: 10px;`;
 
 const Shelf = (props: {
 	title: string,
