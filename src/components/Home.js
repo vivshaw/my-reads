@@ -38,6 +38,18 @@ class Home extends Component {
 			findShelf
 		} = this.props;
 
+		const shelfData = {
+			read: {
+				text: 'Read'
+			},
+			wantToRead: {
+				text: 'Want'
+			},
+			currentlyReading: {
+				text: 'Current'
+			}
+		};
+
 		const shelvedBooks = shelves.reduce((map, shelf) => {
 			map[shelf] = books.filter(book => book.shelf === shelf);
 			return map;
@@ -47,7 +59,7 @@ class Home extends Component {
 			return (
 				<Tab
 					key={shelf + '-tab'}
-					label={shelf}
+					label={shelfData[shelf].text}
 					value={shelves.indexOf(shelf)}
 				/>
 			);
