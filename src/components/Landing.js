@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import ClearFix from 'material-ui/internal/ClearFix';
 import FontIcon from 'material-ui/FontIcon';
 import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
@@ -62,18 +63,20 @@ class Landing extends Component {
 						styled-components
 					</HeroH2>
 					<RaisedButton
-						className="demo-button"
+						className="landing-button"
 						label="See my shelves"
 						onClick={this.handleTouchTapDemo}
 						style={{ margin: '16px 32px 0px 32px' }}
 						labelStyle={{ color: deepOrange200 }}
+						containerElement={<Link to="/shelves" />}
 					/>
 					<RaisedButton
-						className="demo-button"
+						className="landing-button"
 						label="Search for books"
 						onClick={this.handleTouchTapDemo}
 						style={{ margin: '16px 32px 0px 32px' }}
 						labelStyle={{ color: deepOrange200 }}
+						containerElement={<Link to="/search" />}
 					/>
 				</HeroTitle>
 			</Hero>
