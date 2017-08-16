@@ -37,8 +37,11 @@ class TopBar extends Component {
 					path="/"
 					render={() =>
 						<AppBar
-							title="Flybrary"
-							iconElementRight={<FlatButton label="github" />}
+							title=""
+							style={{ boxShadow: 'none' }}
+							iconElementRight={
+								<IconButton iconClassName="material-icons">code</IconButton>
+							}
 							onLeftIconButtonTouchTap={toggleMenu}
 						/>}
 				/>
@@ -49,6 +52,7 @@ class TopBar extends Component {
 					render={() =>
 						<AppBar
 							title="Shelves"
+							style={{ boxShadow: 'none' }}
 							iconElementRight={<FlatButton label="Filter" />}
 							onRightIconButtonTouchTap={this.toggleDialog}
 							onLeftIconButtonTouchTap={toggleMenu}
@@ -61,14 +65,19 @@ class TopBar extends Component {
 					render={({ history }) =>
 						<AppBar
 							title="Search"
-							iconElementRight={<FlatButton label="Filter" />}
+							style={{ boxShadow: 'none' }}
+							iconElementRight={
+								<IconButton iconClassName="material-icons">
+									filter_list
+								</IconButton>
+							}
 							iconElementLeft={
-								<IconButton iconClassName="material-icons" tooltip="Ligature">
+								<IconButton iconClassName="material-icons">
 									arrow_back
 								</IconButton>
 							}
 							onLeftIconButtonTouchTap={() => {
-								history.push('/');
+								history.push('/shelves');
 							}}
 						/>}
 				/>
