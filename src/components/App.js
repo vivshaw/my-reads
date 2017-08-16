@@ -10,6 +10,7 @@ import { deepOrange200, deepOrange400 } from 'material-ui/styles/colors';
 
 import Home from './Home';
 import Search from './Search';
+import Landing from './Landing';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 
@@ -102,6 +103,8 @@ class App extends Component {
 						handleClose={this.handleMenuClose}
 						handleSetVisible={this.handleSetMenuVisible}
 					/>
+
+					<Route exact path="/" render={() => <Landing />} />
 
 					<Route
 						exact
