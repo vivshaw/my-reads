@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
+import withWidth, { LARGE } from 'material-ui/utils/withWidth';
+
 import Shelf from './Shelf';
 
 import type { BookType } from '../common/flowTypes';
@@ -38,15 +40,20 @@ class Home extends Component {
 			findShelf
 		} = this.props;
 
-		const shelfData = {
+		const wide = this.props.width === LARGE;
+
+		const shelfText = {
 			read: {
-				text: 'Read'
+				narrow: 'Read',
+				wide: 'Read'
 			},
 			wantToRead: {
-				text: 'Want'
+				narrow: 'Want',
+				wide: 'Want to Read'
 			},
 			currentlyReading: {
-				text: 'Current'
+				narrow: 'Current',
+				wide: 'Currently Reading'
 			}
 		};
 
@@ -59,7 +66,7 @@ class Home extends Component {
 			return (
 				<Tab
 					key={shelf + '-tab'}
-					label={shelfData[shelf].text}
+					label={wide ? shelfText[shelf].wide : shelfText[shelf].narrow}
 					value={shelves.indexOf(shelf)}
 				/>
 			);
@@ -96,4 +103,4 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default withWidth()(Home);
