@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { deepOrange200, deepOrange400 } from 'material-ui/styles/colors';
 
@@ -23,6 +24,9 @@ const flybraryTheme = getMuiTheme({
 		primary1Color: deepOrange200,
 		pickerHeaderColor: deepOrange200,
 		primary2Color: deepOrange400
+	},
+	appBar: {
+		titleFontWeight: typography.fontWeightLight
 	}
 });
 
