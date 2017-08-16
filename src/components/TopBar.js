@@ -40,7 +40,14 @@ class TopBar extends Component {
 							title=""
 							style={{ boxShadow: 'none' }}
 							iconElementRight={
-								<IconButton iconClassName="material-icons">code</IconButton>
+								<IconButton
+									iconClassName="material-icons"
+									component="a"
+									title="GitHub"
+									href="https://github.com/vivshaw/my-reads"
+								>
+									code
+								</IconButton>
 							}
 							onLeftIconButtonTouchTap={toggleMenu}
 						/>}
