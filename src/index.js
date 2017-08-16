@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import 'typeface-roboto';
 import 'sanitize.css';
 
 injectTapEventPlugin();
