@@ -13,7 +13,9 @@
 		"react-swipeable-views": "^0.12.5",
 		"react-tap-event-plugin": "^2.0.1",
 		"react-test-renderer": "^15.6.1",
-		"sanitize.css": "^5.0.0"
+		"sanitize.css": "^5.0.0",
+		"styled-components": "^2.1.2",
+		"typeface-roboto": "^0.0.35"
 	},
 	"scripts": {
 		"start": "react-scripts start",
