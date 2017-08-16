@@ -1,17 +1,18 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
 
 import Book from './Book';
 import type { BookType } from '../common/flowTypes';
 
-const bookListStyle = {
-	display: 'flex',
-	flexWrap: 'wrap',
-	marginTop: '12px',
-	marginBottom: '12px',
-	justifyContent: 'center'
-};
+const FlybraryBookList = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	justify-content: center;
+`;
 
 const BookList = (props: {
 	books: Array<BookType>,
@@ -32,9 +33,9 @@ const BookList = (props: {
 	});
 
 	return (
-		<div style={bookListStyle} className="book-list">
+		<FlybraryBookList className="book-list">
 			{FilteredBookElements}
-		</div>
+		</FlybraryBookList>
 	);
 };
 

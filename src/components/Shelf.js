@@ -2,12 +2,13 @@
 
 import React from 'react';
 import escapeRegExp from 'escape-string-regexp';
+import styled from 'styled-components';
 
 import BookList from './BookList';
 
 import type { BookType } from '../common/flowTypes';
 
-const shelfStyle = { padding: 10 };
+const FlybraryShelf = styled.div`padding: 10;`;
 
 const Shelf = (props: {
 	title: string,
@@ -36,7 +37,7 @@ const Shelf = (props: {
 	}
 
 	return (
-		<div style={shelfStyle} className="shelf">
+		<FlybraryShelf className="shelf">
 			{books.length !== showingBooks.length &&
 				<div className="filtered-books-ui">show all</div>}
 
@@ -45,7 +46,7 @@ const Shelf = (props: {
 				handleShelfUpdate={handleShelfUpdate}
 				findShelf={findShelf}
 			/>
-		</div>
+		</FlybraryShelf>
 	);
 };
 
