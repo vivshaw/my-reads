@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
 import {
 	Card,
 	CardActions,
@@ -15,14 +17,14 @@ import MenuItem from 'material-ui/MenuItem';
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 
-const bookStyle = {
-	flexGrow: 1,
-	flexShrink: 0,
-	margin: '0 10px 12px',
-	width: '90vw',
-	minWidth: '300px',
-	maxWidth: '400px'
-};
+const FlybraryBook = styled(Card)`
+	flex-grow: 1;
+	flex-shrink: 0;
+	margin: 0 10px 12px;
+	width: 90vw;
+	min-width: 300px;
+	max-width: 400px;
+`;
 
 class Book extends Component {
 	props: {
@@ -85,7 +87,7 @@ class Book extends Component {
 		});
 
 		return (
-			<Card style={bookStyle} className="book">
+			<FlybraryBook className="book">
 				<CardMedia
 					overlay={<CardTitle title={title} subtitle={subtitle} />}
 					style={{ maxHeight: '400px', overflow: 'hidden' }}
@@ -106,7 +108,7 @@ class Book extends Component {
 						{shelfDropdownItems}
 					</DropDownMenu>
 				</CardActions>
-			</Card>
+			</FlybraryBook>
 		);
 	}
 }
