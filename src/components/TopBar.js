@@ -53,7 +53,11 @@ class TopBar extends Component {
 						<AppBar
 							title="Shelves"
 							style={{ boxShadow: 'none' }}
-							iconElementRight={<FlatButton label="Filter" />}
+							iconElementRight={
+								<IconButton iconClassName="material-icons">
+									filter_list
+								</IconButton>
+							}
 							onRightIconButtonTouchTap={this.toggleDialog}
 							onLeftIconButtonTouchTap={toggleMenu}
 						/>}
@@ -66,11 +70,6 @@ class TopBar extends Component {
 						<AppBar
 							title="Search"
 							style={{ boxShadow: 'none' }}
-							iconElementRight={
-								<IconButton iconClassName="material-icons">
-									filter_list
-								</IconButton>
-							}
 							iconElementLeft={
 								<IconButton iconClassName="material-icons">
 									arrow_back
