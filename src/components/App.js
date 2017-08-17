@@ -3,11 +3,17 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
+import Snackbar from 'material-ui/Snackbar';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import { deepOrange200, deepOrange400 } from 'material-ui/styles/colors';
+import {
+	deepOrange200,
+	deepOrange400,
+	darkWhite
+} from 'material-ui/styles/colors';
 
 import Home from './Home';
 import Search from './Search';
@@ -20,13 +26,17 @@ import type { BookType } from '../common/flowTypes';
 
 const flybraryTheme = getMuiTheme({
 	...lightBaseTheme,
+	fontFamily: 'Roboto, sans-serif',
 	palette: {
 		primary1Color: deepOrange200,
-		pickerHeaderColor: deepOrange200,
-		primary2Color: deepOrange400
+		primary2Color: deepOrange400,
+		primary3Color: darkWhite
 	},
 	appBar: {
 		titleFontWeight: typography.fontWeightLight
+	},
+	card: {
+		fontWeight: typography.fontWeightLight
 	}
 });
 
@@ -35,7 +45,9 @@ class App extends Component {
 		books: [],
 		filterQuery: '',
 		menuVisible: false,
-		shelves: []
+		shelves: [],
+		snackbarOpen: false,
+		snackbarData: { shelf: '', title: '' }
 	};
 
 	toggleMenu = () => {
@@ -56,18 +68,28 @@ class App extends Component {
 		this.setState({ filterQuery: '' });
 	};
 
+	handleSnackbarOpen = () => {
+		this.setState({ snackbarOpen: true });
+	};
+
+	handleRequestClose = () => {
+		this.setState({ snackbarOpen: false });
+	};
+
 	handleShelfUpdate = (targetBook: BookType, shelf: string) => {
 		this.setState(({ books }) => {
 			const targetBookIndex = books.findIndex(
 				book => book.id === targetBook.id
 			);
+
 			if (targetBookIndex !== -1) {
 				books[targetBookIndex].shelf = shelf;
 			} else {
 				books.push(Object.assign({}, targetBook, { shelf }));
 			}
-			return books;
+			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
 		});
+		this.handleSnackbarOpen();
 	};
 
 	findShelf = (id: string) => {
@@ -90,7 +112,22 @@ class App extends Component {
 	}
 
 	render() {
-		const { filterQuery, shelves, books } = this.state;
+		const { filterQuery, shelves, books, snackbarData } = this.state;
+
+		const shelfText = {
+			read: {
+				narrow: 'Read',
+				wide: 'Read'
+			},
+			wantToRead: {
+				narrow: 'Want',
+				wide: 'Want to Read'
+			},
+			currentlyReading: {
+				narrow: 'Current',
+				wide: 'Currently Reading'
+			}
+		};
 
 		return (
 			<MuiThemeProvider muiTheme={flybraryTheme}>
@@ -123,6 +160,7 @@ class App extends Component {
 								findShelf={this.findShelf}
 							/>}
 					/>
+
 					<Route
 						exact
 						path="/search"
@@ -131,6 +169,19 @@ class App extends Component {
 								handleShelfUpdate={this.handleShelfUpdate}
 								findShelf={this.findShelf}
 							/>}
+					/>
+
+					<Snackbar
+						open={this.state.snackbarOpen}
+						message={
+							snackbarData.shelf
+								? `${snackbarData.title} added to shelf ${shelfText[
+										snackbarData.shelf
+									].wide}!`
+								: ''
+						}
+						autoHideDuration={2000}
+						onRequestClose={this.handleRequestClose}
 					/>
 				</div>
 			</MuiThemeProvider>
