@@ -8,7 +8,7 @@
 			"type": "image/png"
 		}
 	],
-	"start_url": "http://my-reads-vivshaw.herokuapp.com/",
+	"start_url": ".",
 	"theme_color": "#ffab91",
 	"background_color": "#ffab91",
 	"display": "standalone",
