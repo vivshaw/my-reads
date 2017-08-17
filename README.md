@@ -1,11 +1,11 @@
-## Flybrary
-> A bookshelf management app written in React with Material-UI & styled-components
+<h1 align="center">Flybrary</h1>
+<p align="center">A bookshelf management app written in React with Material-UI & styled-components</p>
 
-[![CircleCI](https://circleci.com/gh/vivshaw/my-reads.svg?&style=shield)](https://circleci.com/gh/vivshaw/my-reads)
+<div align="center">[![CircleCI](https://circleci.com/gh/vivshaw/my-reads.svg?&style=shield)](https://circleci.com/gh/vivshaw/my-reads)
 [![Code Climate](https://codeclimate.com/github/vivshaw/my-reads/badges/gpa.svg)](https://codeclimate.com/github/vivshaw/my-reads) [![Test Coverage](https://codeclimate.com/github/vivshaw/my-reads/badges/coverage.svg)](https://codeclimate.com/github/vivshaw/my-reads/coverage)
-[![Live Demo](https://img.shields.io/badge/live%20demo-active-blue.svg)](https://my-reads-vivshaw.herokuapp.com/)
+[![Live Demo](https://img.shields.io/badge/live%20demo-active-blue.svg)](https://my-reads-vivshaw.herokuapp.com/)</div>
 
-![logo](https://cdn.rawgit.com/vivshaw/my-reads/master/docs/textlogo.svg)
+<div align="center">![logo](https://cdn.rawgit.com/vivshaw/my-reads/master/docs/textlogo.svg)</div>
 
 ## Table of Contents
 
