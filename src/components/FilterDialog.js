@@ -56,7 +56,7 @@ export default class DialogExampleModal extends React.Component {
 					modal={true}
 					open={this.state.filterOpen}
 				>
-					Filter your books by title & subtitle.
+					<p>Filter your books by title & subtitle.</p>
 					<TextField
 						id="filter-field-controlled"
 						hintText="Filter by term"
