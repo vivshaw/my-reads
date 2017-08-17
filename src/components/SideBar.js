@@ -3,9 +3,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import AppBar from 'material-ui/AppBar';
 
 const SideMenu = (props: {
 	menuVisible: boolean,
@@ -27,6 +27,14 @@ const SideMenu = (props: {
 				title="Flybrary"
 				showMenuIconButton={false}
 			/>
+
+			<MenuItem
+				className="side-bar-link"
+				onTouchTap={handleClose}
+				containerElement={<Link to="/" />}
+			>
+				Home
+			</MenuItem>
 
 			<MenuItem
 				className="side-bar-link"
