@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/vivshaw/my-reads/badges/gpa.svg)](https://codeclimate.com/github/vivshaw/my-reads) [![Test Coverage](https://codeclimate.com/github/vivshaw/my-reads/badges/coverage.svg)](https://codeclimate.com/github/vivshaw/my-reads/coverage)
 [![Live Demo](https://img.shields.io/badge/live%20demo-active-blue.svg)](https://my-reads-vivshaw.herokuapp.com/)
 
-![logo](https://raw.githubusercontent.com/vivshaw/my-reads/master/docs/textlogo.svg)
+![logo](https://cdn.rawgit.com/vivshaw/my-reads/master/docs/textlogo.svg)
 
 ## Table of Contents
 
