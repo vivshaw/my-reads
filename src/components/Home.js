@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
+import { Tab, Tabs } from 'material-ui/Tabs';
 import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 
 import Shelf from './Shelf';

@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import escapeRegExp from 'escape-string-regexp';
 import styled from 'styled-components';
+import escapeRegExp from 'escape-string-regexp';
 
 import BookList from './BookList';
 
