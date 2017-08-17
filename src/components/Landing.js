@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
 import withWidth, { LARGE } from 'material-ui/utils/withWidth';
-import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
-import { deepOrange200, darkWhite } from 'material-ui/styles/colors';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const Hero = styled.div`
-	background-color: ${deepOrange200};
+	background-color: ${props => props.muiTheme.palette.primary1Color};
 	margin-top: 0px;
 	padding-bottom: 32px;
 `;
@@ -24,7 +22,7 @@ const HeroTitle = styled.div`
 
 const HeroH1 = styled.h1`
 	font-weight: ${typography.fontWeightLight};
-	color: ${darkWhite};
+	color: ${props => props.muiTheme.palette.primary3Color};
 	font-size: ${props => (props.wide ? '56px' : '32px')};
 	margin-bottom: 0px;
 	padding-bottom: 0px;
@@ -32,7 +30,7 @@ const HeroH1 = styled.h1`
 
 const HeroH2 = styled.h2`
 	font-weight: ${typography.fontWeightLight};
-	color: ${darkWhite};
+	color: ${props => props.muiTheme.palette.primary3Color};
 	font-size: ${props => (props.wide ? '24px' : '20px')};
 	line-height: ${props => (props.wide ? '32px' : '28px')};
 	padding-top: ${props => (props.wide ? '16px' : '19px')};
@@ -44,7 +42,7 @@ const HeroH2 = styled.h2`
 
 const BookLogo = styled.img`
 	max-height: 200px;
-	margin-top: 16px;
+	padding-top: ${props => (props.wide ? '16px' : '0px')};
 	border-radius: 20px;
 	border: 3px solid white;
 `;
@@ -52,13 +50,16 @@ const BookLogo = styled.img`
 class Landing extends Component {
 	render() {
 		const wide = this.props.width === LARGE;
+		const muiTheme = this.props.muiTheme;
 
 		return (
-			<Hero>
+			<Hero muiTheme={muiTheme}>
 				<HeroTitle wide={wide}>
-					<BookLogo src="/book-icon.png" />
-					<HeroH1 wide={wide}>Flybrary</HeroH1>
-					<HeroH2 wide={wide}>
+					<BookLogo src="/book-icon.png" wide={wide} />
+					<HeroH1 wide={wide} muiTheme={muiTheme}>
+						Flybrary
+					</HeroH1>
+					<HeroH2 wide={wide} muiTheme={muiTheme}>
 						A bookshelf management app written in React with Material-UI &
 						styled-components
 					</HeroH2>
@@ -67,7 +68,7 @@ class Landing extends Component {
 						label="See my shelves"
 						onClick={this.handleTouchTapDemo}
 						style={{ margin: '16px 32px 0px 32px' }}
-						labelStyle={{ color: deepOrange200 }}
+						labelStyle={{ color: muiTheme.palette.primary1Color }}
 						containerElement={<Link to="/shelves" />}
 					/>
 					<RaisedButton
@@ -75,7 +76,7 @@ class Landing extends Component {
 						label="Search for books"
 						onClick={this.handleTouchTapDemo}
 						style={{ margin: '16px 32px 0px 32px' }}
-						labelStyle={{ color: deepOrange200 }}
+						labelStyle={{ color: muiTheme.palette.primary1Color }}
 						containerElement={<Link to="/search" />}
 					/>
 				</HeroTitle>
@@ -84,4 +85,4 @@ class Landing extends Component {
 	}
 }
 
-export default withWidth()(Landing);
+export default withWidth()(muiThemeable()(Landing));
