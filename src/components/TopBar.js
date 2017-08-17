@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 
 import FilterDialog from './FilterDialog';
@@ -83,7 +82,7 @@ class TopBar extends Component {
 								</IconButton>
 							}
 							onLeftIconButtonTouchTap={() => {
-								history.push('/shelves');
+								history.goBack();
 							}}
 						/>}
 				/>
