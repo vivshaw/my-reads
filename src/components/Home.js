@@ -10,7 +10,7 @@ import Shelf from './Shelf';
 
 import type { BookType } from '../common/flowTypes';
 
-class Home extends Component {
+export class Home extends Component {
 	props: {
 		books: Array<BookType>,
 		shelves: Array<string>,
@@ -88,7 +88,11 @@ class Home extends Component {
 
 		return (
 			<div className="home">
-				<Tabs onChange={this.handleTabChange} value={this.state.slideIndex}>
+				<Tabs
+					className="shelf-tabs"
+					onChange={this.handleTabChange}
+					value={this.state.slideIndex}
+				>
 					{shelfTabs}
 				</Tabs>
 				<SwipeableViews

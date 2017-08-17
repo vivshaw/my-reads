@@ -42,7 +42,7 @@ const Shelf = (props: {
 	return (
 		<FlybraryShelf className="shelf">
 			{books.length !== showingBooks.length &&
-				<Subheader>
+				<Subheader className="filtered-books-ui">
 					Now showing {showingBooks.length} of {books.length}.
 					<FlatButton label="Show All" onClick={clearQuery} secondary={true} />
 				</Subheader>}

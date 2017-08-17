@@ -15,7 +15,7 @@ describe('Shelf', () => {
 
 	beforeAll(() => {
 		clearQuery = jest.fn();
-		shelf = 'testShelf';
+		shelf = 'read';
 		shelvedBooks = testBooks.books.filter(book => book.shelf === shelf);
 	});
 

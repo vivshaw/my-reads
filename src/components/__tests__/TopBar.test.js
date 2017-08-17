@@ -41,8 +41,8 @@ describe('TopBar', () => {
 		expect(wrapper.find(AppBar).length).toBe(1);
 	});
 
-	it('should show a left icon button', () => {
-		expect(wrapper.find(IconButton).length).toBe(1);
+	it('should show a left and right icon button', () => {
+		expect(wrapper.find(IconButton).length).toBe(2);
 	});
 
 	describe('ui interaction', () => {
