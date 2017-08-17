@@ -4,6 +4,9 @@ import React from 'react';
 import styled from 'styled-components';
 import escapeRegExp from 'escape-string-regexp';
 
+import FlatButton from 'material-ui/FlatButton';
+import Subheader from 'material-ui/Subheader';
+
 import BookList from './BookList';
 
 import type { BookType } from '../common/flowTypes';
@@ -39,7 +42,10 @@ const Shelf = (props: {
 	return (
 		<FlybraryShelf className="shelf">
 			{books.length !== showingBooks.length &&
-				<div className="filtered-books-ui">show all</div>}
+				<Subheader>
+					Now showing {showingBooks.length} of {books.length}.
+					<FlatButton label="Show All" onClick={clearQuery} secondary={true} />
+				</Subheader>}
 
 			<BookList
 				books={showingBooks}
