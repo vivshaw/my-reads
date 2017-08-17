@@ -1,19 +1,33 @@
 // @flow
 
 import React from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import styled from 'styled-components';
 import escapeRegExp from 'escape-string-regexp';
 
-import type { BookType } from '../common/flowTypes';
+import FlatButton from 'material-ui/FlatButton';
+import Subheader from 'material-ui/Subheader';
+
 import BookList from './BookList';
+
+import type { BookType } from '../common/flowTypes';
+
+const FlybraryShelf = styled.div`padding: 10px;`;
 
 const Shelf = (props: {
 	title: string,
 	books: Array<BookType>,
 	filterQuery: string,
-	clearQuery: () => void
+	clearQuery: () => void,
+	handleShelfUpdate: (BookType, string) => void,
+	findShelf: string => string
 }) => {
-	const { title, books, filterQuery, clearQuery } = props;
+	const {
+		books,
+		filterQuery,
+		clearQuery,
+		handleShelfUpdate,
+		findShelf
+	} = props;
 	let showingBooks;
 
 	if (filterQuery) {
@@ -26,28 +40,19 @@ const Shelf = (props: {
 	}
 
 	return (
-		<Segment basic>
-			<Menu>
-				<Menu.Item name={title} active={false} />
+		<FlybraryShelf className="shelf">
+			{books.length !== showingBooks.length &&
+				<Subheader className="filtered-books-ui">
+					Now showing {showingBooks.length} of {books.length}.
+					<FlatButton label="Show All" onClick={clearQuery} secondary={true} />
+				</Subheader>}
 
-				{books.length !== showingBooks.length &&
-					<Menu.Menu position="right">
-						<Menu.Item
-							name="notifyShowing"
-							active={false}
-							icon="filter"
-							content={`${showingBooks.length} of ${books.length}`}
-						/>
-						<Menu.Item
-							name="showAll"
-							active={false}
-							onClick={() => clearQuery()}
-						/>
-					</Menu.Menu>}
-			</Menu>
-
-			<BookList books={showingBooks} />
-		</Segment>
+			<BookList
+				books={showingBooks}
+				handleShelfUpdate={handleShelfUpdate}
+				findShelf={findShelf}
+			/>
+		</FlybraryShelf>
 	);
 };
 

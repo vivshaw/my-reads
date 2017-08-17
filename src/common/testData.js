@@ -7,7 +7,7 @@ const testBooks = {
 			authors: ['Author One', 'Author Two'],
 			imageLinks: { thumbnail: 'cover.gif' },
 			id: 'nggnmAEACAAJ',
-			shelf: 'testShelf'
+			shelf: 'wantToRead'
 		},
 		{
 			title: 'Book 2: Electric Boogaloo',
@@ -17,7 +17,7 @@ const testBooks = {
 			authors: ['Guy Three', 'Guy Four'],
 			imageLinks: { thumbnail: 'pic2.jpg' },
 			id: 'sJf1vQAACAAJ',
-			shelf: 'testShelf'
+			shelf: 'read'
 		},
 		{
 			title: '3: The Threequel',
@@ -27,7 +27,7 @@ const testBooks = {
 			authors: ['Writer Five', 'Writer Six'],
 			imageLinks: { thumbnail: 'bookCover.png' },
 			id: 'bKs2xWEECBAL',
-			shelf: 'testShelfTwo'
+			shelf: 'read'
 		}
 	]
 };

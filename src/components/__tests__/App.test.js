@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from '../App';
 import TopBar from '../TopBar';
-import SideMenu from '../SideMenu';
+import SideBar from '../SideBar';
 import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('App', () => {
@@ -18,6 +19,8 @@ describe('App', () => {
 
 	it('renders without crashing', () => {
 		fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
+
+		injectTapEventPlugin();
 
 		const div = document.createElement('div');
 		ReactDOM.render(
@@ -32,8 +35,8 @@ describe('App', () => {
 		expect(wrapper.find(TopBar).length).toBe(1);
 	});
 
-	it('renders a SideMenu', () => {
-		expect(wrapper.find(SideMenu).length).toBe(1);
+	it('renders a SideBar', () => {
+		expect(wrapper.find(SideBar).length).toBe(1);
 	});
 
 	describe('ui interaction', () => {
@@ -49,16 +52,16 @@ describe('App', () => {
 			const testQuery = 'test';
 
 			expect(wrapper.state('filterQuery')).toBe('');
-			wrapper.instance().updateQuery(testQuery);
+			wrapper.instance().handleFilterChange(testQuery);
 			expect(wrapper.state('filterQuery')).toBe(testQuery);
 		});
 
 		it('clears the query', () => {
 			const testQuery = 'test';
 
-			wrapper.instance().updateQuery(testQuery);
+			wrapper.instance().handleFilterChange(testQuery);
 			expect(wrapper.state('filterQuery')).toBe(testQuery);
-			wrapper.instance().clearQuery();
+			wrapper.instance().handleFilterClear();
 			expect(wrapper.state('filterQuery')).toBe('');
 		});
 	});

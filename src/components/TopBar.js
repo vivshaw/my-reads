@@ -1,39 +1,101 @@
 // @flow
 
-import React from 'react';
-import { Icon, Input, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
-const TopBar = (props: {
-	filterQuery: string,
-	toggleMenu: () => void,
-	updateQuery: (query: string) => void
-}) => {
-	return (
-		<Menu secondary attached="top">
-			<Menu.Item onClick={() => props.toggleMenu()}>
-				<Icon name="sidebar" />
-			</Menu.Item>
-			<Link to="/">
-				<Menu.Item>
-					<Icon name="home" />Home
-				</Menu.Item>
-			</Link>
-			<Link to="/search">
-				<Menu.Item>
-					<Icon name="search" />Search
-				</Menu.Item>
-			</Link>
-			<Menu.Item position="right">
-				<Input
-					icon="filter"
-					placeholder="Filter books..."
-					value={props.filterQuery}
-					onChange={event => props.updateQuery(event.target.value)}
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+
+import FilterDialog from './FilterDialog';
+
+class TopBar extends Component {
+	props: {
+		filterQuery: string,
+		toggleMenu: () => void,
+		handleFilterClear: () => void,
+		handleFilterChange: (query: string) => void
+	};
+
+	state = {
+		dialogOpen: false
+	};
+
+	toggleDialog = () => {
+		this.setState(({ dialogOpen }) => {
+			return { dialogOpen: !dialogOpen };
+		});
+	};
+
+	render() {
+		const { toggleMenu, handleFilterChange, handleFilterClear } = this.props;
+
+		return (
+			<div>
+				<Route
+					exact
+					path="/"
+					render={() =>
+						<AppBar
+							title=""
+							style={{ boxShadow: 'none' }}
+							iconElementRight={
+								<IconButton
+									iconClassName="material-icons"
+									component="a"
+									title="GitHub"
+									href="https://github.com/vivshaw/my-reads"
+								>
+									code
+								</IconButton>
+							}
+							onLeftIconButtonTouchTap={toggleMenu}
+						/>}
 				/>
-			</Menu.Item>
-		</Menu>
-	);
-};
+
+				<Route
+					exact
+					path="/shelves"
+					render={() =>
+						<AppBar
+							title="Shelves"
+							style={{ boxShadow: 'none' }}
+							iconElementRight={
+								<IconButton iconClassName="material-icons">
+									filter_list
+								</IconButton>
+							}
+							onRightIconButtonTouchTap={this.toggleDialog}
+							onLeftIconButtonTouchTap={toggleMenu}
+						/>}
+				/>
+
+				<Route
+					exact
+					path="/search"
+					render={({ history }) =>
+						<AppBar
+							title="Search"
+							style={{ boxShadow: 'none' }}
+							iconElementLeft={
+								<IconButton iconClassName="material-icons">
+									arrow_back
+								</IconButton>
+							}
+							onLeftIconButtonTouchTap={() => {
+								history.goBack();
+							}}
+						/>}
+				/>
+
+				<FilterDialog
+					open={this.state.dialogOpen}
+					toggleDialog={this.toggleDialog}
+					handleFilterChange={handleFilterChange}
+					handleFilterClear={handleFilterClear}
+				/>
+			</div>
+		);
+	}
+}
 
 export default TopBar;

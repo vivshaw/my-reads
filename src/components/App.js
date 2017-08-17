@@ -1,35 +1,104 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Segment, Sidebar } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 
-import TopBar from './TopBar.js';
-import SideMenu from './SideMenu';
+import Snackbar from 'material-ui/Snackbar';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import typography from 'material-ui/styles/typography';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import {
+	deepOrange200,
+	deepOrange400,
+	darkWhite
+} from 'material-ui/styles/colors';
+
 import Home from './Home';
 import Search from './Search';
+import Landing from './Landing';
+import TopBar from './TopBar';
+import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+
+const flybraryTheme = getMuiTheme({
+	...lightBaseTheme,
+	fontFamily: 'Roboto, sans-serif',
+	palette: {
+		primary1Color: deepOrange200,
+		primary2Color: deepOrange400,
+		primary3Color: darkWhite
+	},
+	appBar: {
+		titleFontWeight: typography.fontWeightLight
+	},
+	card: {
+		fontWeight: typography.fontWeightLight
+	}
+});
 
 class App extends Component {
 	state = {
 		books: [],
 		filterQuery: '',
 		menuVisible: false,
-		shelves: []
+		shelves: [],
+		snackbarOpen: false,
+		snackbarData: { shelf: '', title: '' }
 	};
 
 	toggleMenu = () => {
 		this.setState(state => ({ menuVisible: !state.menuVisible }));
 	};
 
-	updateQuery = (query: string) => {
+	handleSetMenuVisible = (menuVisible: boolean) => {
+		this.setState({ menuVisible });
+	};
+
+	handleMenuClose = () => this.setState({ menuVisible: false });
+
+	handleFilterChange = (query: string) => {
 		this.setState({ filterQuery: query.trim() });
 	};
 
-	clearQuery = () => {
+	handleFilterClear = () => {
 		this.setState({ filterQuery: '' });
+	};
+
+	handleSnackbarOpen = () => {
+		this.setState({ snackbarOpen: true });
+	};
+
+	handleRequestClose = () => {
+		this.setState({ snackbarOpen: false });
+	};
+
+	handleShelfUpdate = (targetBook: BookType, shelf: string) => {
+		this.setState(({ books }) => {
+			const targetBookIndex = books.findIndex(
+				book => book.id === targetBook.id
+			);
+
+			if (targetBookIndex !== -1) {
+				books[targetBookIndex].shelf = shelf;
+			} else {
+				books.push(Object.assign({}, targetBook, { shelf }));
+			}
+			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
+		});
+		this.handleSnackbarOpen();
+	};
+
+	findShelf = (id: string) => {
+		const book = this.state.books.find(book => book.id === id);
+		if (book) {
+			return book.shelf;
+		} else {
+			return '';
+		}
 	};
 
 	componentDidMount() {
@@ -43,33 +112,79 @@ class App extends Component {
 	}
 
 	render() {
-		const { filterQuery, shelves, books } = this.state;
+		const { filterQuery, shelves, books, snackbarData } = this.state;
+
+		const shelfText = {
+			read: {
+				narrow: 'Read',
+				wide: 'Read'
+			},
+			wantToRead: {
+				narrow: 'Want',
+				wide: 'Want to Read'
+			},
+			currentlyReading: {
+				narrow: 'Current',
+				wide: 'Currently Reading'
+			}
+		};
 
 		return (
-			<div className="App">
-				<TopBar
-					filterQuery={this.state.filterQuery}
-					toggleMenu={this.toggleMenu}
-					updateQuery={this.updateQuery}
-				/>
+			<MuiThemeProvider muiTheme={flybraryTheme}>
+				<div className="App">
+					<TopBar
+						filterQuery={filterQuery}
+						toggleMenu={this.toggleMenu}
+						handleFilterChange={this.handleFilterChange}
+						handleFilterClear={this.handleFilterClear}
+					/>
 
-				<Sidebar.Pushable as={Segment} attached="bottom">
-					<SideMenu menuVisible={this.state.menuVisible} />
+					<SideBar
+						menuVisible={this.state.menuVisible}
+						handleClose={this.handleMenuClose}
+						handleSetVisible={this.handleSetMenuVisible}
+					/>
+
+					<Route exact path="/" render={() => <Landing />} />
 
 					<Route
 						exact
-						path="/"
+						path="/shelves"
 						render={() =>
 							<Home
 								books={books}
 								shelves={shelves}
 								filterQuery={filterQuery}
-								clearQuery={this.clearQuery}
+								clearQuery={this.handleFilterClear}
+								handleShelfUpdate={this.handleShelfUpdate}
+								findShelf={this.findShelf}
 							/>}
 					/>
-					<Route exact path="/search" render={() => <Search />} />
-				</Sidebar.Pushable>
-			</div>
+
+					<Route
+						exact
+						path="/search"
+						render={() =>
+							<Search
+								handleShelfUpdate={this.handleShelfUpdate}
+								findShelf={this.findShelf}
+							/>}
+					/>
+
+					<Snackbar
+						open={this.state.snackbarOpen}
+						message={
+							snackbarData.shelf
+								? `${snackbarData.title} added to shelf ${shelfText[
+										snackbarData.shelf
+									].wide}!`
+								: ''
+						}
+						autoHideDuration={2000}
+						onRequestClose={this.handleRequestClose}
+					/>
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }

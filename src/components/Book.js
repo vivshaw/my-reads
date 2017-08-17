@@ -1,71 +1,113 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Card, Dropdown, Image } from 'semantic-ui-react';
+import styled from 'styled-components';
+
+import {
+	Card,
+	CardActions,
+	CardMedia,
+	CardTitle,
+	CardText
+} from 'material-ui/Card';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
 import { update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 
+const FlybraryBook = styled(Card)`
+	flex-grow: 1;
+	flex-shrink: 0;
+	margin: 0 10px 12px;
+	width: 90vw;
+	min-width: 300px;
+	max-width: 400px;
+`;
+
 class Book extends Component {
 	props: {
-		title: string,
-		subtitle?: string,
-		description: string,
-		authors: Array<string>,
-		coverImageUrl: string,
-		book: BookType
+		book: BookType,
+		handleShelfUpdate: (BookType, string) => void,
+		findShelf: string => string
 	};
 
-	onChange = (event, data) => {
-		console.log(data.value);
-		update(this.props.book, data.value).then(console.log('updated shelf!'));
+	state = {
+		shelf: ''
 	};
+
+	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
+		const { book, handleShelfUpdate } = this.props;
+		update(book, shelf).then(() => {
+			this.setState({ shelf });
+			handleShelfUpdate(book, shelf);
+		});
+	};
+
+	componentDidMount() {
+		const { book, findShelf } = this.props;
+		if (book.shelf) {
+			this.setState({ shelf: book.shelf });
+		} else {
+			const shelf = findShelf(book.id);
+			this.setState({ shelf });
+		}
+	}
 
 	render() {
+		const {
+			book: { title, subtitle, description, authors, imageLinks: { thumbnail } }
+		} = this.props;
+
 		const shelfOptions = [
-			{ key: 'Read', text: 'Read', value: 'read' },
+			{ text: 'Read', value: 'read' },
 			{
-				key: 'Currently Reading',
 				text: 'Currently Reading',
 				value: 'currentlyReading'
 			},
 			{
-				key: 'Want To Read',
 				text: 'Want To Read',
 				value: 'wantToRead'
+			},
+			{
+				text: 'No Shelf',
+				value: ''
 			}
 		];
-		const { title, subtitle, description, authors, coverImageUrl } = this.props;
+
+		const shelfDropdownItems = shelfOptions.map(shelfOption => {
+			return (
+				<MenuItem
+					key={shelfOption.value + '-opt'}
+					value={shelfOption.value}
+					primaryText={shelfOption.text}
+				/>
+			);
+		});
+
 		return (
-			<Card>
-				<Image floated="right" size="mini" src={coverImageUrl} />
-				<Card.Content>
-					<Card.Header>
-						{title}
-					</Card.Header>
-					{subtitle &&
-						<Card.Meta>
-							{subtitle}
-						</Card.Meta>}
-					{description &&
-						<Card.Description>
-							{description.substring(0, 140) + '...'}
-						</Card.Description>}
-				</Card.Content>
-				{authors &&
-					<Card.Content extra>
-						{authors.join(', ')}
-					</Card.Content>}
-				<Card.Content extra>
-					<Dropdown
-						placeholder="Add to a shelf?"
-						defaultValue={this.props.book.shelf}
-						fluid
-						floating
-						onChange={this.onChange}
-						options={shelfOptions}
-					/>
-				</Card.Content>
-			</Card>
+			<FlybraryBook className="book">
+				<CardMedia
+					overlay={<CardTitle title={title} subtitle={subtitle} />}
+					style={{ maxHeight: '400px', overflow: 'hidden' }}
+				>
+					<img src={thumbnail} alt={title} />
+				</CardMedia>
+				{authors && <CardTitle subtitle={authors.join(', ')} />}
+				{description &&
+					<CardText>
+						{description.substring(0, 140) + '...'}
+					</CardText>}
+				<CardActions>
+					Shelf:
+					<DropDownMenu
+						value={this.state.shelf}
+						onChange={this.handleChangeShelf}
+					>
+						{shelfDropdownItems}
+					</DropDownMenu>
+				</CardActions>
+			</FlybraryBook>
 		);
 	}
 }

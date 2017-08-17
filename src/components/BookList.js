@@ -1,32 +1,42 @@
 // @flow
 
 import React from 'react';
-import { Card } from 'semantic-ui-react';
-import type { BookType } from '../common/flowTypes';
+import styled from 'styled-components';
 
 import Book from './Book';
 
-const BookList = (props: { books: Array<BookType> }) => {
-	const { books } = props;
+import type { BookType } from '../common/flowTypes';
+
+const FlybraryBookList = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	justify-content: center;
+`;
+
+const BookList = (props: {
+	books: Array<BookType>,
+	handleShelfUpdate: (BookType, string) => void,
+	findShelf: string => string
+}) => {
+	const { books, handleShelfUpdate, findShelf } = props;
 
 	const FilteredBookElements = books.map(book => {
 		return (
 			<Book
-				key={book.id}
-				title={book.title}
-				subtitle={book.subtitle}
-				description={book.description}
-				authors={book.authors}
-				coverImageUrl={book.imageLinks.thumbnail}
 				book={book}
+				key={book.id}
+				handleShelfUpdate={handleShelfUpdate}
+				findShelf={findShelf}
 			/>
 		);
 	});
 
 	return (
-		<Card.Group>
+		<FlybraryBookList className="book-list">
 			{FilteredBookElements}
-		</Card.Group>
+		</FlybraryBookList>
 	);
 };
 
