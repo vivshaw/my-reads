@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
@@ -10,10 +10,11 @@ import 'sanitize.css';
 
 injectTapEventPlugin();
 
-ReactDOM.render(
+render(
 	<BrowserRouter>
 		<App />
 	</BrowserRouter>,
 	document.getElementById('root')
 );
+
 registerServiceWorker();

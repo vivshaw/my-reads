@@ -5,10 +5,17 @@ import type { BookType } from '../common/flowTypes';
 const api = 'https://reactnd-books-api.udacity.com';
 
 // Generate a unique token for storing your bookshelf data on the backend server.
-let token = localStorage.getItem('token');
-if (!token) {
+// If not rendering in a browser, generate a random token
+let token;
+
+try {
+	token = localStorage.getItem('token');
+	if (!token) {
+		token = Math.random().toString(36).substr(-8);
+		localStorage.setItem('token', token);
+	}
+} catch (e) {
 	token = Math.random().toString(36).substr(-8);
-	localStorage.setItem('token', token);
 }
 
 const headers = {
