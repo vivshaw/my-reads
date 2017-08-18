@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { snapshot } from 'react-snapshot';
+import Loadable from 'react-loadable';
 
 import Snackbar from 'material-ui/Snackbar';
 
@@ -16,14 +17,26 @@ import {
 	darkWhite
 } from 'material-ui/styles/colors';
 
-import Home from './Home';
-import Search from './Search';
-import Landing from './Landing';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+
+const Landing = Loadable({
+	loader: () => import('./Landing'),
+	loading: () => null
+});
+
+const Shelves = Loadable({
+	loader: () => import('./Home'),
+	loading: () => null
+});
+
+const Search = Loadable({
+	loader: () => import('./Search'),
+	loading: () => null
+});
 
 const flybraryTheme = getMuiTheme({
 	...lightBaseTheme,
@@ -152,7 +165,7 @@ class App extends Component {
 						exact
 						path="/shelves"
 						render={() =>
-							<Home
+							<Shelves
 								books={books}
 								shelves={shelves}
 								filterQuery={filterQuery}

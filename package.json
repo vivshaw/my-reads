@@ -1,5 +1,5 @@
 {
-	"name": "my-reads",
+	"name": "Flybrary",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -8,6 +8,7 @@
 		"material-ui": "^0.18.7",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
+		"react-loadable": "^4.0.4",
 		"react-router-dom": "^4.1.2",
 		"react-scripts": "1.0.10",
 		"react-snapshot": "^2.0.0-1",
