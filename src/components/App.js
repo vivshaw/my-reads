@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { snapshot } from 'react-snapshot';
 import Loadable from 'react-loadable';
 
 import Snackbar from 'material-ui/Snackbar';
@@ -116,7 +115,7 @@ class App extends Component {
 	};
 
 	componentDidMount() {
-		snapshot(() => getAll()).then((books: Array<BookType>) => {
+		getAll().then((books: Array<BookType>) => {
 			const shelves = Array.from(new Set(books.map(book => book.shelf)));
 			this.setState({
 				books,

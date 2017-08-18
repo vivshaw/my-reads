@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import { snapshot } from 'react-snapshot';
 import styled from 'styled-components';
 
 import AutoComplete from 'material-ui/AutoComplete';
@@ -61,7 +60,7 @@ class Search extends Component {
 
 	onSearch = (query: string) => {
 		if (searchTerms.includes(query)) {
-			snapshot(() => search(query, 10)).then(searchResults => {
+			search(query, 10).then(searchResults => {
 				this.setState({
 					searchResults
 				});
