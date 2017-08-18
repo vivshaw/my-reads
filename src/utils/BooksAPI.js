@@ -18,6 +18,8 @@ try {
 	token = Math.random().toString(36).substr(-8);
 }
 
+const defaultToHTTPS = url => 'https' + url.substring(4);
+
 const headers = {
 	Accept: 'application/json',
 	Authorization: token
@@ -31,7 +33,15 @@ export const get = (bookId: string) =>
 export const getAll = () =>
 	fetch(`${api}/books`, { headers })
 		.then(res => res.json())
-		.then(data => data.books);
+		.then(data => data.books)
+		.then(books =>
+			books.map(book => {
+				const secureImageUrl = defaultToHTTPS(book.imageLinks.thumbnail);
+				return Object.assign({}, book, {
+					imageLinks: { thumbnail: secureImageUrl }
+				});
+			})
+		);
 
 export const update = (book: BookType, shelf: string) =>
 	fetch(`${api}/books/${book.id}`, {
