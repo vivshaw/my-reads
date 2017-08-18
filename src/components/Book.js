@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { snapshot } from 'react-snapshot';
 import styled from 'styled-components';
 
 import {
@@ -38,7 +39,7 @@ class Book extends Component {
 
 	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
-		update(book, shelf).then(() => {
+		snapshot(() => update(book, shelf)).then(() => {
 			this.setState({ shelf });
 			handleShelfUpdate(book, shelf);
 		});
