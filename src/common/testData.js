@@ -5,7 +5,7 @@ const testBooks = {
 			subtitle: 'A Subtitle',
 			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			authors: ['Author One', 'Author Two'],
-			imageLinks: { thumbnail: 'cover.gif' },
+			imageLinks: { thumbnail: 'http://cover.gif' },
 			id: 'nggnmAEACAAJ',
 			shelf: 'wantToRead'
 		},
@@ -15,7 +15,7 @@ const testBooks = {
 			description:
 				'Suspendisse facilisis varius sem, ut auctor sem pulvinar sed.',
 			authors: ['Guy Three', 'Guy Four'],
-			imageLinks: { thumbnail: 'pic2.jpg' },
+			imageLinks: { thumbnail: 'http://pic2.jpg' },
 			id: 'sJf1vQAACAAJ',
 			shelf: 'read'
 		},
@@ -25,7 +25,7 @@ const testBooks = {
 			description:
 				'Maecenas justo nunc, lobortis et volutpat vel, tempor quis tellus.',
 			authors: ['Writer Five', 'Writer Six'],
-			imageLinks: { thumbnail: 'bookCover.png' },
+			imageLinks: { thumbnail: 'http://bookCover.png' },
 			id: 'bKs2xWEECBAL',
 			shelf: 'read'
 		}
