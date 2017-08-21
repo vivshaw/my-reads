@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 
 import { Tab, Tabs } from 'material-ui/Tabs';
-import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 
 import Shelf from './Shelf';
 
 import type { BookType } from '../common/flowTypes';
+import getWidth, { widths } from '../utils/getWidth';
 
 export class Home extends Component {
 	props: {
@@ -40,7 +40,7 @@ export class Home extends Component {
 			findShelf
 		} = this.props;
 
-		const wide = this.props.width === LARGE;
+		const wide = getWidth() === widths.large;
 
 		const shelfText = {
 			read: {
@@ -107,4 +107,4 @@ export class Home extends Component {
 	}
 }
 
-export default withWidth()(Home);
+export default Home;

@@ -8,11 +8,11 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Snackbar from 'material-ui/Snackbar';
-import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 
 import BookList from './BookList';
 
 import { search } from '../utils/BooksAPI';
+import getWidth, { widths } from '../utils/getWidth';
 import type { BookType } from '../common/flowTypes';
 import searchTerms from '../common/searchTerms';
 
@@ -99,7 +99,7 @@ class Search extends Component {
 						filter={AutoComplete.fuzzyFilter}
 						dataSource={searchTerms}
 						textFieldStyle={
-							this.props.width === LARGE
+							getWidth() === widths.large
 								? styles.searchFieldWide
 								: styles.searchField
 						}
@@ -151,4 +151,4 @@ class Search extends Component {
 	}
 }
 
-export default withWidth()(Search);
+export default Search;
