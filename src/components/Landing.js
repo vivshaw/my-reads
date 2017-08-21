@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 import typography from 'material-ui/styles/typography';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+
+import getWidth, { widths } from '../utils/getWidth';
 
 const Hero = styled.div`
 	background-color: ${props => props.muiTheme.palette.primary1Color};
@@ -49,7 +50,7 @@ const BookLogo = styled.img`
 
 class Landing extends Component {
 	render() {
-		const wide = this.props.width === LARGE;
+		const wide = getWidth() === widths.large;
 		const muiTheme = this.props.muiTheme;
 
 		return (
@@ -85,4 +86,4 @@ class Landing extends Component {
 	}
 }
 
-export default withWidth()(muiThemeable()(Landing));
+export default muiThemeable()(Landing);
