@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import typography from 'material-ui/styles/typography';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+import logo from '../book-icon.png';
 import getWidth, { widths } from '../utils/getWidth';
 
 const Hero = styled.div`
@@ -56,7 +57,7 @@ class Landing extends Component {
 		return (
 			<Hero muiTheme={muiTheme}>
 				<HeroTitle wide={wide}>
-					<BookLogo src="/book-icon.png" wide={wide} />
+					<BookLogo src={logo} wide={wide} />
 					<HeroH1 wide={wide} muiTheme={muiTheme}>
 						Flybrary
 					</HeroH1>
