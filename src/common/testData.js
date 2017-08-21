@@ -32,9 +32,15 @@ const testBooks = {
 	]
 };
 
+const secureTestBooks = testBooks.books.map(book => {
+	return Object.assign({}, book, {
+		imageLinks: { thumbnail: 'https' + book.imageLinks.thumbnail.substring(4) }
+	});
+});
+
 const jsonHeaders = new Headers({
 	Accept: 'application/json',
 	'Content-Type': 'application/json'
 });
 
-export { testBooks, jsonHeaders };
+export { testBooks, secureTestBooks, jsonHeaders };

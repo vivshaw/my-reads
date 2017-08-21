@@ -1,5 +1,5 @@
 import { get, getAll, update, search } from '../BooksAPI';
-import { testBooks, jsonHeaders } from '../../common/testData';
+import { testBooks, secureTestBooks, jsonHeaders } from '../../common/testData';
 
 describe('BooksAPI', () => {
 	it('fetches all books with getAll', () => {
@@ -7,7 +7,7 @@ describe('BooksAPI', () => {
 		fetch.mockResponse(JSON.stringify(mockBooksData), { jsonHeaders });
 
 		return getAll().then(returnedBooks => {
-			expect(returnedBooks).toEqual(mockBooksData.books);
+			expect(returnedBooks).toEqual(secureTestBooks);
 		});
 	});
 
