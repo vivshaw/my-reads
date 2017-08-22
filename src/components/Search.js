@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import AutoComplete from 'material-ui/AutoComplete';
+import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
@@ -43,7 +44,14 @@ const styles = {
 		fontSize: '30px',
 		height: '70px'
 	},
-	hint: { paddingBottom: '10px' }
+	hint: { paddingBottom: '10px' },
+	chip: {
+		margin: 4
+	},
+	wrapper: {
+		display: 'flex',
+		flexWrap: 'wrap'
+	}
 };
 
 class Search extends Component {
@@ -87,6 +95,12 @@ class Search extends Component {
 	};
 
 	render() {
+		const termChips = searchTerms.map(term =>
+			<Chip key={term + '-chip'} style={styles.chip}>
+				{term}
+			</Chip>
+		);
+
 		return (
 			<div className="search">
 				<SearchContainer>
@@ -118,8 +132,8 @@ class Search extends Component {
 
 				<Snackbar
 					open={this.state.snackbarOpen}
-					message={"That search term isn't permitted."}
-					action="see why"
+					message={'Search term not permitted.'}
+					action="why?"
 					autoHideDuration={3000}
 					onRequestClose={this.handleRequestClose}
 					onActionTouchTap={this.handleOpenDialog}
@@ -144,7 +158,9 @@ class Search extends Component {
 						certain search terms return any results. Here's a list of the
 						allowed terms:
 					</p>
-					{searchTerms.join(', ')}
+					<div style={styles.wrapper}>
+						{termChips}
+					</div>
 				</Dialog>
 			</div>
 		);
