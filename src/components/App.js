@@ -10,17 +10,29 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import {
-	deepOrange200,
-	deepOrange400,
-	darkWhite
-} from 'material-ui/styles/colors';
+import { deepOrange200, brown50, darkWhite } from 'material-ui/styles/colors';
 
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+
+const flybraryTheme = getMuiTheme({
+	...lightBaseTheme,
+	fontFamily: 'Roboto, sans-serif',
+	palette: {
+		primary1Color: deepOrange200,
+		primary2Color: brown50,
+		primary3Color: darkWhite
+	},
+	appBar: {
+		titleFontWeight: typography.fontWeightLight
+	},
+	card: {
+		fontWeight: typography.fontWeightLight
+	}
+});
 
 const Landing = Loadable({
 	loader: () => import('./Landing'),
@@ -35,22 +47,6 @@ const Shelves = Loadable({
 const Search = Loadable({
 	loader: () => import('./Search'),
 	loading: () => null
-});
-
-const flybraryTheme = getMuiTheme({
-	...lightBaseTheme,
-	fontFamily: 'Roboto, sans-serif',
-	palette: {
-		primary1Color: deepOrange200,
-		primary2Color: deepOrange400,
-		primary3Color: darkWhite
-	},
-	appBar: {
-		titleFontWeight: typography.fontWeightLight
-	},
-	card: {
-		fontWeight: typography.fontWeightLight
-	}
 });
 
 class App extends Component {
