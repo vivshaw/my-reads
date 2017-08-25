@@ -13,7 +13,6 @@ import {
 } from 'material-ui/Card';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import { update } from '../utils/BooksAPI';
 import { getRating, setRating } from '../utils/RatingsAPI';
