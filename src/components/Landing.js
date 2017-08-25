@@ -82,7 +82,6 @@ class Landing extends Component {
 						<RaisedButton
 							className="landing-button"
 							label="See my shelves"
-							onClick={this.handleTouchTapDemo}
 							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/shelves" />}
@@ -90,7 +89,6 @@ class Landing extends Component {
 						<RaisedButton
 							className="landing-button"
 							label="Search for books"
-							onClick={this.handleTouchTapDemo}
 							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/search" />}
