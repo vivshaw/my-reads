@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 import styled from 'styled-components';
 
 import {
@@ -12,8 +13,10 @@ import {
 } from 'material-ui/Card';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { update } from '../utils/BooksAPI';
+import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
 
 const FlybraryBook = styled(Card)`
@@ -25,6 +28,13 @@ const FlybraryBook = styled(Card)`
 	max-width: 400px;
 `;
 
+const RatingWrapper = styled.div`
+	margin-top: 20px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	float: right;
+`;
+
 class Book extends Component {
 	props: {
 		book: BookType,
@@ -33,7 +43,8 @@ class Book extends Component {
 	};
 
 	state = {
-		shelf: ''
+		shelf: '',
+		rating: 0
 	};
 
 	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
@@ -44,20 +55,32 @@ class Book extends Component {
 		});
 	};
 
+	handleChangeRating = (rating: number) => {
+		const { book: { id } } = this.props;
+		setRating(id, rating);
+		this.setState({ rating });
+	};
+
 	componentDidMount() {
 		const { book, findShelf } = this.props;
-		if (book.shelf) {
-			this.setState({ shelf: book.shelf });
-		} else {
-			const shelf = findShelf(book.id);
-			this.setState({ shelf });
-		}
+		const rating = getRating(book.id);
+		const shelf = book.shelf || findShelf(book.id);
+
+		this.setState({ shelf, rating });
 	}
 
 	render() {
 		const {
-			book: { title, subtitle, description, authors, imageLinks: { thumbnail } }
+			book: {
+				id,
+				title,
+				subtitle,
+				description,
+				authors,
+				imageLinks: { thumbnail }
+			}
 		} = this.props;
+		const { rating, shelf } = this.state;
 
 		const shelfOptions = [
 			{ text: 'Read', value: 'read' },
@@ -100,12 +123,16 @@ class Book extends Component {
 					</CardText>}
 				<CardActions>
 					Shelf:
-					<DropDownMenu
-						value={this.state.shelf}
-						onChange={this.handleChangeShelf}
-					>
+					<DropDownMenu value={shelf} onChange={this.handleChangeShelf}>
 						{shelfDropdownItems}
 					</DropDownMenu>
+					<RatingWrapper>
+						<StarRatingComponent
+							name={id + '-rating'}
+							value={rating}
+							onStarClick={newRating => this.handleChangeRating(newRating)}
+						/>
+					</RatingWrapper>
 				</CardActions>
 			</FlybraryBook>
 		);
