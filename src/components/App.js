@@ -90,7 +90,7 @@ class App extends Component {
 		this.setState({ snackbarOpen: false });
 	};
 
-	handleShelfUpdate = (targetBook: BookType, shelf: string) => {
+	handleShelfUpdate = (targetBook: BookType, shelf: string, options) => {
 		this.setState(({ books }) => {
 			const targetBookIndex = books.findIndex(
 				book => book.id === targetBook.id
@@ -103,7 +103,10 @@ class App extends Component {
 			}
 			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
 		});
-		this.handleSnackbarOpen();
+
+		if (!options.isBulk) {
+			this.handleSnackbarOpen();
+		}
 	};
 
 	findShelf = (id: string) => {
@@ -189,11 +192,7 @@ class App extends Component {
 						exact
 						path="/move"
 						render={() =>
-							<Move
-								books={books}
-								handleShelfUpdate={this.handleShelfUpdate}
-								findShelf={this.findShelf}
-							/>}
+							<Move books={books} handleShelfUpdate={this.handleShelfUpdate} />}
 					/>
 
 					<Snackbar

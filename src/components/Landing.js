@@ -62,6 +62,7 @@ const Footer = styled.div`
 	background-color: ${props => props.bgColor};
 	text-align: center;
 `;
+
 class Landing extends Component {
 	render() {
 		const wide = getWidth() === widths.large;
