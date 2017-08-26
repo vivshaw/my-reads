@@ -87,6 +87,17 @@ class TopBar extends Component {
 						/>}
 				/>
 
+				<Route
+					exact
+					path="/move"
+					render={() =>
+						<AppBar
+							title="Move"
+							style={{ boxShadow: 'none' }}
+							onLeftIconButtonTouchTap={toggleMenu}
+						/>}
+				/>
+
 				<FilterDialog
 					open={this.state.dialogOpen}
 					toggleDialog={this.toggleDialog}

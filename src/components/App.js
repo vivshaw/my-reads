@@ -49,6 +49,11 @@ const Search = Loadable({
 	loading: () => null
 });
 
+const Move = Loadable({
+	loader: () => import('./Move'),
+	loading: () => null
+});
+
 class App extends Component {
 	state = {
 		books: [],
@@ -175,6 +180,17 @@ class App extends Component {
 						path="/search"
 						render={() =>
 							<Search
+								handleShelfUpdate={this.handleShelfUpdate}
+								findShelf={this.findShelf}
+							/>}
+					/>
+
+					<Route
+						exact
+						path="/move"
+						render={() =>
+							<Move
+								books={books}
 								handleShelfUpdate={this.handleShelfUpdate}
 								findShelf={this.findShelf}
 							/>}

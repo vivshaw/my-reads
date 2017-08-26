@@ -51,6 +51,14 @@ const SideMenu = (props: {
 			>
 				Search
 			</MenuItem>
+
+			<MenuItem
+				className="side-bar-link"
+				onTouchTap={handleClose}
+				containerElement={<Link to="/move" />}
+			>
+				Move
+			</MenuItem>
 		</Drawer>
 	);
 };
