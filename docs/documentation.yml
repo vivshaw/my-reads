@@ -1,0 +1,15 @@
+toc:
+  - name: components/App
+  - App
+
+  - name: components/Book
+  - Book
+  - FlybraryBook
+  - RatingWrapper
+
+  - name: components/BookList
+  - BookList
+  - FlybraryBookList
+
+  - name: components/FilterDialog
+  - FilterDialog
