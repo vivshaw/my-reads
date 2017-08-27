@@ -1,13 +1,15 @@
-import React from 'react';
+// @flow
 
+// Vendor
+import React, { Component } from 'react';
+
+// Material-UI
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-/**
- * A modal dialog can only be closed by selecting one of the actions.
- */
-export default class DialogExampleModal extends React.Component {
+/** Dialog for selecting a filter term to filter shelf display by title */
+class FilterDialog extends Component {
 	props: {
 		open: boolean,
 		handleFilterClear: () => void,
@@ -68,3 +70,5 @@ export default class DialogExampleModal extends React.Component {
 		);
 	}
 }
+
+export default FilterDialog;
