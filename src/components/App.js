@@ -1,38 +1,29 @@
 // @flow
 
+// Vendor
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
+// Material-UI
 import Snackbar from 'material-ui/Snackbar';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { deepOrange200, brown50, darkWhite } from 'material-ui/styles/colors';
 
+// Components
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 
+// Utils/Common
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 
-const flybraryTheme = getMuiTheme({
-	...lightBaseTheme,
-	fontFamily: 'Roboto, sans-serif',
-	palette: {
-		primary1Color: deepOrange200,
-		primary2Color: brown50,
-		primary3Color: darkWhite
-	},
-	appBar: {
-		titleFontWeight: typography.fontWeightLight
-	},
-	card: {
-		fontWeight: typography.fontWeightLight
-	}
-});
+/* ------------------------------------------------------------------
+   ------------------------ ASYNC COMPONENTS ------------------------
+	 ------------------------------------------------------------------ */
 
 const Landing = Loadable({
 	loader: () => import('./Landing'),
@@ -54,6 +45,32 @@ const Move = Loadable({
 	loading: () => null
 });
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/* Material-UI theme */
+const flybraryTheme = getMuiTheme({
+	...lightBaseTheme,
+	fontFamily: 'Roboto, sans-serif',
+	palette: {
+		primary1Color: deepOrange200,
+		primary2Color: brown50,
+		primary3Color: darkWhite
+	},
+	appBar: {
+		titleFontWeight: typography.fontWeightLight
+	},
+	card: {
+		fontWeight: typography.fontWeightLight
+	}
+});
+
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+/** Main class for the Flybrary app */
 class App extends Component {
 	state = {
 		books: [],
@@ -64,32 +81,62 @@ class App extends Component {
 		snackbarData: { shelf: '', title: '' }
 	};
 
+	/**
+	 * Toggles the SideBar's visibility.
+	 */
 	toggleMenu = () => {
 		this.setState(state => ({ menuVisible: !state.menuVisible }));
 	};
 
+	/**
+	 * Sets the SideBar's visibility.
+	 * @param {boolean} menuVisible The desired visibility state
+	 */
 	handleSetMenuVisible = (menuVisible: boolean) => {
 		this.setState({ menuVisible });
 	};
 
+	/**
+	 * Closees the SideBar.
+	 */
 	handleMenuClose = () => this.setState({ menuVisible: false });
 
+	/**
+	 * Changes the filter query.
+	 * @param  {string} query The term to filter by
+	 */
 	handleFilterChange = (query: string) => {
 		this.setState({ filterQuery: query.trim() });
 	};
 
+	/**
+	 * Clears the filter query.
+	 */
 	handleFilterClear = () => {
 		this.setState({ filterQuery: '' });
 	};
 
+	/**
+	 * Opens the snackbar for adding a book.
+	 */
 	handleSnackbarOpen = () => {
 		this.setState({ snackbarOpen: true });
 	};
 
+	/**
+	 * Closes the snackbar.
+	 */
 	handleRequestClose = () => {
 		this.setState({ snackbarOpen: false });
 	};
 
+	/**
+	 * Updates a book's shelf. If the book is already in our books, we simply
+	 * change its shelf. Otherwise, we must add it to our books too.
+	 * @param  {Book} targetBook 	 The book we wish to update
+	 * @param  {String} shelf      The shelf we wish to update it to
+	 * @param  {Object} options    isBulk: if true, suppresses the snackbar notifications
+	 */
 	handleShelfUpdate = (targetBook: BookType, shelf: string, options) => {
 		this.setState(({ books }) => {
 			const targetBookIndex = books.findIndex(
@@ -101,6 +148,7 @@ class App extends Component {
 			} else {
 				books.push(Object.assign({}, targetBook, { shelf }));
 			}
+
 			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
 		});
 
@@ -109,6 +157,10 @@ class App extends Component {
 		}
 	};
 
+	/**
+	 * Finds the shelf of a book by ID, returning an empty string if it has no shelf.
+	 * @param  {string} id The id of the book we want to find the shelf of.
+	 */
 	findShelf = (id: string) => {
 		const book = this.state.books.find(book => book.id === id);
 		if (book) {
@@ -121,6 +173,7 @@ class App extends Component {
 	componentDidMount() {
 		getAll().then((books: Array<BookType>) => {
 			const shelves = Array.from(new Set(books.map(book => book.shelf)));
+
 			this.setState({
 				books,
 				shelves
