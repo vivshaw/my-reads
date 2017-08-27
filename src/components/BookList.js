@@ -29,9 +29,9 @@ const FlybraryBookList = styled.div`
 
 /**
  * View component that displays a list of Books.
- * @prop {Array<BookType>}   books   	An Array of Book data objects to be displayed
- * @prop {(BookType, string) => void} handleShelfUpdate from App
- * @prop {(string) => string} findShelf from App
+ * @param {Array<BookType>}   books   	An Array of Book data objects to be displayed
+ * @param {function(string, number)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {function(string)} findShelf from {@link App#findShelf}
  */
 const BookList = (props: {
 	books: Array<BookType>,
