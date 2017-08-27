@@ -1,12 +1,20 @@
 // @flow
 
+// Vendor
 import React from 'react';
 import styled from 'styled-components';
 
+// Components
 import Book from './Book';
 
+// Utils/Common
 import type { BookType } from '../common/flowTypes';
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/** A flexbox grid wrapper, into which we insert our Books */
 const FlybraryBookList = styled.div`
 	display: flex;
 	flex-wrap: wrap;
@@ -15,6 +23,16 @@ const FlybraryBookList = styled.div`
 	justify-content: center;
 `;
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENTS ---------------------------
+	 ------------------------------------------------------------------ */
+
+/**
+ * View component that displays a list of Books.
+ * @prop {Array<BookType>}   books   	An Array of Book data objects to be displayed
+ * @prop {(BookType, string) => void} handleShelfUpdate from App
+ * @prop {(string) => string} findShelf from App
+ */
 const BookList = (props: {
 	books: Array<BookType>,
 	handleShelfUpdate: (BookType, string) => void,
@@ -22,7 +40,8 @@ const BookList = (props: {
 }) => {
 	const { books, handleShelfUpdate, findShelf } = props;
 
-	const FilteredBookElements = books.map(book => {
+	// Map our book data objects into Book components
+	const bookElements = books.map(book => {
 		return (
 			<Book
 				book={book}
@@ -35,7 +54,7 @@ const BookList = (props: {
 
 	return (
 		<FlybraryBookList className="book-list">
-			{FilteredBookElements}
+			{bookElements}
 		</FlybraryBookList>
 	);
 };
