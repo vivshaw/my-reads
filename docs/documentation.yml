@@ -13,3 +13,17 @@ toc:
 
   - name: components/FilterDialog
   - FilterDialog
+
+  - name: components/Home
+  - Home
+
+  - name: components/Landing
+  - Landing
+  - Block
+  - HeroTitle
+  - HeroH1
+  - HeroH2
+  - BookLogo
+  - Footer
+
+  
