@@ -77,8 +77,9 @@ const BookLogo = styled.img`
 
 /** Landing site footer */
 const Footer = styled.div`
+	.footer
 	/* Positioning & Box Model */
-	bottom: 0px;
+	bottom: 0px;;
 	height: 30px;
 	line-height: 30px;
 	position: absolute;
