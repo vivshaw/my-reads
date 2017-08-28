@@ -34,8 +34,14 @@ toc:
   - Search
   - SearchContainer
 
-  - name: SideBar
+  - name: components/SideBar
   - SideBar
 
-  - name: TopBar
+  - name: components/TopBar
   - TopBar
+
+  - name: common/flowTypes
+  - flowTypes
+
+  - name: common/searchTerms
+  - searchTerms

@@ -1,3 +1,11 @@
+// @flow
+
+/* ------------------------- SHARED OBJECTS ------------------------- */
+
+/**
+ * An array of all the allowed search terms.
+ * @type {Array<string>}
+ */
 const searchTerms = [
 	'Android',
 	'Art',
