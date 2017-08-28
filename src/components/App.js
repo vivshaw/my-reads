@@ -184,6 +184,10 @@ class App extends Component {
 		getAll().then((books: Array<BookType>) => {
 			this.setState({ books });
 		});
+
+		Shelves.preload();
+		Search.preload();
+		Move.preload();
 	}
 
 	render() {
