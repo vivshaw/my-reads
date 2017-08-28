@@ -1,45 +1,70 @@
-import React from 'react';
+// @flow
 
+// Vendor
+import React, { Component } from 'react';
+
+// Material-UI
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
+	handleFilterChange: (query: string) => void,
+	handleFilterClear: () => void,
+	open: boolean,
+	toggleDialog: () => void
+};
+
 /**
- * A modal dialog can only be closed by selecting one of the actions.
+ * Dialog for selecting a filter term to filter shelf display by title
+ * @param {function(string)} handleFilterChange from {@link App#handleFilterChange}
+ * @param {function()} handleFilterClear from {@link App#handleFilterClear}
+ * @param {boolean} open whether the dialog is open
+ * @param {function()} toggleDialog from {@link TopBar#toggleDialog}
  */
-export default class DialogExampleModal extends React.Component {
-	props: {
-		open: boolean,
-		handleFilterClear: () => void,
-		handleFilterChange: (query: string) => void
-	};
+class FilterDialog extends Component {
+	props: Props;
 
 	state = {
 		filterOpen: false,
 		filterQuery: ''
 	};
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.open !== this.state.filterOpen) {
-			this.setState({ filterOpen: nextProps.open });
-		}
-	}
-
+	/**
+	 * Clears the filter query
+	 */
 	clear = () => {
 		this.props.handleFilterClear();
 		this.props.toggleDialog();
 	};
 
+	/**
+	 * Applies the filter
+	 */
 	filter = () => {
 		this.props.handleFilterChange(this.state.filterQuery);
 		this.props.toggleDialog();
 	};
 
-	handleChange = event => {
+	/**
+	 * Contoller for controlled component TextField
+	 * @param  {SyntheticEvent} event onChange event from TextField
+	 */
+	handleChange = (event: SyntheticEvent) => {
 		this.setState({
 			filterQuery: event.target.value
 		});
 	};
+
+	componentWillReceiveProps(nextProps: Props) {
+		if (nextProps.open !== this.state.filterOpen) {
+			this.setState({ filterOpen: nextProps.open });
+		}
+	}
 
 	render() {
 		const actions = [
@@ -68,3 +93,5 @@ export default class DialogExampleModal extends React.Component {
 		);
 	}
 }
+
+export default FilterDialog;

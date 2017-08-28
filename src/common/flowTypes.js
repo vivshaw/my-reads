@@ -1,13 +1,27 @@
 // @flow
 
+/* -------------------------- SHARED TYPES -------------------------- */
+
+/**
+ * Book object type, returned as JSOn from the BooksAPI
+ * @name BookType
+ * @type {BookType}
+ * @prop {Array<string>} authors				the book's authors
+ * @prop {string} description						a short description of the book
+ * @prop {string} id 										a unique identifier for the book
+ * @prop {string} imageLinks.thumbnail	the url to a thumbnail of the book's cover
+ * @prop {string} shelf									what shelf the book is on
+ * @prop {string} subtitle							the book's subtitle
+ * @prop {string} title									the book's title
+ */
 export type BookType = {
-	id: string,
-	title: string,
-	subtitle: string,
 	authors: Array<string>,
 	description: string,
-	shelf: string,
+	id: string,
 	imageLinks: {
 		thumbnail: string
-	}
+	},
+	shelf: string,
+	subtitle: string,
+	title: string
 };

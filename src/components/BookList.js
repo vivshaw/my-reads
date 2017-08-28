@@ -1,28 +1,49 @@
 // @flow
 
+// Vendor
 import React from 'react';
 import styled from 'styled-components';
 
+// Components
 import Book from './Book';
 
+// Utils/Common
 import type { BookType } from '../common/flowTypes';
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/** A flexbox grid wrapper, into which we insert our Books */
 const FlybraryBookList = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 12px;
-	margin-bottom: 12px;
 	justify-content: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
 `;
 
-const BookList = (props: {
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
 	books: Array<BookType>,
-	handleShelfUpdate: (BookType, string) => void,
-	findShelf: string => string
-}) => {
+	findShelf: string => string,
+	handleShelfUpdate: (BookType, string) => void
+};
+
+/**
+ * View component that displays a list of Books.
+ * @param {Array<BookType>}   books   	An Array of Book data objects to be displayed
+ * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {function(string)} findShelf from {@link App#findShelf}
+ */
+const BookList = (props: Props) => {
 	const { books, handleShelfUpdate, findShelf } = props;
 
-	const FilteredBookElements = books.map(book => {
+	// Map our book data objects into Book components
+	const bookElements = books.map(book => {
 		return (
 			<Book
 				book={book}
@@ -35,7 +56,7 @@ const BookList = (props: {
 
 	return (
 		<FlybraryBookList className="book-list">
-			{FilteredBookElements}
+			{bookElements}
 		</FlybraryBookList>
 	);
 };

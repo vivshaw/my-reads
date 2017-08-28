@@ -1,9 +1,11 @@
 // @flow
 
+// Vendor
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import styled from 'styled-components';
 
+// Material-UI
 import {
 	Card,
 	CardActions,
@@ -14,38 +16,64 @@ import {
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+// Utils/Common
 import { update } from '../utils/BooksAPI';
 import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/** A Material-UI Card extended with flexbox grid styles */
 const FlybraryBook = styled(Card)`
 	flex-grow: 1;
 	flex-shrink: 0;
 	margin: 0 10px 12px;
-	width: 90vw;
-	min-width: 300px;
 	max-width: 400px;
+	min-width: 300px;
+	width: 90vw;
 `;
 
+/** A wrapper to align the star ratings with the other elements */
 const RatingWrapper = styled.div`
-	margin-top: 20px;
-	margin-bottom: 0px;
-	padding-bottom: 0px;
 	float: right;
+	margin-bottom: 0px;
+	margin-top: 20px;
+	padding-bottom: 0px;
 `;
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
+	book: BookType,
+	handleShelfUpdate: (BookType, string) => void,
+	findShelf: string => string
+};
+
+/**
+ * View component for an individual book
+ * @param {Object} book	the book to display
+ * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {function(string)} findShelf from {@link App#findShelf}
+ */
 class Book extends Component {
-	props: {
-		book: BookType,
-		handleShelfUpdate: (BookType, string) => void,
-		findShelf: string => string
-	};
+	props: Props;
 
 	state = {
 		shelf: '',
 		rating: 0
 	};
 
+	/**
+	 * Handles an update to a book's shelf by first calling the BooksAPI's update
+	 * method, then updating the app's own state.
+	 * @param  {SyntheticEvent} event 	Event passed by Material-UI dropdown
+	 * @param  {number} 				index 	Index of the selected dropdown item
+	 * @param  {string} 				shelf 	The selected shelf
+	 */
 	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
 		update(book, shelf).then(() => {
@@ -54,6 +82,10 @@ class Book extends Component {
 		});
 	};
 
+	/**
+	 * Updates the rating for a book
+	 * @param  {number} rating 		The new rating
+	 */
 	handleChangeRating = (rating: number) => {
 		const { book: { id } } = this.props;
 		setRating(id, rating);

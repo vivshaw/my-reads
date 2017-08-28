@@ -1,68 +1,99 @@
+// @flow
+
+// Vendor
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
+// Material-UI components
 import RaisedButton from 'material-ui/RaisedButton';
 import typography from 'material-ui/styles/typography';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+// Utils/Common
 import logo from '../book-icon.png';
 import getWidth, { widths } from '../utils/getWidth';
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/** A colored full-wdth container block */
 const Block = styled.div`
-	background-color: ${props => props.color};
-	margin-top: 0px;
+	/* Positioning & Box Model */
 	margin-bottom: 0px;
+	margin-top: 0px;
 	padding-bottom: 32px;
+	/* Color */
+	background-color: ${props => props.color};
 `;
 
+/** A container block for centering the hero titles */
 const HeroTitle = styled.div`
+	/* Positioning & Box Model */
 	margin: 0px auto 0px auto;
-	text-align: center;
 	max-width: 575px;
+	/* Text */
+	text-align: center;
 `;
 
+/** Styled H1 text for the hero */
 const HeroH1 = styled.h1`
-	font-weight: ${typography.fontWeightLight};
-	color: ${props => props.color};
-	font-size: ${props => (props.wide ? '56px' : '32px')};
+	/* Positioning & Box Model */
 	margin-bottom: 0px;
-	padding-bottom: 0px;
 	margin-top: 0px;
+	padding-bottom: 0px;
 	padding-top: 30px;
+	/* Text */
+	font-size: ${props => (props.wide ? '56px' : '32px')};
+	font-weight: ${typography.fontWeightLight};
+	/* Color */
+	color: ${props => props.color};
 `;
 
+/** Styled H2 text for the hero */
 const HeroH2 = styled.h2`
-	font-weight: ${typography.fontWeightLight};
-	color: ${props => props.color};
-	font-size: ${props => (props.wide ? '24px' : '20px')};
-	line-height: ${props => (props.wide ? '32px' : '28px')};
+	/* Positioning & Box Model */
 	padding-top: ${props => (props.wide ? '26px' : '29px')};
 	padding-bottom: ${props => (props.wide ? '13px' : '12px')};
 	margin-bottom: 0px;
 	margin-top: 0px;
+	/* Text */
+	font-size: ${props => (props.wide ? '24px' : '20px')};
+	font-weight: ${typography.fontWeightLight};
 	letter-spacing: 0;
+	line-height: ${props => (props.wide ? '32px' : '28px')};
+	/* Color */
+	color: ${props => props.color};
 `;
 
+/** Styled Flybrary logo image */
 const BookLogo = styled.img`
-	max-height: 200px;
-	padding-top: ${props => (props.wide ? '16px' : '0px')};
 	border-radius: 20px;
 	border: 3px solid white;
+	max-height: 200px;
+	padding-top: ${props => (props.wide ? '16px' : '0px')};
 `;
 
+/** Landing site footer */
 const Footer = styled.div`
-	.footer
-	position: absolute;
+	/* Positioning & Box Model */
 	bottom: 0px;
-	width: 100%;
 	height: 30px;
 	line-height: 30px;
-	background-color: ${props => props.bgColor};
+	position: absolute;
+	width: 100%;
+	/* Text */
 	text-align: center;
+	/* Color */
+	background-color: ${props => props.bgColor};
 `;
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+/** Landing page component, located at route / */
 class Landing extends Component {
 	render() {
 		const wide = getWidth() === widths.large;
@@ -144,4 +175,5 @@ class Landing extends Component {
 		);
 	}
 }
+
 export default muiThemeable()(Landing);

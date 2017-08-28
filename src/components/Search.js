@@ -1,8 +1,10 @@
 // @flow
 
+// Vendor
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+// Material-UI components
 import AutoComplete from 'material-ui/AutoComplete';
 import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
@@ -10,13 +12,20 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Snackbar from 'material-ui/Snackbar';
 
+// Components
 import BookList from './BookList';
 
+// Utils/Common
 import { search } from '../utils/BooksAPI';
 import getWidth, { widths } from '../utils/getWidth';
 import type { BookType } from '../common/flowTypes';
 import searchTerms from '../common/searchTerms';
 
+/* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+/** A container to hide overflow of the AutoComplete component */
 const SearchContainer = styled.div`
 	position: relative;
 	display: inline-block;
@@ -25,6 +34,7 @@ const SearchContainer = styled.div`
 `;
 
 // Can't do these easily with styled-components due to specialized style props
+// in Material-UI AutoComplete
 const styles = {
 	searchIcon: {
 		position: 'absolute',
@@ -54,11 +64,22 @@ const styles = {
 	}
 };
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
+	findShelf: string => string,
+	handleShelfUpdate: (BookType, string) => void
+};
+
+/**
+ * Search page component, located at route /search
+ * @param {function(string)} findShelf	from {@link App#findShelf}
+ * @param {function(BookType, string)} handleShelfUpdate   from {@link App#handleShelfUpdate}
+ */
 class Search extends Component {
-	props: {
-		handleShelfUpdate: (BookType, string) => void,
-		findShelf: string => string
-	};
+	props: Props;
 
 	state = {
 		searchResults: [],
@@ -66,6 +87,11 @@ class Search extends Component {
 		dialogOpen: false
 	};
 
+	/**
+	 * Executes a search via calling the BooksAPI search. If the search term is invalid,
+	 * alert the user.
+	 * @param  {string} query the query to search for
+	 */
 	onSearch = (query: string) => {
 		if (searchTerms.includes(query)) {
 			search(query, 10).then(searchResults => {
@@ -78,23 +104,28 @@ class Search extends Component {
 		}
 	};
 
+	/** Displays a Snackbar warning about disallowed search terms */
 	handleBadSearch = () => {
 		this.setState({ snackbarOpen: true });
 	};
 
+	/** Closes the Snackbar */
 	handleRequestClose = () => {
 		this.setState({ snackbarOpen: false });
 	};
 
+	/** Opens the search terms dialog */
 	handleOpenDialog = () => {
 		this.setState({ dialogOpen: true });
 	};
 
+	/** Closes the search terms dialog */
 	handleCloseDialog = () => {
 		this.setState({ dialogOpen: false });
 	};
 
 	render() {
+		// Put each term in a fancy Chip
 		const termChips = searchTerms.map(term =>
 			<Chip key={term + '-chip'} style={styles.chip}>
 				{term}

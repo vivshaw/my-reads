@@ -27,4 +27,5 @@ ratings:
 exclude_paths:
 - "**/__tests__/**"
 - "src/common/testData.js"
+- "docs/**"
 JavaScript: true
