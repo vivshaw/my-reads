@@ -21,6 +21,9 @@ import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
 import { shelfData } from '../common/commonData';
 
+// Images
+import defaultThumb from '../default-thumbnail.png';
+
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
 	 ------------------------------------------------------------------ */
@@ -99,17 +102,14 @@ class Book extends Component {
 	}
 
 	render() {
-		const {
-			book: {
-				id,
-				title,
-				subtitle,
-				description,
-				authors,
-				imageLinks: { thumbnail }
-			}
-		} = this.props;
+		const { book: { id, title, subtitle, description, authors } } = this.props;
 		const { rating, shelf } = this.state;
+
+		// if the book lacks imageLinks.thumbnail, use a default thumbnail
+		const thumbnail =
+			this.props.book.imageLinks && this.props.book.imageLinks.thumbnail
+				? this.props.book.imageLinks.thumbnail
+				: defaultThumb;
 
 		// Map shelfData into MenuItems for our shelf dropdown
 		const shelfDropdownItems = shelfData.maybeShelves.map(shelf => {
