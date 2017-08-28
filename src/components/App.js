@@ -18,7 +18,7 @@ import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 // Utils/Common
-import { getAll } from '../utils/BooksAPI';
+import { getAll, update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 import { shelfData } from '../common/commonData';
 
@@ -131,26 +131,36 @@ class App extends Component {
 	};
 
 	/**
-	 * Updates a book's shelf. If the book is already in our books, we simply
-	 * change its shelf. Otherwise, we must add it to our books too.
+	 * Updates a book's shelf. If the book is already in our books, we simply call the API
+	 * then change its shelf. Otherwise, we must add it to our books too.
 	 * @param  {Book} targetBook 	 The book we wish to update
 	 * @param  {String} shelf      The shelf we wish to update it to
 	 * @param  {Object} [options]   optional options object. isBulk: if true, suppresses the snackbar notifications
 	 */
-	handleShelfUpdate = (targetBook: BookType, shelf: string, options) => {
-		this.setState(({ books }) => {
-			const targetBookIndex = books.findIndex(
-				book => book.id === targetBook.id
-			);
+	handleShelfUpdate = (
+		targetBook: BookType,
+		shelf: string,
+		options: ?Object
+	) => {
+		update(targetBook, shelf).then(
+			this.setState(({ books }) => {
+				const targetBookIndex = books.findIndex(
+					book => book.id === targetBook.id
+				);
 
-			if (targetBookIndex !== -1) {
-				books[targetBookIndex].shelf = shelf;
-			} else {
-				books.push(Object.assign({}, targetBook, { shelf }));
-			}
+				// Add book to Books if it isn't there already
+				if (targetBookIndex !== -1) {
+					books[targetBookIndex].shelf = shelf;
+				} else {
+					books.push(Object.assign({}, targetBook, { shelf }));
+				}
 
-			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
-		});
+				return {
+					books,
+					snackbarData: { title: targetBook.title, shelf: shelf }
+				};
+			})
+		);
 
 		if (!options || (options && !options.isBulk)) {
 			this.handleSnackbarOpen();

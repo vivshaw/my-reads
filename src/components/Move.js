@@ -18,7 +18,6 @@ import {
 } from 'material-ui/Table';
 
 // Utils/Common
-import { update } from '../utils/BooksAPI';
 import { shelfData } from '../common/commonData';
 
 /* ------------------------------------------------------------------
@@ -87,11 +86,7 @@ class Move extends Component {
 		const selectedBooks = selected.map(index => books[index]);
 		const options = { isBulk: selectedBooks.length > 1 };
 
-		selectedBooks.map(book =>
-			update(book, selectedShelf).then(() =>
-				handleShelfUpdate(book, selectedShelf, options)
-			)
-		);
+		selectedBooks.map(book => handleShelfUpdate(book, selectedShelf, options));
 	};
 
 	render() {

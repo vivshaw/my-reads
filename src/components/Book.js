@@ -17,7 +17,6 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 // Utils/Common
-import { update } from '../utils/BooksAPI';
 import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
 import { shelfData } from '../common/commonData';
@@ -77,10 +76,8 @@ class Book extends Component {
 	 */
 	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
-		update(book, shelf).then(() => {
-			this.setState({ shelf });
-			handleShelfUpdate(book, shelf);
-		});
+		this.setState({ shelf });
+		handleShelfUpdate(book, shelf);
 	};
 
 	/**
