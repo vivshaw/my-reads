@@ -6,7 +6,11 @@ import type { BookType } from '../common/flowTypes';
 /* 	Modified versions of provided helper methods from Udacity BooksAPI. I've
 		tweaked them a bit and added Flow to them */
 
-/** Books API endpoint */
+/* ------------------------------------------------------------------
+   ----------------------------- SETUP ------------------------------
+	 ------------------------------------------------------------------ */
+
+/* Books API endpoint */
 const api = 'https://reactnd-books-api.udacity.com';
 
 /* Access token for books API */
@@ -24,18 +28,22 @@ try {
 	token = Math.random().toString(36).substr(-8);
 }
 
+/* JSON headers for books API */
+const headers = {
+	Accept: 'application/json',
+	Authorization: token
+};
+
+/* ------------------------------------------------------------------
+   ------------------------- API METHODS ----------------------------
+	 ------------------------------------------------------------------ */
+
 /**
  * Translates an insecure http  url to a secure https one.
  * @param  {string} url insecure url
  * @return {string}     https url
  */
 const defaultToHTTPS = url => 'https' + url.substring(4);
-
-/* JSON headers for books API */
-const headers = {
-	Accept: 'application/json',
-	Authorization: token
-};
 
 /**
  * Fetch one book from the API, by id.

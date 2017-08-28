@@ -4,6 +4,7 @@
 
 /**
  * Book object type, returned as JSOn from the BooksAPI
+ * @name BookType
  * @type {BookType}
  * @prop {Array<string>} authors				the book's authors
  * @prop {string} description						a short description of the book

@@ -41,7 +41,23 @@ toc:
   - TopBar
 
   - name: common/flowTypes
-  - flowTypes
+  - BookType
 
   - name: common/searchTerms
   - searchTerms
+
+  - name: utils/BooksAPI
+  - get
+  - getAll
+  - update
+  - search
+  - defaultToHTTPS
+
+  - name: utils/getWidth
+  - getWidth
+  - widths
+
+  - name: utils/RatingsAPI
+  - getAllRatings
+  - getRating
+  - setRating

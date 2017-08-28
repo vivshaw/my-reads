@@ -1,6 +1,6 @@
 {
-	"short_name": "Flybrary",
-	"name": "Flybrary",
+	"background_color": "#ffab91",
+	"display": "standalone",
 	"icons": [
 		{
 			"src": "/android-chrome-192x192.png",
@@ -13,10 +13,10 @@
 			"type": "image/png"
 		}
 	],
-	"start_url": "/",
+	"name": "Flybrary",
+	"orientation": "portrait",
 	"scope": "/",
-	"theme_color": "#ffab91",
-	"background_color": "#ffab91",
-	"display": "standalone",
-	"orientation": "portrait"
+	"short_name": "Flybrary",
+	"start_url": "/",
+	"theme_color": "#ffab91"
 }

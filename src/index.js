@@ -1,15 +1,22 @@
+// Vendor
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { render } from 'react-snapshot';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import 'typeface-roboto';
-import 'sanitize.css';
 
+// Components
+import App from './components/App';
+
+// Styles
+import 'sanitize.css';
+import './index.css';
+import 'typeface-roboto';
+
+// needed so tap events work in Material-UI
 injectTapEventPlugin();
 
+// React is go!
 render(
 	<BrowserRouter>
 		<App />
@@ -17,4 +24,5 @@ render(
 	document.getElementById('root')
 );
 
+// Activate CRA's service worker for offline app use
 registerServiceWorker();
