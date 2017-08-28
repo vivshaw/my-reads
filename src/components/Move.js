@@ -19,6 +19,7 @@ import {
 
 // Utils/Common
 import { update } from '../utils/BooksAPI';
+import { shelfData } from '../common/commonData';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -26,8 +27,8 @@ import { update } from '../utils/BooksAPI';
 
 /** A flexbox center-aligning div, to line up our table controls */
 const Aligner = styled.div`
-	display: flex;
 	align-items: center;
+	display: flex;
 	padding: 10px;
 `;
 
@@ -97,25 +98,13 @@ class Move extends Component {
 		const { books } = this.props;
 		const { selectedShelf } = this.state;
 
-		const shelfOptions = [
-			{ text: 'Read', value: 'read' },
-			{
-				text: 'Currently Reading',
-				value: 'currentlyReading'
-			},
-			{
-				text: 'Want To Read',
-				value: 'wantToRead'
-			}
-		];
-
 		// Map shelfOptions into dropdown menu items for table controls
-		const shelfDropdownItems = shelfOptions.map(shelfOption => {
+		const shelfDropdownItems = shelfData.shelves.map(shelf => {
 			return (
 				<MenuItem
-					key={shelfOption.value + '-opt'}
-					value={shelfOption.value}
-					primaryText={shelfOption.text}
+					key={shelf + '-opt'}
+					value={shelf}
+					primaryText={shelfData[shelf].wide}
 				/>
 			);
 		});

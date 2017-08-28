@@ -20,6 +20,7 @@ import SideBar from './SideBar';
 // Utils/Common
 import { getAll } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+import { shelfData } from '../common/commonData';
 
 /* ------------------------------------------------------------------
    ------------------------ ASYNC COMPONENTS ------------------------
@@ -76,7 +77,6 @@ class App extends Component {
 		books: [],
 		filterQuery: '',
 		menuVisible: false,
-		shelves: [],
 		snackbarOpen: false,
 		snackbarData: { shelf: '', title: '' }
 	};
@@ -135,7 +135,7 @@ class App extends Component {
 	 * change its shelf. Otherwise, we must add it to our books too.
 	 * @param  {Book} targetBook 	 The book we wish to update
 	 * @param  {String} shelf      The shelf we wish to update it to
-	 * @param  {Object} options    isBulk: if true, suppresses the snackbar notifications
+	 * @param  {Object} [options]   optional options object. isBulk: if true, suppresses the snackbar notifications
 	 */
 	handleShelfUpdate = (targetBook: BookType, shelf: string, options) => {
 		this.setState(({ books }) => {
@@ -152,7 +152,7 @@ class App extends Component {
 			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
 		});
 
-		if (!options.isBulk) {
+		if (!options || (options && !options.isBulk)) {
 			this.handleSnackbarOpen();
 		}
 	};
@@ -166,38 +166,18 @@ class App extends Component {
 		if (book) {
 			return book.shelf;
 		} else {
-			return '';
+			return 'none';
 		}
 	};
 
 	componentDidMount() {
 		getAll().then((books: Array<BookType>) => {
-			const shelves = Array.from(new Set(books.map(book => book.shelf)));
-
-			this.setState({
-				books,
-				shelves
-			});
+			this.setState({ books });
 		});
 	}
 
 	render() {
-		const { filterQuery, shelves, books, snackbarData } = this.state;
-
-		const shelfText = {
-			read: {
-				narrow: 'Read',
-				wide: 'Read'
-			},
-			wantToRead: {
-				narrow: 'Want',
-				wide: 'Want to Read'
-			},
-			currentlyReading: {
-				narrow: 'Current',
-				wide: 'Currently Reading'
-			}
-		};
+		const { books, filterQuery, snackbarData } = this.state;
 
 		return (
 			<MuiThemeProvider muiTheme={flybraryTheme}>
@@ -223,7 +203,6 @@ class App extends Component {
 						render={() =>
 							<Shelves
 								books={books}
-								shelves={shelves}
 								filterQuery={filterQuery}
 								clearQuery={this.handleFilterClear}
 								handleShelfUpdate={this.handleShelfUpdate}
@@ -252,9 +231,9 @@ class App extends Component {
 						open={this.state.snackbarOpen}
 						message={
 							snackbarData.shelf
-								? `${snackbarData.title} added to shelf ${shelfText[
+								? `${snackbarData.title} added to ${shelfData.getshelfWithWidth(
 										snackbarData.shelf
-									].wide}!`
+									)}!`
 								: ''
 						}
 						autoHideDuration={2000}

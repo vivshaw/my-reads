@@ -12,7 +12,7 @@ import Shelf from './Shelf';
 
 // Utils/Common
 import type { BookType } from '../common/flowTypes';
-import getWidth, { widths } from '../utils/getWidth';
+import { shelfData } from '../common/commonData';
 
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
@@ -23,8 +23,7 @@ type Props = {
 	clearQuery: () => void,
 	filterQuery: string,
 	findShelf: string => string,
-	handleShelfUpdate: (BookType, string) => void,
-	shelves: Array<string>
+	handleShelfUpdate: (BookType, string) => void
 };
 
 /**
@@ -34,7 +33,6 @@ type Props = {
  * @param {string} filterQuery 		the query to filter all displaying books by
  * @param {function(string)} findShelf from {@link App#findShelf}
  * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
- * * @param {Array<string>} shelves		the array of all bookshelves
  */
 class Home extends Component {
 	props: Props;
@@ -56,46 +54,28 @@ class Home extends Component {
 	render() {
 		const {
 			books,
-			shelves,
 			filterQuery,
 			clearQuery,
 			handleShelfUpdate,
 			findShelf
 		} = this.props;
 
-		const wide = getWidth() === widths.large;
-
-		const shelfText = {
-			read: {
-				narrow: 'Read',
-				wide: 'Read'
-			},
-			wantToRead: {
-				narrow: 'Want',
-				wide: 'Want to Read'
-			},
-			currentlyReading: {
-				narrow: 'Current',
-				wide: 'Currently Reading'
-			}
-		};
-
-		const shelvedBooks = shelves.reduce((map, shelf) => {
+		const shelvedBooks = shelfData.shelves.reduce((map, shelf) => {
 			map[shelf] = books.filter(book => book.shelf === shelf);
 			return map;
 		}, {});
 
-		const shelfTabs = shelves.map(shelf => {
+		const shelfTabs = shelfData.shelves.map(shelf => {
 			return (
 				<Tab
 					key={shelf + '-tab'}
-					label={wide ? shelfText[shelf].wide : shelfText[shelf].narrow}
-					value={shelves.indexOf(shelf)}
+					label={shelfData.getshelfWithWidth(shelf)}
+					value={shelfData.shelves.indexOf(shelf)}
 				/>
 			);
 		});
 
-		const showingShelves = shelves.map(shelf => {
+		const showingShelves = shelfData.shelves.map(shelf => {
 			return (
 				<Shelf
 					key={shelf + '-id'}

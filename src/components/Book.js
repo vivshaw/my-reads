@@ -20,6 +20,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { update } from '../utils/BooksAPI';
 import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
+import { shelfData } from '../common/commonData';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -113,28 +114,13 @@ class Book extends Component {
 		} = this.props;
 		const { rating, shelf } = this.state;
 
-		const shelfOptions = [
-			{ text: 'Read', value: 'read' },
-			{
-				text: 'Currently Reading',
-				value: 'currentlyReading'
-			},
-			{
-				text: 'Want To Read',
-				value: 'wantToRead'
-			},
-			{
-				text: 'No Shelf',
-				value: ''
-			}
-		];
-
-		const shelfDropdownItems = shelfOptions.map(shelfOption => {
+		// Map shelfData into MenuItems for our shelf dropdown
+		const shelfDropdownItems = shelfData.maybeShelves.map(shelf => {
 			return (
 				<MenuItem
-					key={shelfOption.value + '-opt'}
-					value={shelfOption.value}
-					primaryText={shelfOption.text}
+					key={shelf + '-opt'}
+					value={shelf}
+					primaryText={shelfData[shelf].wide}
 				/>
 			);
 		});
