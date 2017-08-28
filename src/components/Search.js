@@ -19,7 +19,7 @@ import BookList from './BookList';
 import { search } from '../utils/BooksAPI';
 import getWidth, { widths } from '../utils/getWidth';
 import type { BookType } from '../common/flowTypes';
-import searchTerms from '../common/searchTerms';
+import { searchTerms } from '../common/commonData';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -27,21 +27,19 @@ import searchTerms from '../common/searchTerms';
 
 /** A container to hide overflow of the AutoComplete component */
 const SearchContainer = styled.div`
-	position: relative;
 	display: inline-block;
-	width: 100%;
 	overflow: hidden;
+	position: relative;
+	width: 100%;
 `;
 
 // Can't do these easily with styled-components due to specialized style props
 // in Material-UI AutoComplete
 const styles = {
-	searchIcon: {
-		position: 'absolute',
-		left: 10,
-		top: 15,
-		fontSize: '40px'
+	chip: {
+		margin: 4
 	},
+	hint: { paddingBottom: '10px' },
 	searchField: {
 		width: '100%',
 		textIndent: '60px',
@@ -54,9 +52,11 @@ const styles = {
 		fontSize: '30px',
 		height: '70px'
 	},
-	hint: { paddingBottom: '10px' },
-	chip: {
-		margin: 4
+	searchIcon: {
+		position: 'absolute',
+		left: 10,
+		top: 15,
+		fontSize: '40px'
 	},
 	wrapper: {
 		display: 'flex',
