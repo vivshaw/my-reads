@@ -1,25 +1,40 @@
 // @flow
 
+// Vendor
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
+// Material-UI components
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 
+// Components
 import FilterDialog from './FilterDialog';
 
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
+	handleFilterChange: (query: string) => void,
+	handleFilterClear: () => void,
+	toggleMenu: () => void
+};
+
+/**
+ * TopBar component
+ * @param {function(string)} handleFilterChange from {@link App#handleFilterChange}
+ * @param {function()} handleFilterClear from {@link App#handleFilterClear}
+ * @param {function()} toggleMenu from {@link App#toggleMenu}
+ */
 class TopBar extends Component {
-	props: {
-		filterQuery: string,
-		toggleMenu: () => void,
-		handleFilterClear: () => void,
-		handleFilterChange: (query: string) => void
-	};
+	props: Props;
 
 	state = {
 		dialogOpen: false
 	};
 
+	/** Toggles the filter dialog open and closed. */
 	toggleDialog = () => {
 		this.setState(({ dialogOpen }) => {
 			return { dialogOpen: !dialogOpen };

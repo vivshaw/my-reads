@@ -1,17 +1,31 @@
 // @flow
 
+// Vendor
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Material-UI components
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
-const SideMenu = (props: {
-	menuVisible: boolean,
+/* ------------------------------------------------------------------
+   --------------------------- COMPONENT ----------------------------
+	 ------------------------------------------------------------------ */
+
+type Props = {
 	handleClose: () => void,
-	handleSetVisible: boolean => void
-}) => {
+	handleSetVisible: boolean => void,
+	menuVisible: boolean
+};
+
+/**
+ * SideMenu drawer component.
+ * @param {function()} handleClose from {@link App#handleClose}
+ * @param {function(boolean)} handleSetVisible from {@link App#handleSetVisible}
+ * @param {boolean} menuVisible 			whether the menu is visible
+ */
+const SideMenu = (props: Props) => {
 	const { menuVisible, handleClose, handleSetVisible } = props;
 
 	return (
