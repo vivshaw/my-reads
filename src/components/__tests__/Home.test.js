@@ -5,7 +5,7 @@ import { Tabs } from 'material-ui/Tabs';
 
 import Home from '../Home';
 import Shelf from '../Shelf';
-import { testBooks } from '../../common/testData';
+import { testBooks } from '../../common/__tests__/testData';
 
 describe('Home', () => {
 	let books, clearQuery, filterQuery, shelves, wrapper;

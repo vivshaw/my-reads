@@ -5,7 +5,7 @@ import { shallow, mount } from 'enzyme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Book from '../Book';
-import { testBooks } from '../../common/testData';
+import { testBooks } from '../../common/__tests__/testData';
 
 describe('Book', () => {
 	let book, wrapper, mounted;

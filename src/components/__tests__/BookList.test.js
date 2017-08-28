@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import BookList from '../BookList';
 import Book from '../Book';
-import { testBooks } from '../../common/testData';
+import { testBooks } from '../../common/__tests__/testData';
 
 describe('BookList', () => {
 	let books, wrapper;
