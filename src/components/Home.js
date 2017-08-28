@@ -30,11 +30,11 @@ type Props = {
 /**
  * Home page component, located at route /shelves
  * @param {Array<BookType>} books  the array of all Books the user has
- * @param {Array<string>} shelves		the array of all bookshelves
- * @param {string} filterQuery 		the query to filter all displaying books by
  * @param {function()} clearQuery  from {@link App#clearQuery}
- * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {string} filterQuery 		the query to filter all displaying books by
  * @param {function(string)} findShelf from {@link App#findShelf}
+ * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * * @param {Array<string>} shelves		the array of all bookshelves
  */
 class Home extends Component {
 	props: Props;
