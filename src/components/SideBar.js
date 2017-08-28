@@ -25,7 +25,7 @@ type Props = {
  * @param {function(boolean)} handleSetVisible from {@link App#handleSetVisible}
  * @param {boolean} menuVisible 			whether the menu is visible
  */
-const SideMenu = (props: Props) => {
+const SideBar = (props: Props) => {
 	const { menuVisible, handleClose, handleSetVisible } = props;
 
 	return (
@@ -77,4 +77,4 @@ const SideMenu = (props: Props) => {
 	);
 };
 
-export default SideMenu;
+export default SideBar;

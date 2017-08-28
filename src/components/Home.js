@@ -36,7 +36,7 @@ type Props = {
  * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
  * @param {function(string)} findShelf from {@link App#findShelf}
  */
-export class Home extends Component {
+class Home extends Component {
 	props: Props;
 
 	state = {

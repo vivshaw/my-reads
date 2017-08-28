@@ -93,6 +93,7 @@ const Footer = styled.div`
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
 
+/** Landing page component, located at route / */
 class Landing extends Component {
 	render() {
 		const wide = getWidth() === widths.large;

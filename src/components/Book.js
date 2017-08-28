@@ -30,30 +30,37 @@ const FlybraryBook = styled(Card)`
 	flex-grow: 1;
 	flex-shrink: 0;
 	margin: 0 10px 12px;
-	width: 90vw;
-	min-width: 300px;
 	max-width: 400px;
+	min-width: 300px;
+	width: 90vw;
 `;
 
 /** A wrapper to align the star ratings with the other elements */
 const RatingWrapper = styled.div`
-	margin-top: 20px;
-	margin-bottom: 0px;
-	padding-bottom: 0px;
 	float: right;
+	margin-bottom: 0px;
+	margin-top: 20px;
+	padding-bottom: 0px;
 `;
 
 /* ------------------------------------------------------------------
-   --------------------------- COMPONENTS ---------------------------
+   --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
 
-/** View component for an individual book */
+type Props = {
+	book: BookType,
+	handleShelfUpdate: (BookType, string) => void,
+	findShelf: string => string
+};
+
+/**
+ * View component for an individual book
+ * @param {Object} book	the book to display
+ * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {function(string)} findShelf from {@link App#findShelf}
+ */
 class Book extends Component {
-	props: {
-		book: BookType,
-		handleShelfUpdate: (BookType, string) => void,
-		findShelf: string => string
-	};
+	props: Props;
 
 	state = {
 		shelf: '',

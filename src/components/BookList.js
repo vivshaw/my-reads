@@ -18,26 +18,28 @@ import type { BookType } from '../common/flowTypes';
 const FlybraryBookList = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 12px;
-	margin-bottom: 12px;
 	justify-content: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
 `;
 
 /* ------------------------------------------------------------------
-   --------------------------- COMPONENTS ---------------------------
+   --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
+
+type Props = {
+	books: Array<BookType>,
+	findShelf: string => string,
+	handleShelfUpdate: (BookType, string) => void
+};
 
 /**
  * View component that displays a list of Books.
  * @param {Array<BookType>}   books   	An Array of Book data objects to be displayed
- * @param {function(string, number)} handleShelfUpdate from {@link App#handleShelfUpdate}
+ * @param {function(string, string)} handleShelfUpdate from {@link App#handleShelfUpdate}
  * @param {function(string)} findShelf from {@link App#findShelf}
  */
-const BookList = (props: {
-	books: Array<BookType>,
-	handleShelfUpdate: (BookType, string) => void,
-	findShelf: string => string
-}) => {
+const BookList = (props: Props) => {
 	const { books, handleShelfUpdate, findShelf } = props;
 
 	// Map our book data objects into Book components

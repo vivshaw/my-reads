@@ -33,3 +33,9 @@ toc:
   - name: components/Search
   - Search
   - SearchContainer
+
+  - name: SideBar
+  - SideBar
+
+  - name: TopBar
+  - TopBar
