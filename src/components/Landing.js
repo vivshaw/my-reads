@@ -12,7 +12,6 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 
 // Utils/Common
 import logo from '../book-icon.png';
-import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -32,7 +31,7 @@ const Block = styled.div`
 const HeroTitle = styled.div`
 	/* Positioning & Box Model */
 	margin: 0px auto 0px auto;
-	max-width: 575px;
+	max-width: 570px;
 	/* Text */
 	text-align: center;
 `;
@@ -45,26 +44,47 @@ const HeroH1 = styled.h1`
 	padding-bottom: 0px;
 	padding-top: 30px;
 	/* Text */
-	font-size: ${props => (props.wide ? '56px' : '32px')};
 	font-weight: ${typography.fontWeightLight};
 	/* Color */
 	color: ${props => props.color};
+
+	/* Media */
+	@media (min-width: 992px) {
+		font-size: 56px;
+	}
+	@media (max-width: 991px) {
+		font-size: 32px;
+	}
 `;
 
 /** Styled H2 text for the hero */
 const HeroH2 = styled.h2`
 	/* Positioning & Box Model */
-	padding-top: ${props => (props.wide ? '26px' : '29px')};
-	padding-bottom: ${props => (props.wide ? '13px' : '12px')};
 	margin-bottom: 0px;
 	margin-top: 0px;
 	/* Text */
-	font-size: ${props => (props.wide ? '24px' : '20px')};
 	font-weight: ${typography.fontWeightLight};
 	letter-spacing: 0;
-	line-height: ${props => (props.wide ? '32px' : '28px')};
 	/* Color */
 	color: ${props => props.color};
+
+	/* Media */
+	@media (min-width: 992px) {
+		/* Positioning & Box Model */
+		padding-top: 26px;
+		padding-bottom: 13px;
+		/* Text */
+		font-size: 24px;
+		line-height: 32px;
+	}
+	@media (max-width: 991px) {
+		/* Positioning & Box Model */
+		padding-top: 29px;
+		padding-bottom: 12px;
+		/* Text */
+		font-size: 20px;
+		line-height: 28px;
+	}
 `;
 
 /** Styled Flybrary logo image */
@@ -72,13 +92,30 @@ const BookLogo = styled.img`
 	border-radius: 20px;
 	border: 3px solid white;
 	max-height: 200px;
-	padding-top: ${props => (props.wide ? '16px' : '0px')};
+
+	/* Media */
+	@media (min-width: 992px) {
+		padding-top: 16px;
+	}
+	@media (max-width: 991px) {
+		padding-top: 0px;
+	}
+`;
+
+/** A container block for centering the landing titles */
+const LandingContent = styled.div`
+	/* Positioning & Box Model */
+	margin: 0px auto 0px auto;
+	max-width: 750px;
+	/* Text */
+	text-align: center;
 `;
 
 /** Landing site footer */
 const Footer = styled.div`
+	.footer
 	/* Positioning & Box Model */
-	bottom: 0px;
+	bottom: 0px;;
 	height: 30px;
 	line-height: 30px;
 	position: absolute;
@@ -96,18 +133,15 @@ const Footer = styled.div`
 /** Landing page component, located at route / */
 class Landing extends Component {
 	render() {
-		const wide = getWidth() === widths.large;
 		const muiTheme = this.props.muiTheme;
 
 		return (
 			<div>
 				<Block color={muiTheme.palette.primary1Color}>
-					<HeroTitle wide={wide}>
-						<BookLogo src={logo} wide={wide} />
-						<HeroH1 wide={wide} color={muiTheme.palette.primary3Color}>
-							Flybrary
-						</HeroH1>
-						<HeroH2 wide={wide} color={muiTheme.palette.primary3Color}>
+					<HeroTitle>
+						<BookLogo src={logo} />
+						<HeroH1 color={muiTheme.palette.primary3Color}>Flybrary</HeroH1>
+						<HeroH2 color={muiTheme.palette.primary3Color}>
 							A library management app written in React with Material-UI &
 							styled-components
 						</HeroH2>
@@ -129,30 +163,57 @@ class Landing extends Component {
 				</Block>
 
 				<Block color={muiTheme.palette.primary2Color}>
-					<HeroTitle>
+					<LandingContent>
 						<HeroH2>
 							Flybrary is a library app built for Project #1 of the{' '}
-							<a href="https://www.udacity.com/course/react-nanodegree--nd019">
+							<a
+								href="https://www.udacity.com/course/react-nanodegree--nd019"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								Udacity React Nanodegree
-							</a>. It lets users <Link to="/search">search</Link> for books,
-							add them to <Link to="/shelves">shelves</Link>, rate them, and
-							move them in bulk.
+							</a>. It lets users{' '}
+							<Link
+								to="/search"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								search
+							</Link>{' '}
+							for books, add them to{' '}
+							<Link
+								to="/shelves"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								shelves
+							</Link>, rate them, and{' '}
+							<Link
+								to="/move"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								move
+							</Link>{' '}
+							them in bulk.
 						</HeroH2>
-					</HeroTitle>
+					</LandingContent>
 				</Block>
 
 				<Block color={muiTheme.palette.primary3Color}>
-					<HeroTitle>
+					<LandingContent>
 						<HeroH1 color={muiTheme.palette.textColor}>
 							How does it work?
 						</HeroH1>
 						<HeroH2>
 							Flybrary is a progressive web app built on{' '}
-							<a href="https://github.com/facebookincubator/create-react-app">
+							<a
+								href="https://github.com/facebookincubator/create-react-app"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								create-react-app
 							</a>{' '}
 							and{' '}
-							<a href="https://reacttraining.com/react-router/">
+							<a
+								href="https://reacttraining.com/react-router/"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								react-router
 							</a>{' '}
 							for our logic, styled-components and Material UI for our themeing,
@@ -160,7 +221,7 @@ class Landing extends Component {
 							react-loadable and react-snapshot. Flybrary supports code
 							splitting, static pre-rendering, and offline use.
 						</HeroH2>
-					</HeroTitle>
+					</LandingContent>
 				</Block>
 
 				<Footer bgColor={muiTheme.palette.primary2Color}>

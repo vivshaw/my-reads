@@ -43,8 +43,9 @@ toc:
   - name: common/flowTypes
   - BookType
 
-  - name: common/searchTerms
+  - name: common/commonData
   - searchTerms
+  - shelfData
 
   - name: utils/BooksAPI
   - get

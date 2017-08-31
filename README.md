@@ -4,6 +4,7 @@
 [![CircleCI](https://circleci.com/gh/vivshaw/my-reads.svg?&style=shield)](https://circleci.com/gh/vivshaw/my-reads)
 [![Code Climate](https://codeclimate.com/github/vivshaw/my-reads/badges/gpa.svg)](https://codeclimate.com/github/vivshaw/my-reads) [![Test Coverage](https://codeclimate.com/github/vivshaw/my-reads/badges/coverage.svg)](https://codeclimate.com/github/vivshaw/my-reads/coverage)
 [![Live Demo](https://img.shields.io/badge/live%20demo-active-blue.svg)](https://my-reads-vivshaw.herokuapp.com/)
+[![Docs](https://img.shields.io/badge/docs-documentation.js-ff69b4.svg)](https://vivshaw.github.io/my-reads)
 
 <div align="center"><img src="https://cdn.rawgit.com/vivshaw/my-reads/master/docs/textlogo.svg" alt="flybrary logo" /></div>
 

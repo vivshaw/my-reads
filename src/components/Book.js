@@ -17,9 +17,12 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 // Utils/Common
-import { update } from '../utils/BooksAPI';
 import { getRating, setRating } from '../utils/RatingsAPI';
 import type { BookType } from '../common/flowTypes';
+import { shelfData } from '../common/commonData';
+
+// Images
+import defaultThumb from '../default-thumbnail.png';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -76,10 +79,8 @@ class Book extends Component {
 	 */
 	handleChangeShelf = (event: SyntheticEvent, index: number, shelf: string) => {
 		const { book, handleShelfUpdate } = this.props;
-		update(book, shelf).then(() => {
-			this.setState({ shelf });
-			handleShelfUpdate(book, shelf);
-		});
+		this.setState({ shelf });
+		handleShelfUpdate(book, shelf);
 	};
 
 	/**
@@ -101,40 +102,22 @@ class Book extends Component {
 	}
 
 	render() {
-		const {
-			book: {
-				id,
-				title,
-				subtitle,
-				description,
-				authors,
-				imageLinks: { thumbnail }
-			}
-		} = this.props;
+		const { book: { id, title, subtitle, description, authors } } = this.props;
 		const { rating, shelf } = this.state;
 
-		const shelfOptions = [
-			{ text: 'Read', value: 'read' },
-			{
-				text: 'Currently Reading',
-				value: 'currentlyReading'
-			},
-			{
-				text: 'Want To Read',
-				value: 'wantToRead'
-			},
-			{
-				text: 'No Shelf',
-				value: ''
-			}
-		];
+		// if the book lacks imageLinks.thumbnail, use a default thumbnail
+		const thumbnail =
+			this.props.book.imageLinks && this.props.book.imageLinks.thumbnail
+				? this.props.book.imageLinks.thumbnail
+				: defaultThumb;
 
-		const shelfDropdownItems = shelfOptions.map(shelfOption => {
+		// Map shelfData into MenuItems for our shelf dropdown
+		const shelfDropdownItems = shelfData.maybeShelves.map(shelf => {
 			return (
 				<MenuItem
-					key={shelfOption.value + '-opt'}
-					value={shelfOption.value}
-					primaryText={shelfOption.text}
+					key={shelf + '-opt'}
+					value={shelf}
+					primaryText={shelfData[shelf].wide}
 				/>
 			);
 		});

@@ -18,8 +18,10 @@ import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 // Utils/Common
-import { getAll } from '../utils/BooksAPI';
+import { getAll, update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
+import { shelfData } from '../common/commonData';
+import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
    ------------------------ ASYNC COMPONENTS ------------------------
@@ -76,7 +78,6 @@ class App extends Component {
 		books: [],
 		filterQuery: '',
 		menuVisible: false,
-		shelves: [],
 		snackbarOpen: false,
 		snackbarData: { shelf: '', title: '' }
 	};
@@ -131,28 +132,38 @@ class App extends Component {
 	};
 
 	/**
-	 * Updates a book's shelf. If the book is already in our books, we simply
-	 * change its shelf. Otherwise, we must add it to our books too.
+	 * Updates a book's shelf. If the book is already in our books, we simply call the API
+	 * then change its shelf. Otherwise, we must add it to our books too.
 	 * @param  {Book} targetBook 	 The book we wish to update
 	 * @param  {String} shelf      The shelf we wish to update it to
-	 * @param  {Object} options    isBulk: if true, suppresses the snackbar notifications
+	 * @param  {Object} [options]   optional options object. isBulk: if true, suppresses the snackbar notifications
 	 */
-	handleShelfUpdate = (targetBook: BookType, shelf: string, options) => {
-		this.setState(({ books }) => {
-			const targetBookIndex = books.findIndex(
-				book => book.id === targetBook.id
-			);
+	handleShelfUpdate = (
+		targetBook: BookType,
+		shelf: string,
+		options: ?Object
+	) => {
+		update(targetBook, shelf).then(
+			this.setState(({ books }) => {
+				const targetBookIndex = books.findIndex(
+					book => book.id === targetBook.id
+				);
 
-			if (targetBookIndex !== -1) {
-				books[targetBookIndex].shelf = shelf;
-			} else {
-				books.push(Object.assign({}, targetBook, { shelf }));
-			}
+				// Add book to Books if it isn't there already
+				if (targetBookIndex !== -1) {
+					books[targetBookIndex].shelf = shelf;
+				} else {
+					books.push(Object.assign({}, targetBook, { shelf }));
+				}
 
-			return { books, snackbarData: { title: targetBook.title, shelf: shelf } };
-		});
+				return {
+					books,
+					snackbarData: { title: targetBook.title, shelf: shelf }
+				};
+			})
+		);
 
-		if (!options.isBulk) {
+		if (!options || (options && !options.isBulk)) {
 			this.handleSnackbarOpen();
 		}
 	};
@@ -166,38 +177,22 @@ class App extends Component {
 		if (book) {
 			return book.shelf;
 		} else {
-			return '';
+			return 'none';
 		}
 	};
 
 	componentDidMount() {
 		getAll().then((books: Array<BookType>) => {
-			const shelves = Array.from(new Set(books.map(book => book.shelf)));
-
-			this.setState({
-				books,
-				shelves
-			});
+			this.setState({ books });
 		});
+
+		Shelves.preload();
+		Search.preload();
+		Move.preload();
 	}
 
 	render() {
-		const { filterQuery, shelves, books, snackbarData } = this.state;
-
-		const shelfText = {
-			read: {
-				narrow: 'Read',
-				wide: 'Read'
-			},
-			wantToRead: {
-				narrow: 'Want',
-				wide: 'Want to Read'
-			},
-			currentlyReading: {
-				narrow: 'Current',
-				wide: 'Currently Reading'
-			}
-		};
+		const { books, filterQuery, snackbarData } = this.state;
 
 		return (
 			<MuiThemeProvider muiTheme={flybraryTheme}>
@@ -223,7 +218,6 @@ class App extends Component {
 						render={() =>
 							<Shelves
 								books={books}
-								shelves={shelves}
 								filterQuery={filterQuery}
 								clearQuery={this.handleFilterClear}
 								handleShelfUpdate={this.handleShelfUpdate}
@@ -252,9 +246,11 @@ class App extends Component {
 						open={this.state.snackbarOpen}
 						message={
 							snackbarData.shelf
-								? `${snackbarData.title} added to shelf ${shelfText[
+								? `${getWidth() === widths.wide
+										? snackbarData.title
+										: 'Book'} added to ${shelfData.getshelfWithWidth(
 										snackbarData.shelf
-									].wide}!`
+									)}!`
 								: ''
 						}
 						autoHideDuration={2000}
