@@ -12,7 +12,6 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 
 // Utils/Common
 import logo from '../book-icon.png';
-import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -45,26 +44,47 @@ const HeroH1 = styled.h1`
 	padding-bottom: 0px;
 	padding-top: 30px;
 	/* Text */
-	font-size: ${props => (props.wide ? '56px' : '32px')};
 	font-weight: ${typography.fontWeightLight};
 	/* Color */
 	color: ${props => props.color};
+
+	/* Media */
+	@media (min-width: 992px) {
+		font-size: 56px;
+	}
+	@media (max-width: 991px) {
+		font-size: 32px;
+	}
 `;
 
 /** Styled H2 text for the hero */
 const HeroH2 = styled.h2`
 	/* Positioning & Box Model */
-	padding-top: ${props => (props.wide ? '26px' : '29px')};
-	padding-bottom: ${props => (props.wide ? '13px' : '12px')};
 	margin-bottom: 0px;
 	margin-top: 0px;
 	/* Text */
-	font-size: ${props => (props.wide ? '24px' : '20px')};
 	font-weight: ${typography.fontWeightLight};
 	letter-spacing: 0;
-	line-height: ${props => (props.wide ? '32px' : '28px')};
 	/* Color */
 	color: ${props => props.color};
+
+	/* Media */
+	@media (min-width: 992px) {
+		/* Positioning & Box Model */
+		padding-top: 26px;
+		padding-bottom: 13px;
+		/* Text */
+		font-size: 24px;
+		line-height: 32px;
+	}
+	@media (max-width: 991px) {
+		/* Positioning & Box Model */
+		padding-top: 29px;
+		padding-bottom: 12px;
+		/* Text */
+		font-size: 20px;
+		line-height: 28px;
+	}
 `;
 
 /** Styled Flybrary logo image */
@@ -72,7 +92,14 @@ const BookLogo = styled.img`
 	border-radius: 20px;
 	border: 3px solid white;
 	max-height: 200px;
-	padding-top: ${props => (props.wide ? '16px' : '0px')};
+
+	/* Media */
+	@media (min-width: 992px) {
+		padding-top: 16px;
+	}
+	@media (max-width: 991px) {
+		padding-top: 0px;
+	}
 `;
 
 /** Landing site footer */
@@ -90,6 +117,12 @@ const Footer = styled.div`
 	background-color: ${props => props.bgColor};
 `;
 
+/** Landing page button styles. Label style has to go inline because we only
+have access to the theme colors within the component. */
+const LandingButton = styled(RaisedButton)`
+	margin: '16px 32px 0px 32px';
+`;
+
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
@@ -97,32 +130,27 @@ const Footer = styled.div`
 /** Landing page component, located at route / */
 class Landing extends Component {
 	render() {
-		const wide = getWidth() === widths.large;
 		const muiTheme = this.props.muiTheme;
 
 		return (
 			<div>
 				<Block color={muiTheme.palette.primary1Color}>
-					<HeroTitle wide={wide}>
-						<BookLogo src={logo} wide={wide} />
-						<HeroH1 wide={wide} color={muiTheme.palette.primary3Color}>
-							Flybrary
-						</HeroH1>
-						<HeroH2 wide={wide} color={muiTheme.palette.primary3Color}>
+					<HeroTitle>
+						<BookLogo src={logo} />
+						<HeroH1 color={muiTheme.palette.primary3Color}>Flybrary</HeroH1>
+						<HeroH2 color={muiTheme.palette.primary3Color}>
 							A library management app written in React with Material-UI &
 							styled-components
 						</HeroH2>
-						<RaisedButton
+						<LandingButton
 							className="landing-button"
 							label="See my shelves"
-							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/shelves" />}
 						/>
-						<RaisedButton
+						<LandingButton
 							className="landing-button"
 							label="Search for books"
-							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/search" />}
 						/>
