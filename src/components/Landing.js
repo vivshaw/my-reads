@@ -117,12 +117,6 @@ const Footer = styled.div`
 	background-color: ${props => props.bgColor};
 `;
 
-/** Landing page button styles. Label style has to go inline because we only
-have access to the theme colors within the component. */
-const LandingButton = styled(RaisedButton)`
-	margin: '16px 32px 0px 32px';
-`;
-
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
@@ -142,15 +136,17 @@ class Landing extends Component {
 							A library management app written in React with Material-UI &
 							styled-components
 						</HeroH2>
-						<LandingButton
+						<RaisedButton
 							className="landing-button"
 							label="See my shelves"
+							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/shelves" />}
 						/>
-						<LandingButton
+						<RaisedButton
 							className="landing-button"
 							label="Search for books"
+							style={{ margin: '16px 32px 0px 32px' }}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/search" />}
 						/>
@@ -161,11 +157,32 @@ class Landing extends Component {
 					<HeroTitle>
 						<HeroH2>
 							Flybrary is a library app built for Project #1 of the{' '}
-							<a href="https://www.udacity.com/course/react-nanodegree--nd019">
+							<a
+								href="https://www.udacity.com/course/react-nanodegree--nd019"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								Udacity React Nanodegree
-							</a>. It lets users <Link to="/search">search</Link> for books,
-							add them to <Link to="/shelves">shelves</Link>, rate them, and
-							move them in bulk.
+							</a>. It lets users{' '}
+							<Link
+								to="/search"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								search
+							</Link>{' '}
+							for books, add them to{' '}
+							<Link
+								to="/shelves"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								shelves
+							</Link>, rate them, and
+							<Link
+								to="/move"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
+								move
+							</Link>{' '}
+							them in bulk.
 						</HeroH2>
 					</HeroTitle>
 				</Block>
@@ -177,11 +194,17 @@ class Landing extends Component {
 						</HeroH1>
 						<HeroH2>
 							Flybrary is a progressive web app built on{' '}
-							<a href="https://github.com/facebookincubator/create-react-app">
+							<a
+								href="https://github.com/facebookincubator/create-react-app"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								create-react-app
 							</a>{' '}
 							and{' '}
-							<a href="https://reacttraining.com/react-router/">
+							<a
+								href="https://reacttraining.com/react-router/"
+								style={{ textDecoration: 'none', color: '#26C6DA' }}
+							>
 								react-router
 							</a>{' '}
 							for our logic, styled-components and Material UI for our themeing,
