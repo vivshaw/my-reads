@@ -8,7 +8,7 @@ import { shallow, mount } from 'enzyme';
 import Shelf from '../Shelf';
 import BookList from '../BookList';
 import Book from '../Book';
-import { testBooks } from '../../common/__tests__/testData';
+import { testBooks } from '../../common/testData';
 
 describe('Shelf', () => {
 	let clearQuery, shelf, shelvedBooks, wrapper;

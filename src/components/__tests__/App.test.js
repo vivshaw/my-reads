@@ -7,7 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from '../App';
 import TopBar from '../TopBar';
 import SideBar from '../SideBar';
-import { testBooks, jsonHeaders } from '../../common/__tests__/testData';
+import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('App', () => {
 	let wrapper;
