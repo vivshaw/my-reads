@@ -31,7 +31,7 @@ const Block = styled.div`
 const HeroTitle = styled.div`
 	/* Positioning & Box Model */
 	margin: 0px auto 0px auto;
-	max-width: 575px;
+	max-width: 570px;
 	/* Text */
 	text-align: center;
 `;
@@ -102,6 +102,15 @@ const BookLogo = styled.img`
 	}
 `;
 
+/** A container block for centering the landing titles */
+const LandingContent = styled.div`
+	/* Positioning & Box Model */
+	margin: 0px auto 0px auto;
+	max-width: 750px;
+	/* Text */
+	text-align: center;
+`;
+
 /** Landing site footer */
 const Footer = styled.div`
 	.footer
@@ -154,7 +163,7 @@ class Landing extends Component {
 				</Block>
 
 				<Block color={muiTheme.palette.primary2Color}>
-					<HeroTitle>
+					<LandingContent>
 						<HeroH2>
 							Flybrary is a library app built for Project #1 of the{' '}
 							<a
@@ -175,7 +184,7 @@ class Landing extends Component {
 								style={{ textDecoration: 'none', color: '#26C6DA' }}
 							>
 								shelves
-							</Link>, rate them, and
+							</Link>, rate them, and{' '}
 							<Link
 								to="/move"
 								style={{ textDecoration: 'none', color: '#26C6DA' }}
@@ -184,11 +193,11 @@ class Landing extends Component {
 							</Link>{' '}
 							them in bulk.
 						</HeroH2>
-					</HeroTitle>
+					</LandingContent>
 				</Block>
 
 				<Block color={muiTheme.palette.primary3Color}>
-					<HeroTitle>
+					<LandingContent>
 						<HeroH1 color={muiTheme.palette.textColor}>
 							How does it work?
 						</HeroH1>
@@ -212,7 +221,7 @@ class Landing extends Component {
 							react-loadable and react-snapshot. Flybrary supports code
 							splitting, static pre-rendering, and offline use.
 						</HeroH2>
-					</HeroTitle>
+					</LandingContent>
 				</Block>
 
 				<Footer bgColor={muiTheme.palette.primary2Color}>
