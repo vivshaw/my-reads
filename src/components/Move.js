@@ -19,6 +19,7 @@ import {
 
 // Utils/Common
 import { shelfData } from '../common/commonData';
+import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
    ----------------------------- STYLES -----------------------------
@@ -92,6 +93,7 @@ class Move extends Component {
 	render() {
 		const { books } = this.props;
 		const { selectedShelf } = this.state;
+		const wide = getWidth() === widths.large;
 
 		// Map shelfOptions into dropdown menu items for table controls
 		const shelfDropdownItems = shelfData.shelves.map(shelf => {
@@ -112,14 +114,15 @@ class Move extends Component {
 						{book.title}
 					</TableRowColumn>
 					<TableRowColumn>
-						{book.author}
+						{book.authors ? book.authors.join(', ') : 'No author'}
 					</TableRowColumn>
 					<TableRowColumn>
 						{book.shelf}
 					</TableRowColumn>
-					<TableRowColumn>
-						{book.id}
-					</TableRowColumn>
+					{wide &&
+						<TableRowColumn>
+							{book.id}
+						</TableRowColumn>}
 				</TableRow>
 			);
 		});
@@ -127,7 +130,9 @@ class Move extends Component {
 		return (
 			<div>
 				<Aligner>
-					<span>Move books to:</span>
+					<span>
+						Move {wide ? 'books' : ''} to:
+					</span>
 					<DropDownMenu value={selectedShelf} onChange={this.handleSelectShelf}>
 						{shelfDropdownItems}
 					</DropDownMenu>
@@ -144,7 +149,7 @@ class Move extends Component {
 							<TableHeaderColumn>Title</TableHeaderColumn>
 							<TableHeaderColumn>Author</TableHeaderColumn>
 							<TableHeaderColumn>Shelf</TableHeaderColumn>
-							<TableHeaderColumn>ID</TableHeaderColumn>
+							{wide && <TableHeaderColumn>ID</TableHeaderColumn>}
 						</TableRow>
 					</TableHeader>
 					<TableBody deselectOnClickaway={false}>

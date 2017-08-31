@@ -21,6 +21,7 @@ import SideBar from './SideBar';
 import { getAll, update } from '../utils/BooksAPI';
 import type { BookType } from '../common/flowTypes';
 import { shelfData } from '../common/commonData';
+import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
    ------------------------ ASYNC COMPONENTS ------------------------
@@ -245,7 +246,9 @@ class App extends Component {
 						open={this.state.snackbarOpen}
 						message={
 							snackbarData.shelf
-								? `${snackbarData.title} added to ${shelfData.getshelfWithWidth(
+								? `${getWidth() === widths.wide
+										? snackbarData.title
+										: 'Book'} added to ${shelfData.getshelfWithWidth(
 										snackbarData.shelf
 									)}!`
 								: ''
