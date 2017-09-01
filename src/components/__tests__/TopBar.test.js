@@ -46,6 +46,7 @@ describe('TopBar', () => {
 	});
 
 	describe('ui interaction', () => {
+		// disabled because can't get the click to simulate :(
 		xit('should toggle the menu when the menu button is clicked', () => {
 			wrapper.find(IconButton).first().simulate('click');
 			expect(toggleMenu).toBeCalled();
