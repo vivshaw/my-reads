@@ -46,6 +46,9 @@ describe('TopBar', () => {
 	});
 
 	describe('ui interaction', () => {
+		// can't get state of children, so can't test toggleDialog's effect on state
+		// because MemoryRouter is root :(
+
 		// disabled because can't get the click to simulate :(
 		xit('should toggle the menu when the menu button is clicked', () => {
 			wrapper.find(IconButton).first().simulate('click');
