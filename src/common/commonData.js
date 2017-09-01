@@ -139,5 +139,5 @@ export const shelfData = {
 };
 
 shelfData.getShelfWithWidth = function(shelf: string) {
-	return getWidth() === widths.wide ? this[shelf].wide : this[shelf].narrow;
+	return getWidth() === widths.large ? this[shelf].wide : this[shelf].narrow;
 }.bind(shelfData);
