@@ -63,5 +63,10 @@ describe('FilterDialog', () => {
 			mounted.instance().handleChange({ target: { value: query } });
 			expect(mounted.state('filterQuery')).toBe(query);
 		});
+
+		it('updates visibility when receiving new props', () => {
+			mounted.instance().componentWillReceiveProps({ open: false });
+			expect(mounted.state('filterOpen')).toBe(false);
+		});
 	});
 });
