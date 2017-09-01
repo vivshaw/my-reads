@@ -66,6 +66,10 @@ class FilterDialog extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.setState({ filterOpen: this.props.open });
+	}
+
 	render() {
 		const actions = [
 			<FlatButton label="Clear" primary={true} onTouchTap={this.clear} />,
