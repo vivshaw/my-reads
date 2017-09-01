@@ -8,10 +8,13 @@ import Book from '../Book';
 import { testBooks } from '../../common/testData';
 
 describe('Book', () => {
-	let book, wrapper, mounted;
+	let book, wrapper, mounted, handleShelfUpdate, setRating;
 
 	beforeAll(() => {
 		book = testBooks.books[0];
+		handleShelfUpdate = jest.fn();
+		setRating = jest.fn();
+
 		wrapper = shallow(
 			<Book
 				key={book.id}
@@ -20,6 +23,7 @@ describe('Book', () => {
 				description={book.description}
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
+				handleShelfUpdate={handleShelfUpdate}
 				book={book}
 			/>
 		);
@@ -34,6 +38,7 @@ describe('Book', () => {
 				description={book.description}
 				authors={book.authors}
 				coverImageUrl={book.imageLinks.thumbnail}
+				handleShelfUpdate={handleShelfUpdate}
 				book={book}
 			/>,
 			{
@@ -67,5 +72,19 @@ describe('Book', () => {
 		expect(mounted.text().includes(book.description.substring(0, 140))).toBe(
 			true
 		);
+	});
+
+	describe('ui interaction', () => {
+		it('can change the shelf', () => {
+			expect(mounted.state('shelf')).toBe(book.shelf);
+			mounted.instance().handleChangeShelf({}, 0, 'currentlyReading');
+			expect(mounted.state('shelf')).toBe('currentlyReading');
+		});
+
+		it('can change the rating', () => {
+			expect(mounted.state('rating')).toBe(0);
+			mounted.instance().handleChangeRating(1);
+			expect(mounted.state('rating')).toBe(1);
+		});
 	});
 });
