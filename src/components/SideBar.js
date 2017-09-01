@@ -34,7 +34,7 @@ const SideBar = (props: Props) => {
 			docked={false}
 			width={200}
 			open={menuVisible}
-			onRequestChange={menuVisible => handleSetVisible(menuVisible)}
+			onRequestChange={handleSetVisible}
 		>
 			<AppBar
 				className="side-bar-head"
