@@ -144,7 +144,7 @@ class Book extends Component {
 						<StarRatingComponent
 							name={id + '-rating'}
 							value={rating}
-							onStarClick={newRating => this.handleChangeRating(newRating)}
+							onStarClick={this.handleChangeRating}
 						/>
 					</RatingWrapper>
 				</CardActions>
