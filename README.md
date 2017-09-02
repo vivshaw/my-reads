@@ -57,7 +57,7 @@ For manual deployment, you can ```yarn build```, and then deploy the built app o
 any webserver of your choice.
 
 ## Documentation
-Flybrary is fully documented with JSDoc & some [documentation.js](http://documentation.js.org/)-generated docs are hosted from the docs directory and are [available here](https://vivshaw.github.io/my-reads/). Unfortunately, the auto-generated docs aren't too great due to the lack of a good ESNext-compatible docs library. It was impossible to use JSDoc or ESDoc due to compatibility problems with certain ES6/ES7 features, and even documentation.js required a Babel transpilation step to get it working & does some weird things with my output.
+Flybrary is [fully documented](https://vivshaw.github.io/my-reads/) with JSDoc, and some [documentation.js](http://documentation.js.org/)-generated docs are hosted from the docs directory and are [available here](https://vivshaw.github.io/my-reads/). Unfortunately, the auto-generated docs aren't very good due to the lack of a good ESNext-compatible docs library. It was impossible to use JSDoc or ESDoc due to compatibility problems with certain ES6/ES7 features, and even documentation.js required a Babel transpilation step to get it working & does some weird things with my output. Regardless, the JSDoc in the source itself should be unambiguous.
 
 To regenerate docs, use ```yarn docs```.
 

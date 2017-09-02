@@ -579,9 +579,9 @@
               
                 
                 <li><a
-                  href='#commonsearchterms'
+                  href='#commoncommondata'
                   class="h5 bold black caps">
-                  common/searchTerms
+                  common/commonData
                   
                 </a>
                 
@@ -592,6 +592,16 @@
                   href='#searchterms'
                   class="">
                   searchTerms
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#shelfdata'
+                  class="">
+                  shelfData
                   
                 </a>
                 
@@ -722,6 +732,16 @@
                   href='#setrating'
                   class="">
                   setRating
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#landingcontent'
+                  class="">
+                  LandingContent
                   
                 </a>
                 
@@ -1161,8 +1181,8 @@
 
   
 
-  <p>Updates a book's shelf. If the book is already in our books, we simply
-change its shelf. Otherwise, we must add it to our books too.</p>
+  <p>Updates a book's shelf. If the book is already in our books, we simply call the API
+then change its shelf. Otherwise, we must add it to our books too.</p>
 
 
   <div class='pre p1 fill-light mt0'>handleShelfUpdate</div>
@@ -1200,8 +1220,8 @@ change its shelf. Otherwise, we must add it to our books too.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    isBulk: if true, suppresses the snackbar notifications
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    optional options object. isBulk: if true, suppresses the snackbar notifications
 
           </div>
           
@@ -2081,7 +2101,7 @@ method, then updating the app's own state.</p>
   <p>Home page component, located at route /shelves</p>
 
 
-  <div class='pre p1 fill-light mt0'>new Home(books: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;BookType>, shelves: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>, filterQuery: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, clearQuery: function (), handleShelfUpdate: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>), findShelf: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
+  <div class='pre p1 fill-light mt0'>new Home(books: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;BookType>, clearQuery: function (), filterQuery: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, findShelf: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>), handleShelfUpdate: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
   
   
     <p>
@@ -2114,8 +2134,9 @@ method, then updating the app's own state.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>shelves</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
-	    the array of all bookshelves
+            <span class='code bold'>clearQuery</span> <code class='quiet'>(function ())</code>
+	    from 
+<a href="App#clearQuery">App#clearQuery</a>
 
           </div>
           
@@ -2132,9 +2153,9 @@ method, then updating the app's own state.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>clearQuery</span> <code class='quiet'>(function ())</code>
+            <span class='code bold'>findShelf</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
 	    from 
-<a href="App#clearQuery">App#clearQuery</a>
+<a href="#appfindshelf">App#findShelf</a>
 
           </div>
           
@@ -2145,16 +2166,6 @@ method, then updating the app's own state.</p>
             <span class='code bold'>handleShelfUpdate</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
 	    from 
 <a href="#apphandleshelfupdate">App#handleShelfUpdate</a>
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>findShelf</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
-	    from 
-<a href="#appfindshelf">App#findShelf</a>
 
           </div>
           
@@ -3625,8 +3636,8 @@ alert the user.</p>
           
             <div class='keyline-top-not py2'><section class='py2 clearfix'>
 
-  <h2 id='commonsearchterms' class='mt0'>
-    common/searchTerms
+  <h2 id='commoncommondata' class='mt0'>
+    common/commonData
   </h2>
 
   
@@ -3664,6 +3675,163 @@ alert the user.</p>
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='shelfdata'>
+      shelfData
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Data for the bookshelves in the app</p>
+
+
+  <div class='pre p1 fill-light mt0'>shelfData</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>shelves</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
+          : a list of all 3 shelves in the app
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>maybeShelves</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
+          : a list of all 3 shelves, plus the none shelf
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>read</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the Read shelf
+
+          
+            <ul>
+              
+                <li><code>read.narrow</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>narrow name of the Read shelf</p>
+</li>
+              
+                <li><code>read.wide</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>wide name of the Read shelf</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>wantToRead</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the Want to Read shelf
+
+          
+            <ul>
+              
+                <li><code>wantToRead.narrow</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>narrow name of the Want to Read shelf</p>
+</li>
+              
+                <li><code>wantToRead.wide</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>wide name of the Want to Read shelf</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>currentlyReading</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the Currently Reading shelf
+
+          
+            <ul>
+              
+                <li><code>currentlyReading.narrow</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>narrow name of the Currently Reading shelf</p>
+</li>
+              
+                <li><code>currentlyReading.wide</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>wide name of the Currently Reading shelf</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>none</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the none shelf, for books not on a shelf
+
+          
+            <ul>
+              
+                <li><code>none.narrow</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>narrow name of the none shelf</p>
+</li>
+              
+                <li><code>none.wide</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+                  
+                  <p>wide name of the none shelf</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>getShelfWithWidth</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
+          : gets the shelf name with width adjusted by window size
+
+          
+        </div>
+      
+    </div>
   
 
   
@@ -4362,6 +4530,53 @@ alert the user.</p>
         </div>
       
     </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='landingcontent'>
+      LandingContent
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A container block for centering the landing titles</p>
+
+
+  <div class='pre p1 fill-light mt0'>LandingContent</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
   
 
   
