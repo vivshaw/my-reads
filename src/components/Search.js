@@ -134,7 +134,7 @@ class Search extends Component {
 
 		return (
 			<div className="search">
-				<SearchContainer>
+				<SearchContainer className="search-page">
 					<FontIcon className="material-icons" style={styles.searchIcon}>
 						search
 					</FontIcon>
