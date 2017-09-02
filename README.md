@@ -61,3 +61,4 @@ any webserver of your choice.
 * I also have a couple Webpack bugs that I don't think I can fully resolve without ejecting and manually reconfiguring.
 * There are a number of performance optimizations that I could tend to.
 * Visual style could be spruced up
+* The test suites are messy & incomplete, in large part due to a) many difficulties working with Material-UI in Jest and b) some trouble injecting mocks. Solving either of these could increase coverage & tidy things up.
