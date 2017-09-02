@@ -7,11 +7,13 @@ import Search from '../Search';
 
 import { testBooks, jsonHeaders } from '../../common/testData';
 
-describe('Home', () => {
-	let books, findShelf, handleShelfUpdate, mounted, wrapper, search;
+describe('Search', () => {
+	let findShelf, handleShelfUpdate, mounted, wrapper;
 
 	beforeAll(() => {
 		injectTapEventPlugin();
+		findShelf = jest.fn();
+		handleShelfUpdate = jest.fn();
 	});
 
 	beforeEach(() => {
