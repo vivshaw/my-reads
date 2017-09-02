@@ -151,7 +151,7 @@ class Search extends Component {
 						hintStyle={styles.hint}
 						fullWidth={true}
 						maxSearchResults={5}
-						onNewRequest={(req, idx) => this.onSearch(req)}
+						onNewRequest={this.onSearch}
 					/>
 				</SearchContainer>
 
