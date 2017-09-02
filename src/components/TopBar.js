@@ -12,6 +12,14 @@ import IconButton from 'material-ui/IconButton';
 import FilterDialog from './FilterDialog';
 
 /* ------------------------------------------------------------------
+   ----------------------------- STYLES -----------------------------
+	 ------------------------------------------------------------------ */
+
+const styles = {
+	appBar: { boxShadow: 'none' }
+};
+
+/* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
 
@@ -52,7 +60,7 @@ class TopBar extends Component {
 					render={() =>
 						<AppBar
 							title=""
-							style={{ boxShadow: 'none' }}
+							style={styles.appBar}
 							iconElementRight={
 								<IconButton
 									iconClassName="material-icons"
@@ -73,7 +81,7 @@ class TopBar extends Component {
 					render={() =>
 						<AppBar
 							title="Shelves"
-							style={{ boxShadow: 'none' }}
+							style={styles.appBar}
 							iconElementRight={
 								<IconButton iconClassName="material-icons">
 									filter_list
@@ -90,7 +98,7 @@ class TopBar extends Component {
 					render={({ history }) =>
 						<AppBar
 							title="Search"
-							style={{ boxShadow: 'none' }}
+							style={styles.appBar}
 							iconElementLeft={
 								<IconButton iconClassName="material-icons">
 									arrow_back
@@ -108,7 +116,7 @@ class TopBar extends Component {
 					render={() =>
 						<AppBar
 							title="Move"
-							style={{ boxShadow: 'none' }}
+							style={styles.appBar}
 							onLeftIconButtonTouchTap={toggleMenu}
 						/>}
 				/>

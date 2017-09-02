@@ -33,6 +33,10 @@ const Aligner = styled.div`
 	padding: 10px;
 `;
 
+const styles = {
+	button: { marginLeft: 'auto' }
+};
+
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
@@ -146,7 +150,7 @@ class Move extends Component {
 					</DropDownMenu>
 					<RaisedButton
 						label="Update Shelves"
-						style={{ marginLeft: 'auto' }}
+						style={styles.button}
 						primary={true}
 						onClick={this.handleChangeShelves}
 					/>

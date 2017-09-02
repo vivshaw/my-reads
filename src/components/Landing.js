@@ -126,6 +126,14 @@ const Footer = styled.div`
 	background-color: ${props => props.bgColor};
 `;
 
+// These are in an object because they need to be passed to Material-UI style props
+const styles = {
+	link: { textDecoration: 'none', color: '#26C6DA' },
+	button: {
+		margin: '16px 32px 0px 32px'
+	}
+};
+
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
@@ -148,14 +156,14 @@ class Landing extends Component {
 						<RaisedButton
 							className="landing-button"
 							label="See my shelves"
-							style={{ margin: '16px 32px 0px 32px' }}
+							style={styles.button}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/shelves" />}
 						/>
 						<RaisedButton
 							className="landing-button"
 							label="Search for books"
-							style={{ margin: '16px 32px 0px 32px' }}
+							style={styles.button}
 							labelStyle={{ color: muiTheme.palette.primary1Color }}
 							containerElement={<Link to="/search" />}
 						/>
@@ -168,27 +176,18 @@ class Landing extends Component {
 							Flybrary is a library app built for Project #1 of the{' '}
 							<a
 								href="https://www.udacity.com/course/react-nanodegree--nd019"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
+								style={styles.link}
 							>
 								Udacity React Nanodegree
 							</a>. It lets users{' '}
-							<Link
-								to="/search"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
-							>
+							<Link to="/search" style={styles.link}>
 								search
 							</Link>{' '}
 							for books, add them to{' '}
-							<Link
-								to="/shelves"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
-							>
+							<Link to="/shelves" style={styles.link}>
 								shelves
 							</Link>, rate them, and{' '}
-							<Link
-								to="/move"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
-							>
+							<Link to="/move" style={styles.link}>
 								move
 							</Link>{' '}
 							them in bulk.
@@ -205,14 +204,14 @@ class Landing extends Component {
 							Flybrary is a progressive web app built on{' '}
 							<a
 								href="https://github.com/facebookincubator/create-react-app"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
+								style={styles.link}
 							>
 								create-react-app
 							</a>{' '}
 							and{' '}
 							<a
 								href="https://reacttraining.com/react-router/"
-								style={{ textDecoration: 'none', color: '#26C6DA' }}
+								style={styles.link}
 							>
 								react-router
 							</a>{' '}
@@ -229,8 +228,14 @@ class Landing extends Component {
 					<span role="img" aria-label="heart emoji">
 						♥️
 					</span>{' '}
-					in <a href="https://facebook.github.io/react/">React</a> / fork me{' '}
-					<a href="https://github.com/vivshaw/my-reads">on GitHub</a>
+					in{' '}
+					<a href="https://facebook.github.io/react/" style={styles.link}>
+						React
+					</a>{' '}
+					/ fork me{' '}
+					<a href="https://github.com/vivshaw/my-reads" style={styles.link}>
+						on GitHub
+					</a>
 				</Footer>
 			</div>
 		);
