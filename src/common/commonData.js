@@ -48,7 +48,6 @@ export const searchTerms = [
 	'Games',
 	'Gandhi',
 	'History',
-	'History',
 	'Homer',
 	'Horror',
 	'Hugo',
