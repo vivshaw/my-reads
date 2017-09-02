@@ -46,6 +46,11 @@ const RatingWrapper = styled.div`
 	padding-bottom: 0px;
 `;
 
+// Card styles are in an object because I need to pass them to Material-UI props
+const styles = {
+	cardMedia: { maxHeight: '400px', overflow: 'hidden', minHeight: '400px' }
+};
+
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
@@ -126,7 +131,7 @@ class Book extends Component {
 			<FlybraryBook className="book">
 				<CardMedia
 					overlay={<CardTitle title={title} subtitle={subtitle} />}
-					style={{ maxHeight: '400px', overflow: 'hidden' }}
+					style={styles.cardMedia}
 				>
 					<img src={thumbnail} alt={title} />
 				</CardMedia>
