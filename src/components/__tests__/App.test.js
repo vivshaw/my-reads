@@ -10,11 +10,12 @@ import SideBar from '../SideBar';
 import { testBooks, jsonHeaders } from '../../common/testData';
 
 describe('App', () => {
-	let wrapper;
+	let wrapper, update;
 
 	beforeAll(() => {
 		fetch.mockResponse(JSON.stringify(testBooks), { jsonHeaders });
 		wrapper = shallow(<App />);
+		update = jest.fn();
 	});
 
 	it('renders without crashing', () => {
@@ -64,5 +65,30 @@ describe('App', () => {
 			wrapper.instance().handleFilterClear();
 			expect(wrapper.state('filterQuery')).toBe('');
 		});
+
+		it('sets SideBar visibility', () => {
+			expect(wrapper.state('menuVisible')).toBe(false);
+			wrapper.instance().toggleMenu();
+			expect(wrapper.state('menuVisible')).toBe(true);
+		});
+
+		it('closes the sidebar', () => {
+			wrapper.instance().handleMenuClose();
+			expect(wrapper.state('menuVisible')).toBe(false);
+		});
+
+		it('opens the snackbar', () => {
+			wrapper.instance().handleSnackbarOpen();
+			expect(wrapper.state('snackbarOpen')).toBe(true);
+		});
+
+		it('closes the snackbar', () => {
+			wrapper.instance().handleRequestClose();
+			expect(wrapper.state('snackbarOpen')).toBe(false);
+		});
+
+		// Having trouble testing handleShelfUpdate and findShelf because they need
+		// to be mounted, but then I need to wrap it in a router, so the element isn't
+		// root and I can't access state
 	});
 });

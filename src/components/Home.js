@@ -69,7 +69,7 @@ class Home extends Component {
 			return (
 				<Tab
 					key={shelf + '-tab'}
-					label={shelfData.getshelfWithWidth(shelf)}
+					label={shelfData.getShelfWithWidth(shelf)}
 					value={shelfData.shelves.indexOf(shelf)}
 				/>
 			);

@@ -48,7 +48,6 @@ export const searchTerms = [
 	'Games',
 	'Gandhi',
 	'History',
-	'History',
 	'Homer',
 	'Horror',
 	'Hugo',
@@ -115,7 +114,7 @@ export const searchTerms = [
  * @prop {string}					none.narrow		narrow name of the none shelf
  * @prop {string}					none.wide			wide name of the none shelf
  *
- * @prop {function(string)} getshelfWithWidth gets the shelf name with width adjusted by window size
+ * @prop {function(string)} getShelfWithWidth gets the shelf name with width adjusted by window size
  */
 export const shelfData = {
 	shelves: ['currentlyReading', 'wantToRead', 'read'],
@@ -138,6 +137,6 @@ export const shelfData = {
 	}
 };
 
-shelfData.getshelfWithWidth = function(shelf: string) {
-	return getWidth() === widths.wide ? this[shelf].wide : this[shelf].narrow;
+shelfData.getShelfWithWidth = function(shelf: string) {
+	return getWidth() === widths.large ? this[shelf].wide : this[shelf].narrow;
 }.bind(shelfData);

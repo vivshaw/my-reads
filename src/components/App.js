@@ -248,7 +248,7 @@ class App extends Component {
 							snackbarData.shelf
 								? `${getWidth() === widths.wide
 										? snackbarData.title
-										: 'Book'} added to ${shelfData.getshelfWithWidth(
+										: 'Book'} added to ${shelfData.getShelfWithWidth(
 										snackbarData.shelf
 									)}!`
 								: ''

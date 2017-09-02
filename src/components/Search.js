@@ -134,7 +134,7 @@ class Search extends Component {
 
 		return (
 			<div className="search">
-				<SearchContainer>
+				<SearchContainer className="search-page">
 					<FontIcon className="material-icons" style={styles.searchIcon}>
 						search
 					</FontIcon>
@@ -151,7 +151,7 @@ class Search extends Component {
 						hintStyle={styles.hint}
 						fullWidth={true}
 						maxSearchResults={5}
-						onNewRequest={(req, idx) => this.onSearch(req)}
+						onNewRequest={this.onSearch}
 					/>
 				</SearchContainer>
 
