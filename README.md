@@ -14,6 +14,8 @@
 - [Installing](#installing)
 - [Testing](#testing)
 - [Deploying](#deploying)
+- [Documentation](#documentation)
+- [To-Do](#to-do)
 
 ## What
 
