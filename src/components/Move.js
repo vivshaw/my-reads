@@ -19,6 +19,7 @@ import {
 
 // Utils/Common
 import { shelfData } from '../common/commonData';
+import type { BookType } from '../common/flowTypes';
 import getWidth, { widths } from '../utils/getWidth';
 
 /* ------------------------------------------------------------------
@@ -36,8 +37,15 @@ const Aligner = styled.div`
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
 
+type Props = {
+	books: Array<BookType>,
+	handleShelfUpdate: (string, string) => void
+};
+
 /** Bulk move page component, located at route /move */
 class Move extends Component {
+	props: Props;
+
 	state = {
 		selectedShelf: 'read',
 		selected: []
@@ -128,7 +136,7 @@ class Move extends Component {
 		});
 
 		return (
-			<div>
+			<div className="move-page">
 				<Aligner>
 					<span>
 						Move {wide ? 'books' : ''} to:
