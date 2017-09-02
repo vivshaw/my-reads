@@ -6,13 +6,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Home from '../Home';
 
 import { testBooks } from '../../common/testData';
+import { shelfData } from '../../common/commonData';
 
 describe('Home', () => {
 	let books, clearQuery, filterQuery, mounted, shelves, wrapper;
 
 	beforeAll(() => {
 		books = testBooks.books;
-		shelves = Array.from(new Set(books.map(book => book.shelf)));
+		shelves = shelfData.shelves;
 		filterQuery = '';
 		clearQuery = jest.fn();
 
