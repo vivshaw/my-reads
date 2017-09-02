@@ -56,6 +56,11 @@ master branch. The latest passing build is at [my-reads-vivshaw.herokuapp.com](h
 For manual deployment, you can ```yarn build```, and then deploy the built app on
 any webserver of your choice.
 
+## Documentation
+Flybrary is fully documented with JSDoc & some [documentation.js](http://documentation.js.org/)-generated docs are hosted from the docs directory and are [available here](https://vivshaw.github.io/my-reads/). Unfortunately, the auto-generated docs aren't too great due to the lack of a good ESNext-compatible docs library. It was impossible to use JSDoc or ESDoc due to compatibility problems with certain ES6/ES7 features, and even documentation.js required a Babel transpilation step to get it working & does some weird things with my output.
+
+To regenerate docs, use ```yarn docs```.
+
 ## To-Do
 * Eventually, I'd like to migrate to a Redux architecture.
 * I also have a couple Webpack bugs that I don't think I can fully resolve without ejecting and manually reconfiguring.
