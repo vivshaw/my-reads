@@ -1,72 +1,70 @@
-import React from 'react';
-import Dialog from 'material-ui/Drawer';
-import { shallow, mount } from 'enzyme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import React from "react";
+import Dialog from "material-ui/Drawer";
+import { shallow, mount } from "enzyme";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
 
-import FilterDialog from '../FilterDialog';
+import FilterDialog from "../FilterDialog";
 
-describe('FilterDialog', () => {
-	let mounted, handleFilterChange, handleFilterClear, toggleDialog;
+describe("FilterDialog", () => {
+  let mounted, handleFilterChange, handleFilterClear, toggleDialog;
 
-	beforeAll(() => {
-		handleFilterChange = jest.fn();
-		handleFilterClear = jest.fn();
-		toggleDialog = jest.fn();
-		injectTapEventPlugin();
-	});
+  beforeAll(() => {
+    handleFilterChange = jest.fn();
+    handleFilterClear = jest.fn();
+    toggleDialog = jest.fn();
+  });
 
-	beforeEach(() => {
-		const muiTheme = getMuiTheme();
+  beforeEach(() => {
+    const muiTheme = getMuiTheme();
 
-		mounted = mount(
-			<FilterDialog
-				handleFilterChange={handleFilterChange}
-				handleFilterClear={handleFilterClear}
-				open={true}
-				toggleDialog={toggleDialog}
-			/>,
-			{
-				context: { muiTheme },
-				childContextTypes: { muiTheme: React.PropTypes.object }
-			}
-		);
-	});
+    mounted = mount(
+      <FilterDialog
+        handleFilterChange={handleFilterChange}
+        handleFilterClear={handleFilterClear}
+        open={true}
+        toggleDialog={toggleDialog}
+      />,
+      {
+        context: { muiTheme },
+        childContextTypes: { muiTheme: React.PropTypes.object },
+      }
+    );
+  });
 
-	it('renders a Dialog', () => {
-		// Enzyme can only find the Dialog by display name?
-		expect(mounted.find('Dialog').length).toBe(1);
-	});
+  it("renders a Dialog", () => {
+    // Enzyme can only find the Dialog by display name?
+    expect(mounted.find("Dialog").length).toBe(1);
+  });
 
-	describe('ui interaction', () => {
-		it('can clear the query', () => {
-			mounted.instance().clear();
-			expect(handleFilterClear).toHaveBeenCalled();
-		});
+  describe("ui interaction", () => {
+    it("can clear the query", () => {
+      mounted.instance().clear();
+      expect(handleFilterClear).toHaveBeenCalled();
+    });
 
-		it('can apply the filter', () => {
-			mounted.instance().filter();
-			expect(handleFilterChange).toHaveBeenCalled();
-		});
+    it("can apply the filter", () => {
+      mounted.instance().filter();
+      expect(handleFilterChange).toHaveBeenCalled();
+    });
 
-		it('clearing and filtering both close the dialog', () => {
-			mounted.instance().filter();
-			expect(toggleDialog).toHaveBeenCalled();
-			mounted.instance().clear();
-			expect(toggleDialog).toHaveBeenCalled();
-		});
+    it("clearing and filtering both close the dialog", () => {
+      mounted.instance().filter();
+      expect(toggleDialog).toHaveBeenCalled();
+      mounted.instance().clear();
+      expect(toggleDialog).toHaveBeenCalled();
+    });
 
-		it('sets the query', () => {
-			const query = 'term';
-			mounted.instance().handleChange({ target: { value: query } });
-			expect(mounted.state('filterQuery')).toBe(query);
-		});
+    it("sets the query", () => {
+      const query = "term";
+      mounted.instance().handleChange({ target: { value: query } });
+      expect(mounted.state("filterQuery")).toBe(query);
+    });
 
-		it('updates visibility when receiving new props', () => {
-			mounted.instance().componentWillReceiveProps({ open: false });
-			expect(mounted.state('filterOpen')).toBe(false);
-		});
-	});
+    it("updates visibility when receiving new props", () => {
+      mounted.instance().componentWillReceiveProps({ open: false });
+      expect(mounted.state("filterOpen")).toBe(false);
+    });
+  });
 });

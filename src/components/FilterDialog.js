@@ -1,22 +1,22 @@
 // @flow
 
 // Vendor
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Material-UI
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 /* ------------------------------------------------------------------
    --------------------------- COMPONENT ----------------------------
 	 ------------------------------------------------------------------ */
 
 type Props = {
-	handleFilterChange: (query: string) => void,
-	handleFilterClear: () => void,
-	open: boolean,
-	toggleDialog: () => void
+  handleFilterChange: (query: string) => void,
+  handleFilterClear: () => void,
+  open: boolean,
+  toggleDialog: () => void,
 };
 
 /**
@@ -27,75 +27,75 @@ type Props = {
  * @param {function()} toggleDialog from {@link TopBar#toggleDialog}
  */
 class FilterDialog extends Component {
-	props: Props;
+  props: Props;
 
-	state = {
-		filterOpen: false,
-		filterQuery: ''
-	};
+  state = {
+    filterOpen: false,
+    filterQuery: "",
+  };
 
-	/**
-	 * Clears the filter query
-	 */
-	clear = () => {
-		this.props.handleFilterClear();
-		this.props.toggleDialog();
-	};
+  /**
+   * Clears the filter query
+   */
+  clear = () => {
+    this.props.handleFilterClear();
+    this.props.toggleDialog();
+  };
 
-	/**
-	 * Applies the filter
-	 */
-	filter = () => {
-		this.props.handleFilterChange(this.state.filterQuery);
-		this.props.toggleDialog();
-	};
+  /**
+   * Applies the filter
+   */
+  filter = () => {
+    this.props.handleFilterChange(this.state.filterQuery);
+    this.props.toggleDialog();
+  };
 
-	/**
-	 * Contoller for controlled component TextField
-	 * @param  {SyntheticEvent} event onChange event from TextField
-	 */
-	handleChange = (event: SyntheticEvent) => {
-		this.setState({
-			filterQuery: event.target.value
-		});
-	};
+  /**
+   * Contoller for controlled component TextField
+   * @param  {SyntheticEvent} event onChange event from TextField
+   */
+  handleChange = (event: SyntheticEvent) => {
+    this.setState({
+      filterQuery: event.target.value,
+    });
+  };
 
-	componentWillReceiveProps(nextProps: Props) {
-		if (nextProps.open !== this.state.filterOpen) {
-			this.setState({ filterOpen: nextProps.open });
-		}
-	}
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.open !== this.state.filterOpen) {
+      this.setState({ filterOpen: nextProps.open });
+    }
+  }
 
-	componentDidMount() {
-		this.setState({ filterOpen: this.props.open });
-	}
+  componentDidMount() {
+    this.setState({ filterOpen: this.props.open });
+  }
 
-	render() {
-		const actions = [
-			<FlatButton label="Clear" primary={true} onTouchTap={this.clear} />,
-			<FlatButton label="Filter" primary={true} onTouchTap={this.filter} />
-		];
+  render() {
+    const actions = [
+      <Button label="Clear" primary={true} onTouchTap={this.clear} />,
+      <Button label="Filter" primary={true} onTouchTap={this.filter} />,
+    ];
 
-		return (
-			<div>
-				<Dialog
-					key="filter-dialog-id"
-					title="Filter books"
-					actions={actions}
-					modal={true}
-					open={this.state.filterOpen}
-				>
-					<p>Filter your books by title & subtitle.</p>
-					<TextField
-						id="filter-field-controlled"
-						hintText="Filter by term"
-						value={this.state.filterQuery}
-						onChange={this.handleChange}
-					/>
-				</Dialog>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <Dialog
+          key="filter-dialog-id"
+          title="Filter books"
+          actions={actions}
+          modal={true}
+          open={this.state.filterOpen}
+        >
+          <p>Filter your books by title & subtitle.</p>
+          <TextField
+            id="filter-field-controlled"
+            hintText="Filter by term"
+            value={this.state.filterQuery}
+            onChange={this.handleChange}
+          />
+        </Dialog>
+      </div>
+    );
+  }
 }
 
 export default FilterDialog;
