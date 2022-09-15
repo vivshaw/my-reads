@@ -36,7 +36,7 @@
   "devDependencies": {
     "@material-ui/codemod": "^4.5.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
-    "documentation": "^5.2.2",
+    "documentation": "^14.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-rimraf": "^0.2.1",
