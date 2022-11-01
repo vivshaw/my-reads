@@ -37,7 +37,7 @@
     "@material-ui/codemod": "^4.5.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "documentation": "^5.2.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-babel": "^7.0.0",
     "gulp-rimraf": "^0.2.1",
     "jest-fetch-mock": "^1.2.1",
